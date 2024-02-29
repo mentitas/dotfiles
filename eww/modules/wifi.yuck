@@ -1,0 +1,25 @@
+(defvar rev-wifi      false)
+
+;; wifi-info[0] = ssid
+;; wifi-info[1] = signal strength
+(defpoll wifi-info :interval "10s"
+  "./scripts/wifi-info"
+)
+
+(defwidget wifi []
+   (eventbox :onclick "./scripts/open-wifi"
+             :onhover     "eww update rev-wifi=true"
+             :onhoverlost "eww update rev-wifi=false"
+      (box :class "wifi" :space-evenly "false" :orientation "h"
+        (image :path "${wifi-info[1] > 80 ? "./icons/signal-3.png" :
+                        wifi-info[1] > 45 ? "./icons/signal-2.png" :
+                        wifi-info[1] > 10 ? "./icons/signal-1.png" :
+                                            "./icons/signal-0.png"}")
+        (revealer :transition "slideleft"
+			                :reveal rev-wifi
+			                :duration "350ms"  
+          (label :text "${wifi-info[0]} ${wifi-info[1]}%" :class "white")
+        )
+      )
+    )
+)

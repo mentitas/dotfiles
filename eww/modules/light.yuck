@@ -1,0 +1,16 @@
+(defvar rev-light      false)
+
+(defwidget light []
+  (eventbox :onhover     "eww update rev-light=true"
+	          :onhoverlost "eww update rev-light=false"
+  (box :class "light" :space-evenly "false" :orientation "h"
+      (image :path "./icons/sun.png")
+        	(revealer :transition "slideleft"
+			              :reveal rev-light
+			              :duration "350ms"
+                (metric :label "${backlight}%"
+                        :value backlight
+                        :onchange "xbacklight -set {}")))))
+
+(defpoll backlight :interval "0.5s"
+  "xbacklight -get")

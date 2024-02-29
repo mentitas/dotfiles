@@ -1,0 +1,3 @@
+#!/bin/sh
+
+nmcli -f in-use,ssid,signal dev wifi list | grep "*" | awk '{print $3}'

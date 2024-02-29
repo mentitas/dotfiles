@@ -1,0 +1,8 @@
+;; When conected to a monitor, mirror display (true) or extend display (false)
+(defvar mirror false)
+
+(defwidget monitor[]
+  (button :class "monitor" :spacing "5" :onclick "eww update mirror=${!mirror} && ${mirror ? "./scripts/monitor" : "./scripts/tv"}" 
+  (label :text "${mirror ? "󰟴" : "󰔂"}" :style "font-size: 20px;")
+  ;;(image :path "./icons/monitor.svg")
+  ))

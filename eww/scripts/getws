@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Get workspace info
+# Use jq to read it as JSON
+# Use jq to get the name of the workspace which is visible
+# Use grep to isolate the workspace name
+
+num=$(i3-msg -t get_workspaces | jq '.[]' | jq 'if .visible then .name else null end' | grep -o -E [[:digit:]])
+echo ${num}

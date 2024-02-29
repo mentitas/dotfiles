@@ -1,0 +1,12 @@
+#!/bin/sh
+
+info=$(wmctrl -l | grep "Telegram")
+
+if [ -n $info ]
+then
+    telegram-desktop
+else
+    index=$(wmctrl -l | grep "Telegram"   | awk '{print $2}')
+    ws=$(wmctrl -d    | grep "$index  -" | awk '{print $9}')
+    i3-msg workspace $ws
+fi

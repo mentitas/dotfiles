@@ -1,0 +1,52 @@
+;; Variables for the bulbasaur widget
+(defvar bulbasaur  "modules/pets/bulbasaur/normal.gif")
+(defvar watermelon "modules/pets/bulbasaur/watermelon-static.gif")
+
+(defwidget bulbasaur []
+  (eventbox :onhover     "eww open  bulbasaur-popup"
+            :onclick     "eww close bulbasaur-popup"
+            :class "bulbasaur"
+    (image :class "bulbasaur" :path "./modules/pets/bulbasaur/mini.gif")
+  )
+)
+
+(defwidget bulbasaur-popup []
+  (eventbox  :onhoverlost "eww close bulbasaur-popup && eww update bulbasaur=modules/pets/bulbasaur/normal.gif"
+
+    (overlay :orientation "v" :space-evenly "false" :valign "center"
+    
+    ;; Background
+    (image :halign "fill" :valign "fill" :path "modules/pets/bulbasaur/background.png" )
+    
+    ;; Bulbasaur + Botones
+
+    (box :orientation "v" :space-evenly "false" :valign "center" :spacing "10"
+      ;; Bulbasaur
+      (eventbox :height "140" :width "150"
+                :onhover     "eww update bulbasaur=modules/pets/bulbasaur/excited.gif"
+                :onhoverlost "eww update bulbasaur=modules/pets/bulbasaur/normal.gif"
+        (image :path "${bulbasaur}")
+      )
+
+      ;; Botones
+       (button :onclick "eww update bulbasaur=modules/pets/bulbasaur/dancing.gif &&
+                         eww update watermelon=modules/pets/bulbasaur/watermelon.gif"
+         (image :path "${watermelon}")
+       )
+      
+    )
+  )
+  )
+)
+
+(defwindow bulbasaur-popup
+  :monitor 0
+  :windowtype "notification"
+  :stacking "fg"
+  :wm-ignore true
+  :geometry (geometry :x "5px"
+                      :y "6%"
+                      :width "200px"
+                      :height "200px"
+                      :anchor "top left")
+  (bulbasaur-popup))

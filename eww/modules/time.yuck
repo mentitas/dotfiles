@@ -1,0 +1,28 @@
+(defpoll time :interval "10s"
+  "date '+%H:%M %b %d, %Y'")
+
+(defwidget time []
+  (eventbox :onhover     "eww open  calendar-popup"
+    (label :text {time} :class "_${ws}")
+  )
+)
+
+(defwidget calendar-popup []
+  (eventbox :class "popup" :onhoverlost "eww close calendar-popup"
+    (calendar)
+  )
+)
+
+(defwindow calendar-popup
+  :monitor 0
+  :windowtype "notification"
+  :stacking "fg"
+  :wm-ignore "true"
+  :geometry (geometry :x "0%"
+                      :y "6%" 
+                      :width "20%"
+                      :height "15%"
+                      :anchor "top center")
+  (calendar-popup))
+
+  

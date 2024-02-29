@@ -1,0 +1,86 @@
+(defvar ds-hover false)
+(defvar tg-hover false)
+(defvar steam-hover false)
+
+(defpoll ds-running :interval "5s"
+    "echo $(pidof Discord)"
+)
+
+(defpoll tg-running :interval "5s"
+    "echo $(pidof telegram-desktop)"
+)
+
+(defpoll steam-running :interval "10s"
+    "echo $(pidof steam)"
+)
+
+(defwidget apps []
+    (box :class "surface"
+         :visible "${strlength(ds-running)!=0 || strlength(tg-running)!=0}"
+         :space-evenly "false"
+         :spacing "5px"
+
+        (eventbox :onhoverlost "eww update steam-hover=false"
+            
+            (box  :space-evenly "false" :halign "end" :spacing "5px"
+            
+                (revealer :transition "slideleft"
+			      :reveal steam-hover
+			      :duration "350ms"
+                  (button :onclick "killall steam"
+                    (image :path "./icons/quit.png")
+                  )
+                )
+
+                (button :onclick "echo TODO"
+                        :onrightclick "eww update steam-hover=true"
+                        :visible "${strlength(steam-running)!=0}"
+                        :halign "end"
+                    (image :path "./icons/steam.png")
+                )
+            )
+        )
+
+        (eventbox :onhoverlost "eww update ds-hover=false"
+            
+            (box  :space-evenly "false" :halign "end" :spacing "5px"
+            
+                (revealer :transition "slideleft"
+			      :reveal ds-hover
+			      :duration "350ms"
+                  (button :onclick "killall Discord && notify-send Quitting Discord"
+                    (image :path "./icons/quit.png")
+                  )
+                )
+
+                (button :onclick "./scripts/discord"
+                        :onrightclick "eww update ds-hover=true"
+                        :visible "${strlength(ds-running)!=0}"
+                        :halign "end"
+                    (image :path "./icons/discord-filled.png")
+                )
+            )
+        )
+
+        (eventbox :onhoverlost "eww update tg-hover=false"
+            
+            (box  :space-evenly "false" :halign "end" :spacing "5px"
+            
+                (revealer :transition "slideleft"
+			      :reveal tg-hover
+			      :duration "350ms"
+                  (button :onclick "killall telegram-desktop && notify-send Quitting Telegram"
+                    (image :path "./icons/quit.png")
+                  )
+                )
+
+                (button :onclick "./scripts/telegram"
+                        :onrightclick "eww update tg-hover=true"
+                        :visible "${strlength(tg-running)!=0}"
+                        :halign "end"
+                    (image :path "./icons/telegram.png")
+                )
+            )
+        )
+    )
+)
