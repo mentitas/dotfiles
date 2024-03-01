@@ -12,8 +12,8 @@
 	          :onhoverlost "eww update rev-vol=false"
   (box :class "${mute ? "volume-muted" : "volume"}" :space-evenly "false" :orientation "h"
       (image :path "${ mute       ? "./icons/volume-mute.png" :
-                      volume > 60 ? "./icons/volume-3.png" :
-                      volume > 30 ? "./icons/volume-2.png" :
+                      volume > 66 ? "./icons/volume-3.png" :
+                      volume > 33 ? "./icons/volume-2.png" :
                       volume > 1  ? "./icons/volume-1.png" :
                                     "./icons/volume-0.png"}")
         	(revealer :transition "slideleft"

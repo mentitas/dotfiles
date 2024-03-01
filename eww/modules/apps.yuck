@@ -18,7 +18,7 @@
 
     (eventbox :onhoverlost {hover-false}
         
-        (box  :space-evenly "false" :halign "end" :spacing "5px"
+        (box  :space-evenly "false" :halign "end"
 
             (revealer :transition "slideleft"
                       :reveal hover
@@ -31,7 +31,7 @@
             (button :onclick "./scripts/${name}"
                     :onrightclick {hover-true}
                     :visible "${strlength(running)!=0}"
-                (image :path "./icons/${name}.png")
+                (image :path "./icons/${name}.png" :width "25")
             )
         )
     )
