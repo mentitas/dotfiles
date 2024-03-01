@@ -172,8 +172,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Backlight control
-bindsym F12 exec --no-startup-id xbacklight +5 # && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
-bindsym F11 exec --no-startup-id xbacklight -5 # && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+bindsym F12 exec --no-startup-id xbacklight +5; exec ~/.config/i3/notify-light.sh
+bindsym F11 exec --no-startup-id xbacklight -5; exec ~/.config/i3/notify-light.sh
 
 # Change focus
 bindsym $mod+Left  focus left
@@ -214,8 +214,8 @@ bindsym $mod+a focus parent
 # volume
 
 # use meta keys without showing osc
-bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5; exec eww open volume-popup && sleep 3 && eww close volume-popup
-bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5; exec eww open volume-popup && sleep 3 && eww close volume-popup
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5; exec ~/.config/i3/notify-volume.sh
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5; exec ~/.config/i3/notify-volume.sh
 
 # mute
 bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/toggle-mute.sh
