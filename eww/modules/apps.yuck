@@ -14,73 +14,56 @@
     "echo $(pidof steam)"
 )
 
+(defwidget app [name hover running hover-false hover-true]
+
+    (eventbox :onhoverlost {hover-false}
+        
+        (box  :space-evenly "false" :halign "end" :spacing "5px"
+
+            (revealer :transition "slideleft"
+                      :reveal hover
+                      :duration "350ms"
+              (button :onclick "killall ${name} && notify-send Quitting ${name}"
+                (image :path "./icons/quit.png")
+              )
+            )
+            
+            (button :onclick "./scripts/${name}"
+                    :onrightclick {hover-true}
+                    :visible "${strlength(running)!=0}"
+                (image :path "./icons/${name}.png")
+            )
+        )
+    )
+
+
+)
+
 (defwidget apps []
     (box :class "surface"
-         :visible "${strlength(ds-running)!=0 || strlength(tg-running)!=0}"
+         :visible "${strlength(ds-running)!=0 || strlength(tg-running)!=0 || strlength(steam-running)!=0}}"
          :space-evenly "false"
-         :spacing "5px"
+         :spacing "10px"
 
-        (eventbox :onhoverlost "eww update steam-hover=false"
-            
-            (box  :space-evenly "false" :halign "end" :spacing "5px"
-            
-                (revealer :transition "slideleft"
-			      :reveal steam-hover
-			      :duration "350ms"
-                  (button :onclick "killall steam"
-                    (image :path "./icons/quit.png")
-                  )
-                )
+        (app :name "steam" 
+             :hover steam-hover 
+             :running steam-running
+             :hover-false "eww update steam-hover=false" 
+             :hover-true  "eww update steam-hover=true"
+             )
 
-                (button :onclick "echo TODO"
-                        :onrightclick "eww update steam-hover=true"
-                        :visible "${strlength(steam-running)!=0}"
-                        :halign "end"
-                    (image :path "./icons/steam.png")
-                )
-            )
-        )
-
-        (eventbox :onhoverlost "eww update ds-hover=false"
-            
-            (box  :space-evenly "false" :halign "end" :spacing "5px"
-            
-                (revealer :transition "slideleft"
-			      :reveal ds-hover
-			      :duration "350ms"
-                  (button :onclick "killall Discord && notify-send Quitting Discord"
-                    (image :path "./icons/quit.png")
-                  )
-                )
-
-                (button :onclick "./scripts/discord"
-                        :onrightclick "eww update ds-hover=true"
-                        :visible "${strlength(ds-running)!=0}"
-                        :halign "end"
-                    (image :path "./icons/discord-filled.png")
-                )
-            )
-        )
-
-        (eventbox :onhoverlost "eww update tg-hover=false"
-            
-            (box  :space-evenly "false" :halign "end" :spacing "5px"
-            
-                (revealer :transition "slideleft"
-			      :reveal tg-hover
-			      :duration "350ms"
-                  (button :onclick "killall telegram-desktop && notify-send Quitting Telegram"
-                    (image :path "./icons/quit.png")
-                  )
-                )
-
-                (button :onclick "./scripts/telegram"
-                        :onrightclick "eww update tg-hover=true"
-                        :visible "${strlength(tg-running)!=0}"
-                        :halign "end"
-                    (image :path "./icons/telegram.png")
-                )
-            )
-        )
+        (app :name "Discord" 
+             :hover ds-hover 
+             :running ds-running
+             :hover-false "eww update ds-hover=false" 
+             :hover-true  "eww update ds-hover=true"
+             )
+        
+        (app :name "telegram-desktop" 
+             :hover tg-hover 
+             :running tg-running
+             :hover-false "eww update tg-hover=false" 
+             :hover-true  "eww update tg-hover=true"
+             )
     )
 )
