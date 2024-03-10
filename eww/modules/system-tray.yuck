@@ -41,7 +41,7 @@
 
 (defwidget apps []
     (box :class "surface"
-         :visible "${strlength(ds-running)!=0 || strlength(tg-running)!=0 || strlength(steam-running)!=0}}"
+         :visible "${strlength(ds-running)!=0 || strlength(tg-running)!=0 || strlength(steam-running)!=0}"
          :space-evenly "false"
          :spacing "10px"
 

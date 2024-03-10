@@ -1,10 +1,10 @@
-(include "./modules/apps.yuck")
 (include "./modules/pets/bulbasaur/bulbasaur.yuck")
 (include "./modules/energy.yuck")
 (include "./modules/light.yuck")
 (include "./modules/pets/oneko/oneko.yuck")
 (include "./modules/monitor.yuck")
 (include "./modules/shortcuts.yuck")
+(include "./modules/system-tray.yuck")
 (include "./modules/time.yuck")
 (include "./modules/volume.yuck")
 (include "./modules/wifi.yuck")
@@ -23,8 +23,8 @@
     ;;(bulbasaur)
     ;;(image :path "./icons/arch.png")
     (workspaces)
-    (oneko-cat)
-    (oneko-dog)
+    ;;(oneko-cat)
+    ;;(oneko-dog)
   )
 )
 
@@ -43,12 +43,15 @@
 
 (defwidget circular-widget [class value center]
   (overlay :width "20" :halign "center"
-        (image :path "${center}")
         (circular-progress
              :class "${class}"
              :value "${value}"
              :start-at 75
-             :thickness 4)))
+             :thickness 4.5)
+        (image :path "${center}")
+  )
+)
+
 
 (defwidget circular-widget-text [class value center]
   (overlay :width "20" :halign "center"

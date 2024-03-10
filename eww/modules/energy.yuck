@@ -61,7 +61,7 @@
   :stacking "fg"
   :wm-ignore true
   :geometry (geometry :x "-5px"
-                      :y "6%"
+                      :y "4%" ;; Antes era 6%
                       :width "10px"
                       :height "70px"
                       :anchor "top right")

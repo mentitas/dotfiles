@@ -19,7 +19,7 @@
   :stacking "fg"
   :wm-ignore "true"
   :geometry (geometry :x "0%"
-                      :y "6%" 
+                      :y "4%" ;; Antes era 6%
                       :width "20%"
                       :height "15%"
                       :anchor "top center")
