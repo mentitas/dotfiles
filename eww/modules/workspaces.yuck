@@ -5,9 +5,7 @@
 (defwidget workspace-indicator [num]
   (button :halign "center" :onclick 'i3-msg workspace ${num}'
     (overlay
-      ;; Added a background because is hard to click the empty hearts
-      (heart :class "background" :active "true")
-      (heart :class "_${num}"    :active "${ws==num}")
+      (heart :name "${num}" :active "${ws==num}")
     )
   )
 )

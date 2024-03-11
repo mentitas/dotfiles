@@ -38,18 +38,18 @@
     (box :orientation "h" :space-evenly "false" :hexpand "true" :spacing 10
       ;;(battery-indicator :value "${EWW_BATTERY.BAT0.capacity}")
       
-      (heart :class "green" :active "${hover-battery}")
+      (heart :name "6" :active "${hover-battery}")
       (label :halign "start" :text "Battery at ")
       (label :halign "start" :text "${EWW_BATTERY.BAT0.capacity}% " :class "green")
       (label :halign "start" :text "${EWW_BATTERY.BAT0.status=="Charging" ? "(Charging)" : ""}")
     )
     (box :orientation "h" :space-evenly "false" :hexpand "true" :spacing 10
-      (heart :class "peach" :active "${hover-ram}")
+      (heart :name "4" :active "${hover-ram}")
       (label :halign "start" :text "RAM usage: ")
       (label :halign "start" :text "${round(EWW_RAM.used_mem_perc,0)}%" :class "peach")
     )
     (box :orientation "h" :space-evenly "false" :hexpand "true" :spacing 10
-      (heart :class "sapphire" :active "${hover-cpu}")
+      (heart :name "9" :active "${hover-cpu}")
       (label :halign "start" :text "CPU usage: ")
       (label :halign "start" :text "${round(EWW_CPU.avg,0)}%" :class "sapphire")
     )

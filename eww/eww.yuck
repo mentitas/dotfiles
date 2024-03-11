@@ -62,8 +62,12 @@
              :start-at 75
              :thickness 4)))
 
+(defwidget heart [active name]
+  (image :path "${active ? "./icons/hearts-filled/${name}.png" : "./icons/hearts/${name}.png"}")
+)
 
-(defwidget heart [class active]
+
+(defwidget heart-txt [class active]
   (label :text "${active ? "" : "♥"}"
          :class "${class}"
          :style "text-shadow: 1px 0;"
