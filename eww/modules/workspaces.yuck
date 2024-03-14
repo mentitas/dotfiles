@@ -1,18 +1,15 @@
-(defpoll ws :interval "0.1s"
-  "./scripts/getws")
-
+(deflisten ws :initial "1"
+  "tail -F /tmp/ws")
 
 (defwidget workspace-indicator [num]
-  (button :halign "center" :onclick 'i3-msg workspace ${num}'
-    (overlay
+  (button :halign "center" :onclick '/home/rosu/.config/i3/change-ws.sh ${num}'
       (heart :name "${num}" :active "${ws==num}")
-    )
   )
 )
 
 ;; This widget gets the current ws name and calls 10 workspace indicators
 (defwidget workspaces []
-  (box :class "workspaces" :halign "start"
+  (box :class "surface" :halign "start"
   (label :text "${ws}")
   (workspace-indicator :num 1 )
   (workspace-indicator :num 2 )

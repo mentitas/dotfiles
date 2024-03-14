@@ -1,0 +1,21 @@
+(defwidget app [name visible]
+    (button :onclick "./scripts/launch-app/${name}"
+            :visible "${visible}"
+        (image :path "./icons/apps/${name}-outlined.png")
+    )
+)
+
+(defwidget launcher []
+    (box :space-evenly "false" :spacing "5"
+        
+        (system-tray)
+        (box :class "surface" :space-evenly "false" :spacing "5"
+        (app :name "Discord"          :visible "${strlength(ds-running)==0}")
+        (app :name "telegram-desktop" :visible "${strlength(tg-running)==0}")
+        (app :name "vivaldi"          :visible "true")
+        (app :name "code"             :visible "true")
+        (app :name "krita"            :visible "true")
+        (app :name "rofi"             :visible "true")
+        )
+    )
+)

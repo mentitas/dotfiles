@@ -7,7 +7,7 @@
 )
 
 (defwidget wifi []
-   (eventbox :onclick "./scripts/open-wifi"
+   (eventbox :onclick "./scripts/launch-app/nmtui"
              :onhover     "eww update rev-wifi=true"
              :onhoverlost "eww update rev-wifi=false"
       (box :class "wifi" :space-evenly "false" :orientation "h"

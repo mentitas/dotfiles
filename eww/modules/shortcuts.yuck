@@ -33,7 +33,7 @@
 (defwidget power-popup []
    (eventbox :class "popup" :onhoverlost "eww close power-popup"
       (box :class "power-popup"
-         (button :onclick "killall i3" (label :text "󰗽"))
+         (button :onclick "i3-msg exit" (label :text "󰗽"))
          (button :onclick "poweroff"   (label :text "⏻"))
      )
   )

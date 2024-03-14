@@ -2,6 +2,7 @@
 (include "./modules/energy.yuck")
 (include "./modules/light.yuck")
 (include "./modules/pets/oneko/oneko.yuck")
+(include "./modules/launcher.yuck")
 (include "./modules/monitor.yuck")
 (include "./modules/shortcuts.yuck")
 (include "./modules/system-tray.yuck")
@@ -23,6 +24,7 @@
     ;;(bulbasaur)
     ;;(image :path "./icons/arch.png")
     (workspaces)
+    (launcher)
     ;;(oneko-cat)
     ;;(oneko-dog)
   )
@@ -30,7 +32,7 @@
 
 (defwidget right []
   (box :class "right" :height "20" :space-evenly "false" :valign "center" :halign "end" :spacing "20" 
-    (apps)
+    ;;(system-tray)
     (volume)
     (light)
     (wifi)

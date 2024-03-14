@@ -5,5 +5,7 @@
 # Use jq to get the name of the workspace which is visible
 # Use grep to isolate the workspace name
 
+# Requisitos: jq
+
 num=$(i3-msg -t get_workspaces | jq '.[]' | jq 'if .visible then .name else null end' | grep -Eo '[0-9]{1,2}')
 echo ${num}

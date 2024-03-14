@@ -14,24 +14,23 @@
     "echo $(pidof steam)"
 )
 
-(defwidget app [name hover running hover-false hover-true]
+(defwidget system-tray-app [name hover running hover-false hover-true]
 
     (eventbox :onhoverlost {hover-false}
         
         (box  :space-evenly "false" :halign "end"
 
-            (revealer :transition "slideleft"
+            (button :onclick "./scripts/${name}"
+                    :onrightclick {hover-true}
+                    :visible "${strlength(running)!=0}"
+                (image :path "./icons/sys-tray-apps/${name}.png" :width "25")
+            )
+            (revealer :transition "slideright"
                       :reveal hover
                       :duration "350ms"
               (button :onclick "killall ${name} && notify-send Quitting ${name}"
                 (image :path "./icons/quit.png")
               )
-            )
-            
-            (button :onclick "./scripts/${name}"
-                    :onrightclick {hover-true}
-                    :visible "${strlength(running)!=0}"
-                (image :path "./icons/${name}.png" :width "25")
             )
         )
     )
@@ -39,27 +38,27 @@
 
 )
 
-(defwidget apps []
+(defwidget system-tray []
     (box :class "surface"
          :visible "${strlength(ds-running)!=0 || strlength(tg-running)!=0 || strlength(steam-running)!=0}"
          :space-evenly "false"
          :spacing "10px"
 
-        (app :name "steam" 
+        (system-tray-app :name "steam" 
              :hover steam-hover 
              :running steam-running
              :hover-false "eww update steam-hover=false" 
              :hover-true  "eww update steam-hover=true"
              )
 
-        (app :name "Discord" 
+        (system-tray-app :name "Discord" 
              :hover ds-hover 
              :running ds-running
              :hover-false "eww update ds-hover=false" 
              :hover-true  "eww update ds-hover=true"
              )
         
-        (app :name "telegram-desktop" 
+        (system-tray-app :name "telegram-desktop" 
              :hover tg-hover 
              :running tg-running
              :hover-false "eww update tg-hover=false" 
