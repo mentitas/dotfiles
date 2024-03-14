@@ -2,6 +2,29 @@
 (defvar hover-ram "false")
 (defvar hover-cpu "false")
 
+
+(defwidget circular-widget [class value center]
+  (overlay :width "20" :halign "center"
+        (circular-progress
+             :class "${class}"
+             :value "${value}"
+             :start-at 75
+             :thickness 4.5)
+        (image :path "${center}")
+  )
+)
+
+
+(defwidget circular-widget-text [class value center]
+  (overlay :width "20" :halign "center"
+      (label :text "${center}")
+        (circular-progress
+             :class "${class}"
+             :value "${value}"
+             :start-at 75
+             :thickness 4)))
+
+
 (defwidget energy []
   (eventbox :onhover     "eww open  energy-popup"
             :onhoverlost "eww close energy-popup"

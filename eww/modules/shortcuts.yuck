@@ -9,10 +9,7 @@
             (revealer :transition "slideleft"
 	  	            :reveal rev-shortcuts
 	  	            :duration "350ms"
-               (box :spacing "10" :space-evenly "false"
-                  (rofi)
                   (power)
-        )
       )
     )
   )

@@ -16,7 +16,7 @@ $_6  : $green    ;
 $_7  : $teal     ;
 $_8  : $sky      ;
 $_9  : $sapphire ;
-$_10 : $blue     ;
+$_0 : $blue     ;
 
 $background:       #181825; // mantle
 $background-popup: #1e1e2e; // base
@@ -33,7 +33,7 @@ $foreground:       $white;
 ._7,  .teal     {  color: $_7;   }
 ._8,  .sky      {  color: $_8;   }
 ._9,  .sapphire {  color: $_9;   }
-._10, .blue     {  color: $_10;  }
+._0, .blue      {  color: $_0;  }
 
 .background     { color: $background  }
 

@@ -1,3 +1,5 @@
+(defvar hover-launcher "false")
+
 (defwidget app [name visible]
     (button :onclick "./scripts/launch-app/${name}"
             :visible "${visible}"
@@ -6,16 +8,27 @@
 )
 
 (defwidget launcher []
-    (box :space-evenly "false" :spacing "5"
+
+    (eventbox :space-evenly "false" :spacing "5"
+              :onhover     "eww update hover-launcher=true"
+              :onhoverlost "eww update hover-launcher=false"
         
-        (system-tray)
-        (box :class "surface" :space-evenly "false" :spacing "5"
-        (app :name "Discord"          :visible "${strlength(ds-running)==0}")
-        (app :name "telegram-desktop" :visible "${strlength(tg-running)==0}")
-        (app :name "vivaldi"          :visible "true")
-        (app :name "code"             :visible "true")
-        (app :name "krita"            :visible "true")
-        (app :name "rofi"             :visible "true")
+        (box :space-evenly "false" :spacing "5"
+            
+            (system-tray)
+            (revealer :transition "slideleft"
+	    	      :reveal hover-launcher
+	    	      :duration "450ms"
+            
+                (box :class "surface" :space-evenly "false" :spacing "5"
+                    (app :name "Discord"          :visible "${strlength(ds-running)==0}")
+                    (app :name "telegram-desktop" :visible "${strlength(tg-running)==0}")
+                    (app :name "vivaldi"          :visible "true")
+                    (app :name "code"             :visible "true")
+                    (app :name "krita"            :visible "true")
+                    (app :name "rofi"             :visible "true")
+                )
+            )
         )
     )
 )

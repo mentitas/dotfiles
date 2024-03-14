@@ -1,8 +1,8 @@
 (include "./modules/pets/bulbasaur/bulbasaur.yuck")
+(include "./modules/pets/oneko/oneko.yuck")
 (include "./modules/energy.yuck")
 (include "./modules/light.yuck")
-(include "./modules/pets/oneko/oneko.yuck")
-(include "./modules/launcher.yuck")
+(include "./modules/metrics.yuck")
 (include "./modules/monitor.yuck")
 (include "./modules/shortcuts.yuck")
 (include "./modules/system-tray.yuck")
@@ -10,6 +10,7 @@
 (include "./modules/volume.yuck")
 (include "./modules/wifi.yuck")
 (include "./modules/workspaces.yuck")
+(include "./modules/launcher.yuck")
 
 (defwidget bar []
   (centerbox :class "bar";
@@ -21,53 +22,31 @@
 
 (defwidget left[]
   (box :class "left" :halign "start" :space-evenly "false" :spacing "5"
-    ;;(bulbasaur)
-    ;;(image :path "./icons/arch.png")
     (workspaces)
-    (launcher)
-    ;;(oneko-cat)
-    ;;(oneko-dog)
   )
 )
 
 (defwidget right []
   (box :class "right" :height "20" :space-evenly "false" :valign "center" :halign "end" :spacing "20" 
-    ;;(system-tray)
-    (volume)
-    (light)
-    (wifi)
+    (launcher)
+    (metrics)
     ;;(monitor)
     (energy)
     (shortcuts)
   )
 )
 
-
-(defwidget circular-widget [class value center]
-  (overlay :width "20" :halign "center"
-        (circular-progress
-             :class "${class}"
-             :value "${value}"
-             :start-at 75
-             :thickness 4.5)
-        (image :path "${center}")
-  )
-)
-
-
-(defwidget circular-widget-text [class value center]
-  (overlay :width "20" :halign "center"
-      (label :text "${center}")
-        (circular-progress
-             :class "${class}"
-             :value "${value}"
-             :start-at 75
-             :thickness 4)))
-
 (defwidget heart [active name]
   (image :path "${active ? "./icons/hearts-filled/${name}.png" : "./icons/hearts/${name}.png"}")
 )
 
+
+(defwidget heart2 [active bg-active name]
+  (image :path "${active    ? "./icons/hearts-selected/${name}.png" :
+                  bg-active ? "./icons/hearts-filled/${name}.png"
+                            : "./icons/hearts/${name}.png"}"
+  )
+)
 
 (defwidget heart-txt [class active]
   (label :text "${active ? "" : "♥"}"
