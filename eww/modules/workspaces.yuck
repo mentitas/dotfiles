@@ -5,43 +5,28 @@
   "xprop -spy -root _NET_DESKTOP_NAMES"
 )
 
-(defpoll active-ws :interval "1s"
-  "echo $(i3-msg -t get_workspaces | jq '.[].name' |  grep -Eo '[0-9]{1,2}')"
-)
-
 (defwidget workspace-indicator [num]
   (button :halign "center" :onclick '/home/rosu/.config/i3/change-ws.sh ${num}'
-      (heart2 :name "${num}"
+      (heart-ws :name "${num}"
               :active "${ws==num}"
               :bg-active "${arraylength(search(substring(active,34,strlength(active)), num)) > 0}"
-              
-              ;; si está activo el 10, cambia la condicion del 1
-              ;;:bg-active "${ (arraylength(search(active-ws, 0)) > 0  && num == 1)
-              ;;                
-              ;;                ? "${arraylength(search(active-ws, num)) > 1}"
-              ;;                : "${arraylength(search(active-ws, num)) > 0}"}"
-
-                1
-                ;;arraylength(search(active-ws, num)) > 0 }"
       )
   )
 )
 
 ;; This widget gets the current ws name and calls 10 workspace indicators
 (defwidget workspaces []
-  (box :class "surface" :halign "start"
+  (box :halign "start"
   (label :text "${ws}")
-  ;;(label :text "${active}")
-  ;;(label :text "${search(active, "8")}")
-  (workspace-indicator :num 1 )
-  (workspace-indicator :num 2 )
-  (workspace-indicator :num 3 )
-  (workspace-indicator :num 4 )
-  (workspace-indicator :num 5 )
-  (workspace-indicator :num 6 )
-  (workspace-indicator :num 7 )
-  (workspace-indicator :num 8 )
-  (workspace-indicator :num 9 )
+  (workspace-indicator :num 1)
+  (workspace-indicator :num 2)
+  (workspace-indicator :num 3)
+  (workspace-indicator :num 4)
+  (workspace-indicator :num 5)
+  (workspace-indicator :num 6)
+  (workspace-indicator :num 7)
+  (workspace-indicator :num 8)
+  (workspace-indicator :num 9)
   (workspace-indicator :num 0)
   )
 )

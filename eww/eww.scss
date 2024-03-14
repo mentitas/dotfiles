@@ -53,6 +53,10 @@ $foreground:       $white;
   padding: 0 10 0 10;
 }
 
+.selected  {
+  background-color: #45475a;
+  border-radius: 10px;
+}
 
 .popup {
   background-color: $background;
@@ -62,7 +66,7 @@ $foreground:       $white;
   font-size: 15px;
   font-family: CaskaydiaMonoNerdFont;
   font-weight: bold;
-}
+}l
 
 .metric scale trough highlight {
   all: unset;

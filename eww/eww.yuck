@@ -41,8 +41,8 @@
 )
 
 
-(defwidget heart2 [active bg-active name]
-  (image :path "${active    ? "./icons/hearts-selected/${name}.png" :
+(defwidget heart-ws [active bg-active name]
+  (image :path "${active    ? "./icons/hello-kitty/${name}.png" :
                   bg-active ? "./icons/hearts-filled/${name}.png"
                             : "./icons/hearts/${name}.png"}"
   )
