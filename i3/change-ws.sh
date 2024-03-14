@@ -1,6 +1,15 @@
 #! /bin/bash
 
+# $1 is the new workspace
+
+# Change into the new workspace
 i3-msg workspace $1
+
+# Save the new workspace
+echo $1 >> /tmp/ws
+
+
+### Change the themes ###
 
 # Switch Vivaldi theme
 sleep 0.2
@@ -16,6 +25,7 @@ xdotool search --onlyvisible --name "Vivaldi" windowactivate && xdotool key alt+
 
 ## Change rofi accent color
 color=$(~/.config/i3/get-ws-color.sh $1)
+
 echo "*{
     urgent:     $color;
 }" > ~/.config/rofi/accent.rasi
@@ -52,6 +62,5 @@ case $1 in
     9) color_rgb="--border-red 86  --border-green 186 --border-blue 230" ;;
     *) color_rgb="--border-red 108 --border-green 158 --border-blue 239" ;;
 esac
-
 
 xborders --border-mode outside --border-radius 13 --border-width 3 $color_rgb

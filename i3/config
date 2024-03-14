@@ -88,16 +88,16 @@ floating_modifier $mod
 bindsym Ctrl+Right workspace next
 bindsym Ctrl+Left  workspace prev
 
-bindsym $mod+1    workspace  $ws1  ;exec --no-startup-id ~/.config/i3/switch-theme.sh "1"
-bindsym $mod+2    workspace  $ws2  ;exec --no-startup-id ~/.config/i3/switch-theme.sh "2"
-bindsym $mod+3    workspace  $ws3  ;exec --no-startup-id ~/.config/i3/switch-theme.sh "3"
-bindsym $mod+4    workspace  $ws4  ;exec --no-startup-id ~/.config/i3/switch-theme.sh "4"
-bindsym $mod+5    workspace  $ws5  ;exec --no-startup-id ~/.config/i3/switch-theme.sh "5"
-bindsym $mod+6    workspace  $ws6  ;exec --no-startup-id ~/.config/i3/switch-theme.sh "6"
-bindsym $mod+7    workspace  $ws7  ;exec --no-startup-id ~/.config/i3/switch-theme.sh "7"
-bindsym $mod+8    workspace  $ws8  ;exec --no-startup-id ~/.config/i3/switch-theme.sh "8"
-bindsym $mod+9    workspace  $ws9  ;exec --no-startup-id ~/.config/i3/switch-theme.sh "9"
-bindsym $mod+0    workspace  $ws10 ;exec --no-startup-id ~/.config/i3/switch-theme.sh "10"
+bindsym $mod+1  exec --no-startup-id ~/.config/i3/change-ws.sh $ws1
+bindsym $mod+2  exec --no-startup-id ~/.config/i3/change-ws.sh $ws2
+bindsym $mod+3  exec --no-startup-id ~/.config/i3/change-ws.sh $ws3
+bindsym $mod+4  exec --no-startup-id ~/.config/i3/change-ws.sh $ws4
+bindsym $mod+5  exec --no-startup-id ~/.config/i3/change-ws.sh $ws5
+bindsym $mod+6  exec --no-startup-id ~/.config/i3/change-ws.sh $ws6
+bindsym $mod+7  exec --no-startup-id ~/.config/i3/change-ws.sh $ws7
+bindsym $mod+8  exec --no-startup-id ~/.config/i3/change-ws.sh $ws8
+bindsym $mod+9  exec --no-startup-id ~/.config/i3/change-ws.sh $ws9
+bindsym $mod+0  exec --no-startup-id ~/.config/i3/change-ws.sh $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1    move container to workspace  $ws1
@@ -147,7 +147,7 @@ bindsym $mod+e exec --no-startup-id nemo
 
 
 # Rofi bindings
-bindsym $mod+w exec --no-startup-id rofi -show drun -theme ".config/rofi/style.rasi"
+bindsym $mod+w exec --no-startup-id ~/.config/i3/run-rofi.sh
 #bindsym $mod+Return exec --no-startup-id rofi -show drun -theme ".config/rofi/launchers/type-1/style-8.rasi"
 
 bindsym $mod+z exec --no-startup-id rofi -show window -theme ".config/rofi/style.rasi"
