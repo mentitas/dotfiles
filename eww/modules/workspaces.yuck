@@ -9,6 +9,7 @@
   (button :halign "center" :onclick '/home/rosu/.config/i3/change-ws.sh ${num}'
       (heart-ws :name "${num}"
               :active "${ws==num}"
+              ;;:bg-active "false"
               :bg-active "${arraylength(search(substring(active,34,strlength(active)), num)) > 0}"
       )
   )
@@ -16,7 +17,7 @@
 
 ;; This widget gets the current ws name and calls 10 workspace indicators
 (defwidget workspaces []
-  (box :halign "start"
+  (box :class "surface" :halign "start"
   (label :text "${ws}")
   (workspace-indicator :num 1)
   (workspace-indicator :num 2)

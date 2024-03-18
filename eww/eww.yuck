@@ -42,11 +42,14 @@
 
 
 (defwidget heart-ws [active bg-active name]
-  (image :path "${active    ? "./icons/hello-kitty/${name}.png" :
-                  bg-active ? "./icons/hearts-filled/${name}.png"
-                            : "./icons/hearts/${name}.png"}"
+  (overlay :width "25"
+    (label :text "${bg-active ? "󰫢" : ""}" :class "white")
+    (image :path "${active    ? "./icons/hearts-filled/${name}.png" :
+                    ;;bg-active ? "./icons/hearts-filled/${name}.png" :
+                              "./icons/hearts/${name}.png"}")
   )
 )
+
 
 (defwidget heart-txt [class active]
   (label :text "${active ? "" : "♥"}"
