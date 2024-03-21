@@ -6,7 +6,7 @@
 )
 
 (defwidget workspace-indicator [num]
-  (button :halign "center" :onclick '/home/rosu/.config/i3/change-ws.sh ${num}'
+  (button :halign "center" :onclick 'xdotool key Super+${num}'
       (heart-ws :name "${num}"
               :active "${ws==num}"
               ;;:bg-active "false"

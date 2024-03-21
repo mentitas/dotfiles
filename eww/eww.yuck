@@ -36,6 +36,10 @@
   )
 )
 
+(defwidget sep []
+  (label :text "|")
+)
+
 (defwidget heart [active name]
   (image :path "${active ? "./icons/hearts-filled/${name}.png" : "./icons/hearts/${name}.png"}")
 )
@@ -43,10 +47,11 @@
 
 (defwidget heart-ws [active bg-active name]
   (overlay :width "25"
-    (label :text "${bg-active ? "󰫢" : ""}" :class "white")
+    ;;(image :path "./icons/dot.png" :visible bg-active)
+    (label :text "*" :visible bg-active)
     (image :path "${active    ? "./icons/hearts-filled/${name}.png" :
-                    ;;bg-active ? "./icons/hearts-filled/${name}.png" :
-                              "./icons/hearts/${name}.png"}")
+                                "./icons/hearts/${name}.png"}")
+  
   )
 )
 

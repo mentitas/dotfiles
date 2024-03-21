@@ -16,6 +16,7 @@
         (box :space-evenly "false" :spacing "5"
             
             (system-tray)
+            (label :text {hover-launcher ? "" : ""})
             (revealer :transition "slideleft"
 	    	      :reveal hover-launcher
 	    	      :duration "450ms"
