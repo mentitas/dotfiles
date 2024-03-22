@@ -9,11 +9,11 @@
 
 (defwidget launcher []
 
-    (eventbox :space-evenly "false" :spacing "5"
+    (eventbox :space-evenly "false" :spacing {spacing}
               :onhover     "eww update hover-launcher=true"
               :onhoverlost "eww update hover-launcher=false"
         
-        (box :space-evenly "false" :spacing "5"
+        (box :space-evenly "false" :spacing {spacing}
             
             (system-tray)
             (label :text {hover-launcher ? "" : ""})
@@ -21,7 +21,7 @@
 	    	      :reveal hover-launcher
 	    	      :duration "450ms"
             
-                (box :class "surface" :space-evenly "false" :spacing "5"
+                (box :class "surface" :space-evenly "false" :spacing {spacing/2}
                     (app :name "Discord"          :visible "${strlength(ds-running)==0}")
                     (app :name "telegram-desktop" :visible "${strlength(tg-running)==0}")
                     (app :name "vivaldi"          :visible "true")

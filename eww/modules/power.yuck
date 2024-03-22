@@ -5,7 +5,7 @@
    (eventbox   :onhover     "eww update rev-power-menu=true"
 	            :onhoverlost  "eww update rev-power-menu=false"
       
-      (box :space-evenly "false" :spacing "5" 
+      (box :space-evenly "false" :spacing {spacing} 
 
 	      (label :text {rev-power-menu ? "" : ""})
          (revealer :transition "slideleft"

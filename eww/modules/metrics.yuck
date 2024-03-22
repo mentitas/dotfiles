@@ -3,7 +3,7 @@
 (defwidget metrics []
   (eventbox   :onhover     "eww update hover-metrics=true"
               :onhoverlost "eww update hover-metrics=false"
-      (box :space-evenly "false" :spacing "20"
+      (box :space-evenly "false" :spacing {spacing}
         (volume)
         (light)
         (wifi)

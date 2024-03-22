@@ -22,28 +22,3 @@
                 (metric :label "${volume}%"
                         :value volume
                         :onchange "pamixer --set-volume {}")))))
-
-(defwidget volume-popup []
-  (box :class "popup"
-  (box :class "metric" :space-evenly "false" :spacing "10" :halign "center"
-  (label :text "󰕾")
-  (scale :min 0
-         :max 100
-         :value volume
-         :orientation "h"
-         :onchange "pamixer --set-volume {}")
-    )
-  )
-)
-
-(defwindow volume-popup
-  :monitor 0
-  :windowtype "notification"
-  :stacking "fg"
-  :wm-ignore true
-  :geometry (geometry :x "-5px"
-                      :y "6%"
-                      :width "10%"
-                      :height "5%"
-                      :anchor "top right")
-  (volume-popup))

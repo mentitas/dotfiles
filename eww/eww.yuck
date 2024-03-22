@@ -12,6 +12,8 @@
 (include "./modules/workspaces.yuck")
 (include "./modules/launcher.yuck")
 
+(defvar spacing 10)
+
 (defwidget bar []
   (centerbox :class "bar";
     (left)
@@ -27,7 +29,7 @@
 )
 
 (defwidget right []
-  (box :class "right" :height "20" :space-evenly "false" :valign "center" :halign "end" :spacing "20" 
+  (box :class "right" :height "20" :space-evenly "false" :valign "center" :halign "end" :spacing {spacing}
     (launcher)
     (metrics)
     ;;(monitor)
