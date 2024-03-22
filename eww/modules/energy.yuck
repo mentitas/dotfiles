@@ -2,7 +2,6 @@
 (defvar hover-ram "false")
 (defvar hover-cpu "false")
 
-
 (defwidget circular-widget [class value center]
   (overlay :width "20" :halign "center"
         (circular-progress
@@ -26,66 +25,58 @@
 
 
 (defwidget energy []
-  (eventbox :onhover     "eww open  energy-popup"
-            :onhoverlost "eww close energy-popup"
-    (box :class "energy" :spacing "10" :width "60" :space-evenly "false"
+
+    (box :class "energy" :spacing "10" :space-evenly "false"
         
-        (eventbox :onhover     "eww update hover-battery=true"
-                  :onhoverlost "eww update hover-battery=false"
-          (circular-widget  :class "${(EWW_BATTERY.BAT0.capacity <= 20 && EWW_BATTERY.BAT0.status != 'Charging') ? "low-battery" : "green"}"
-                                :value  {EWW_BATTERY.BAT0.capacity}
-                                :center "${EWW_BATTERY.BAT0.status == 'Charging' 
-                                            ? "./icons/bolt.png" 
-                                            : "./icons/dot.png"}")
+        (energy-indicator :class "${(EWW_BATTERY.BAT0.capacity <= 20 && EWW_BATTERY.BAT0.status != 'Charging') ? "low-battery" : "green"}"
+                          :value {EWW_BATTERY.BAT0.capacity}
+                          :center "${EWW_BATTERY.BAT0.status == 'Charging' 
+                                             ? "./icons/bolt.png" 
+                                             : "./icons/dot.png"}"
+                          :hover-var "${hover-battery}"
+                          :onhover     "eww update hover-battery=true"
+                          :onhoverlost "eww update hover-battery=false"
+                          :hover-text "Battery: "
+        )                
+
+        (energy-indicator :class "peach"
+                          :value {round(EWW_RAM.used_mem_perc,0)}
+                          :center "./icons/dot.png"
+                          :hover-var "${hover-ram}"
+                          :onhover     "eww update hover-ram=true"
+                          :onhoverlost "eww update hover-ram=false"
+                          :hover-text "RAM: "
         )
-        
-        (eventbox :onhover     "eww update hover-ram=true"
-                  :onhoverlost "eww update hover-ram=false"
-          (circular-widget :class "peach"
-                           :value  {round(EWW_RAM.used_mem_perc,0)}
-                           :center "./icons/dot.png")
-        )
-        
-        (eventbox :onhover     "eww update hover-cpu=true"
-                  :onhoverlost "eww update hover-cpu=false"
-          (circular-widget  :class "sapphire"
-                            :value {round(EWW_CPU.avg,0)}
-                            :center "./icons/dot.png")
+
+        (energy-indicator :class "sapphire"
+                          :value {round(EWW_CPU.avg,0)}
+                          :center "./icons/dot.png"
+                          :hover-var "${hover-cpu}"
+                          :onhover     "eww update hover-cpu=true"
+                          :onhoverlost "eww update hover-cpu=false"
+                          :hover-text "CPU: "
         )
     )
-  )
 )
 
-(defwidget energy-popup []
-  (box :class "popup" :orientation "v" :hexpand "true"
-    (box :orientation "h" :space-evenly "false" :hexpand "true" :spacing 10
-      ;;(battery-indicator :value "${EWW_BATTERY.BAT0.capacity}")
-      
-      (heart :name "6" :active "${hover-battery}")
-      (label :halign "start" :text "Battery at ")
-      (label :halign "start" :text "${EWW_BATTERY.BAT0.capacity}% " :class "green")
-      (label :halign "start" :text "${EWW_BATTERY.BAT0.status=="Charging" ? "(Charging)" : ""}")
-    )
-    (box :orientation "h" :space-evenly "false" :hexpand "true" :spacing 10
-      (heart :name "4" :active "${hover-ram}")
-      (label :halign "start" :text "RAM usage: ")
-      (label :halign "start" :text "${round(EWW_RAM.used_mem_perc,0)}%" :class "peach")
-    )
-    (box :orientation "h" :space-evenly "false" :hexpand "true" :spacing 10
-      (heart :name "9" :active "${hover-cpu}")
-      (label :halign "start" :text "CPU usage: ")
-      (label :halign "start" :text "${round(EWW_CPU.avg,0)}%" :class "sapphire")
-    )
-))
+(defwidget energy-indicator [class value center hover-var onhover onhoverlost hover-text] 
+  (eventbox :onhover     {onhover}
+            :onhoverlost {onhoverlost}
 
-(defwindow energy-popup
-  :monitor 0
-  :windowtype "notification"
-  :stacking "fg"
-  :wm-ignore true
-  :geometry (geometry :x "-5px"
-                      :y "4%" ;; Antes era 6%
-                      :width "10px"
-                      :height "70px"
-                      :anchor "top right")
-  (energy-popup))
+          (box :space-evenly "false" :spacing "5"
+          
+              (circular-widget  :class {class}
+                                :value {value}
+                                :center {center})
+
+              (revealer :transition "slideleft"
+	  	                  :reveal {hover-var}
+	  	                  :duration "350ms"
+                (box :space-evenly "false"
+                  (label :halign "start" :text {hover-text})
+                  (label :halign "start" :text "${value}%" :class {class})
+                )
+              )
+          )
+  )
+)
