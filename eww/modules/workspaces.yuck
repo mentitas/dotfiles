@@ -9,7 +9,6 @@
   (button :halign "center" :onclick 'xdotool key Super+${num}'
       (heart-ws :name "${num}"
               :active "${ws==num}"
-              ;;:bg-active "false"
               :bg-active "${arraylength(search(substring(active,34,strlength(active)), num)) > 0}"
       )
   )

@@ -83,28 +83,6 @@ $foreground:       $white;
   margin: 10px;
 }
 
-
-
-.power-popup {
-  font-size: 72px;
-}
-
-.power-popup button:hover{
-  color: $peach;
-}
-
-.workspaces {
-  font-size: 15px;
-}
-
-.energy circular-progress{
-  background-color: #45475a;
-}
-
-.battery circular-progress{
-  color: $green;
-}
-
 @keyframes pulse {
   0%   {  color: $red;    }
   50%  {  color: $white;  }
@@ -114,15 +92,6 @@ $foreground:       $white;
 .low-battery{
   animation: pulse 1s infinite;
 
-}
-
-
-.cpu circular-progress{
-  color: $sapphire;
-}
-
-.ram circular-progress{
-  color: $peach;
 }
 
 .volume scale trough highlight{
@@ -135,10 +104,6 @@ $foreground:       $white;
 
 .light scale trough highlight{
   background-color: $yellow
-}
-
-.power {
-  margin-right: 15px;
 }
 
 .bulbasaur {

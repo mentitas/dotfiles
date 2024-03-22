@@ -10,7 +10,8 @@
 			              :duration "350ms"
                 (metric :label "${backlight}%"
                         :value backlight
-                        :onchange "xbacklight -set {}")))))
+                        :onchange "xbacklight -set {}"
+                        :class "yellow")))))
 
 (defpoll backlight :interval "0.5s"
   "xbacklight -get")

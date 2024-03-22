@@ -17,8 +17,11 @@
                                             "./icons/signal-0.png"}")
         (revealer :transition "slideleft"
 			                :reveal rev-wifi
-			                :duration "350ms"  
-          (label :text "${wifi-info[0]} ${wifi-info[1]}%" :class "white")
+			                :duration "350ms"
+          (box
+          (label :text "${wifi-info[0]} " :class "white")
+          (label :text "${wifi-info[1]}%" :class "pink")
+          )
         )
       )
     )

@@ -21,4 +21,5 @@
 			              :duration "350ms"
                 (metric :label "${volume}%"
                         :value volume
-                        :onchange "pamixer --set-volume {}")))))
+                        :onchange "pamixer --set-volume {}"
+                        :class "mauve")))))
