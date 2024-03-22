@@ -4,7 +4,7 @@
 (include "./modules/light.yuck")
 (include "./modules/metrics.yuck")
 (include "./modules/monitor.yuck")
-(include "./modules/shortcuts.yuck")
+(include "./modules/power.yuck")
 (include "./modules/system-tray.yuck")
 (include "./modules/time.yuck")
 (include "./modules/volume.yuck")
@@ -32,7 +32,7 @@
     (metrics)
     ;;(monitor)
     (energy)
-    (shortcuts)
+    (power-menu)
   )
 )
 
