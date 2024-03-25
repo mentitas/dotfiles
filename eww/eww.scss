@@ -1,5 +1,4 @@
-@import 'palettes/new-catppuccin';
-//@use 'ws';
+@import 'palettes/mocha.scss';
 
 * {
   all: unset; //Unsets everything so you can style everything from scratch
@@ -16,12 +15,7 @@ $_6  : $green    ;
 $_7  : $teal     ;
 $_8  : $sky      ;
 $_9  : $sapphire ;
-$_0 : $blue     ;
-
-$background:       #181825; // mantle
-$background-popup: #1e1e2e; // base
-$surface:          #313244; // surface0
-$foreground:       $white;
+$_0 : $blue      ;
 
 // Classes for the time widget, which changes with every workspace
 ._1,  .mauve    {  color: $_1;   }
@@ -33,9 +27,7 @@ $foreground:       $white;
 ._7,  .teal     {  color: $_7;   }
 ._8,  .sky      {  color: $_8;   }
 ._9,  .sapphire {  color: $_9;   }
-._0, .blue      {  color: $_0;  }
-
-.background     { color: $background  }
+._0,  .blue      {  color: $_0;  }
 
 
 .dock  {
@@ -53,14 +45,9 @@ $foreground:       $white;
 }
 
 .surface  {
-  background-color: #313244;
+  background-color: $surface;
   border-radius: 12px;
   padding: 0 10 0 10;
-}
-
-.selected  {
-  background-color: #45475a;
-  border-radius: 10px;
 }
 
 .popup {
@@ -96,7 +83,6 @@ $foreground:       $white;
 
 .low-battery{
   animation: pulse 1s infinite;
-
 }
 
 .volume scale trough highlight{
