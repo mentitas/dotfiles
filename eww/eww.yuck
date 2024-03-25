@@ -1,16 +1,6 @@
-(include "./modules/pets/bulbasaur/bulbasaur.yuck")
-(include "./modules/pets/oneko/oneko.yuck")
-(include "./modules/energy.yuck")
-(include "./modules/light.yuck")
-(include "./modules/metrics.yuck")
-(include "./modules/monitor.yuck")
-(include "./modules/power.yuck")
-(include "./modules/system-tray.yuck")
+(include "./modules/left.yuck")
 (include "./modules/time.yuck")
-(include "./modules/volume.yuck")
-(include "./modules/wifi.yuck")
-(include "./modules/workspaces.yuck")
-(include "./modules/launcher.yuck")
+(include "./modules/right.yuck")
 
 (defvar spacing 10)
 
@@ -20,67 +10,6 @@
       (time) 
       (right)
   )
-)
-
-
-(defwidget left[]
-  (box :class "left" :halign "start" :space-evenly "false" :spacing "5"
-    (workspaces)
-  )
-)
-
-(defwidget right []
-  (box :class "right" :height "20" :space-evenly "false" :valign "center" :halign "end" :spacing {spacing}
-    (launcher)
-    (sep)
-    (metrics)
-    ;;(monitor)
-    (sep)
-    (energy)
-    (sep)
-    (power-menu)
-  )
-)
-
-(defwidget sep []
-  (label :text "|")
-)
-
-(defwidget heart [active name]
-  (image :path "${active ? "./icons/hearts-filled/${name}.png" : "./icons/hearts/${name}.png"}")
-)
-
-
-(defwidget heart-ws [active bg-active name]
-  (overlay :width "25"
-    ;;(image :path "./icons/dot.png" :visible bg-active)
-    (label :text "*" :visible bg-active)
-    (image :path "${active    ? "./icons/hearts-filled/${name}.png" :
-                                "./icons/hearts/${name}.png"}")
-  
-  )
-)
-
-
-(defwidget heart-txt [class active]
-  (label :text "${active ? "" : "♥"}"
-         :class "${class}"
-         :style "text-shadow: 1px 0;"
-         :width "22"
-  )
-)
-
-(defwidget metric [label value onchange class]
-  (box :orientation "h"
-       :class "metric"
-       :space-evenly false
-    (scale :min 0
-           :max 101
-           :active {onchange != ""}
-           :value value
-           :onchange onchange)
-    (label :text "${label}" :class {class})
-    )
 )
 
 (defwindow dock
@@ -95,26 +24,14 @@
                       :anchor "top center")
   (bar))
 
-;; Floating bar (but it doesn't hide on fullscreen)
-;;(defwindow bar
-;;  :monitor 0
-;;  :windowtype "normal"
-;;  :wm-ignore true
-;;  :stacking "fg"
-;;  :geometry (geometry :x "0"
-;;                      :y "5px"
-;;                      :width "1348px"
-;;                      :height "15px"
-;;                      :anchor "top center")
-;;  (bar))
-
-(defwindow bar-monitor
+(defwindow dock-monitor
   :monitor 1
   :windowtype "dock"
+  :wm-ignore false
   :stacking "fg"
-  :geometry (geometry :x "0%"
-                      :y "0%"
+  :geometry (geometry :x "0"
+                      :y "0"
                       :width "100%"
-                      :height "25px"
+                      :height "15px"
                       :anchor "top center")
   (bar))

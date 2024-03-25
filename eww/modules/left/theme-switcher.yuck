@@ -1,0 +1,5 @@
+(defwidget theme-switcher []
+  (button :onclick "./scripts/change-theme"
+    (image :path "./icons/moon.png")
+  )
+)

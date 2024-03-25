@@ -1,3 +1,5 @@
+(include "./modules/right/system-tray.yuck")
+
 (defvar hover-launcher "false")
 
 (defwidget app [name visible]

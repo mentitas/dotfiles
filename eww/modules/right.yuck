@@ -1,0 +1,22 @@
+(include "./modules/right/energy.yuck")
+(include "./modules/right/launcher.yuck")
+(include "./modules/right/metrics.yuck")
+(include "./modules/right/monitor.yuck")
+(include "./modules/right/power.yuck")
+
+
+(defwidget right []
+  (box :class "right" :height "20" :space-evenly "false" :valign "center" :halign "end" :spacing {spacing}
+    (launcher)
+    (sep)
+    (metrics)
+    (sep)
+    (energy)
+    (sep)
+    (power-menu)
+  )
+)
+
+(defwidget sep []
+  (label :text "|")
+)

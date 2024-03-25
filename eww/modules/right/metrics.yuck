@@ -1,0 +1,29 @@
+(include "./modules/right/light.yuck")
+(include "./modules/right/volume.yuck")
+(include "./modules/right/wifi.yuck")
+
+(defvar hover-metrics "false")
+
+(defwidget metric [label value onchange class]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)
+    (label :text "${label}" :class {class})
+    )
+)
+
+(defwidget metrics []
+  (eventbox   :onhover     "eww update hover-metrics=true"
+              :onhoverlost "eww update hover-metrics=false"
+      (box :space-evenly "false" :spacing {spacing}
+        (volume)
+        (light)
+        (wifi)
+      )
+  )
+)
