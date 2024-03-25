@@ -5,7 +5,6 @@
 }
 
 // Variable Color's 
-
 $_1  : $mauve    ;
 $_2  : $pink     ;
 $_3  : $red      ;
@@ -18,29 +17,29 @@ $_9  : $sapphire ;
 $_0 : $blue      ;
 
 // Classes for the time widget, which changes with every workspace
-._1,  .mauve    {  color: $_1;   }
-._2,  .pink     {  color: $_2;   }
-._3,  .red      {  color: $_3;   }
-._4,  .peach    {  color: $_4;   }
-._5,  .yellow   {  color: $_5;   }
-._6,  .green    {  color: $_6;   }
-._7,  .teal     {  color: $_7;   }
-._8,  .sky      {  color: $_8;   }
-._9,  .sapphire {  color: $_9;   }
-._0,  .blue      {  color: $_0;  }
-
+._1,  .mauve     {  color: $_1;   }
+._2,  .pink      {  color: $_2;   }
+._3,  .red       {  color: $_3;   }
+._4,  .peach     {  color: $_4;   }
+._5,  .yellow    {  color: $_5;   }
+._6,  .green     {  color: $_6;   }
+._7,  .teal      {  color: $_7;   }
+._8,  .sky       {  color: $_8;   }
+._9,  .sapphire  {  color: $_9;   }
+._0,  .blue      {  color: $_0;   }
 
 .dock  {
 }
 
-.bar  { 
+
+.bar {
   background-color: $background;
   color:            $foreground;
   font-family: CaskaydiaMonoNerdFont;
   font-weight: bold;
   opacity: 0.85;
   padding: 3;
-  margin: 5 5 0 5;
+  // margin: 5 5 0 5; // Esta linea es la que hace que la barra flote!
   border-radius: 20px;
 }
 
