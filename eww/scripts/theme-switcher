@@ -4,14 +4,26 @@ current_theme=$(tail -n 1 /tmp/theme)
 
 if [ "$current_theme" = "dark" ]
 then
-    #cp ./palettes/mocha-light.scss ./palettes/mocha.scss
     echo light >> /tmp/theme
+
+    # Change wallpaper
     feh --no-fehbg --bg-fill '/home/rosu/Pictures/dunmesh.jpg'
+    # Change eww theme
     cp ./palettes/frutilla.scss ./palettes/current-theme.scss    
+    # Change kitty theme
     cp ../kitty/frutilla.conf ../kitty/current-theme.conf
+    # Change discord theme
+    cp ../BetterDiscord/themes/latte-for-copy.css ../BetterDiscord/themes/current-theme.theme.css
 else
+    
     echo dark >> /tmp/theme
+
+    # Change wallpaper
     feh --no-fehbg --bg-fill '/home/rosu/Pictures/akko-violeta.jpg' 
+    # Change eww theme
     cp ./palettes/mocha-dark.scss  ./palettes/current-theme.scss
+    # Change kitty theme
     cp ../kitty/mocha.conf ../kitty/current-theme.conf
+    # Change discord theme
+    cp ../BetterDiscord/themes/mocha-for-copy.css ../BetterDiscord/themes/current-theme.theme.css
 fi
