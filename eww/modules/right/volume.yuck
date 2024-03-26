@@ -11,11 +11,11 @@
   (eventbox :onhover     "eww update rev-vol=true"
 	          :onhoverlost "eww update rev-vol=false"
   (box :class "${mute ? "volume-muted" : "volume"}" :space-evenly "false" :orientation "h"
-      (image :path "${ mute       ? "./icons/volume-mute.png" :
-                      volume > 66 ? "./icons/volume-3.png" :
-                      volume > 33 ? "./icons/volume-2.png" :
-                      volume > 1  ? "./icons/volume-1.png" :
-                                    "./icons/volume-0.png"}")
+      (image :path "${ mute       ? "./icons/${theme}-theme/volume-mute.png" :
+                      volume > 66 ? "./icons/${theme}-theme/volume-3.png" :
+                      volume > 33 ? "./icons/${theme}-theme/volume-2.png" :
+                      volume > 1  ? "./icons/${theme}-theme/volume-1.png" :
+                                    "./icons/${theme}-theme/volume-0.png"}")
         	(revealer :transition "slideleft"
 			              :reveal rev-vol
 			              :duration "350ms"

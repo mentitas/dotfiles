@@ -1,5 +1,8 @@
+(deflisten theme :initial "dark"
+  "tail -F /tmp/theme")
+
 (defwidget theme-switcher []
-  (button :onclick "./scripts/change-theme"
-    (image :path "./icons/moon.png")
+  (button :onclick "./scripts/theme-switcher"
+    (image :path "./icons/both-themes/moon.png")
   )
 )

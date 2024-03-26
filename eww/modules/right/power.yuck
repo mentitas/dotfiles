@@ -14,13 +14,13 @@
 
                   (box :spacing "5" :class "surface"
                      (button :onclick "i3-msg exit"
-                        (image :path "./icons/log-out.png")
+                        (image :path "./icons/${theme}-theme/log-out.png")
                      )
                      (button :onclick "reboot"
-                        (image :path "./icons/reboot.png")
+                        (image :path "./icons/${theme}-theme/reboot.png")
                      )
                      (button :onclick "poweroff"
-                        (image :path "./icons/power-off.png")
+                        (image :path "./icons/${theme}-theme/power-off.png")
                      )
                   ) 
       )

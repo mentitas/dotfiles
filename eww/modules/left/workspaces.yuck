@@ -8,8 +8,8 @@
 (defwidget heart [active bg-active name]
   (overlay :width "25"
     (label :text "*" :visible bg-active)
-    (image :path "${active    ? "./icons/hearts-filled/${name}.png" :
-                                "./icons/hearts/${name}.png"}")
+    (image :path "${active    ? "./icons/both-themes/hearts-filled/${name}.png" :
+                                "./icons/both-themes/hearts/${name}.png"}")
   
   )
 )

@@ -5,14 +5,13 @@
 (defwidget circular-widget [class value center]
   (overlay :width "20" :halign "center"
         (circular-progress
-             :class "${class}"
+             :class "${class}_circular"
              :value "${value}"
              :start-at 75
              :thickness 4.5)
         (image :path "${center}")
   )
 )
-
 
 (defwidget circular-widget-text [class value center]
   (overlay :width "20" :halign "center"
@@ -31,8 +30,8 @@
         (energy-indicator :class "${(EWW_BATTERY.BAT0.capacity <= 20 && EWW_BATTERY.BAT0.status != 'Charging') ? "low-battery" : "green"}"
                           :value {EWW_BATTERY.BAT0.capacity}
                           :center "${EWW_BATTERY.BAT0.status == 'Charging' 
-                                             ? "./icons/bolt.png" 
-                                             : "./icons/dot.png"}"
+                                             ? "./icons/both-themes/bolt.png" 
+                                             : "./icons/both-themes/dot.png"}"
                           :hover-var "${hover-battery}"
                           :onhover     "eww update hover-battery=true"
                           :onhoverlost "eww update hover-battery=false"
@@ -41,7 +40,7 @@
 
         (energy-indicator :class "peach"
                           :value {round(EWW_RAM.used_mem_perc,0)}
-                          :center "./icons/dot.png"
+                          :center "./icons/both-themes/dot.png"
                           :hover-var "${hover-ram}"
                           :onhover     "eww update hover-ram=true"
                           :onhoverlost "eww update hover-ram=false"
@@ -50,7 +49,7 @@
 
         (energy-indicator :class "sapphire"
                           :value {round(EWW_CPU.avg,0)}
-                          :center "./icons/dot.png"
+                          :center "./icons/both-themes/dot.png"
                           :hover-var "${hover-cpu}"
                           :onhover     "eww update hover-cpu=true"
                           :onhoverlost "eww update hover-cpu=false"

@@ -1,4 +1,4 @@
-@import 'palettes/mocha.scss'
+@import 'palettes/current-theme.scss'
 
 * {
   all: unset; //Unsets everything so you can style everything from scratch
@@ -14,7 +14,7 @@ $_6  : $green    ;
 $_7  : $teal     ;
 $_8  : $sky      ;
 $_9  : $sapphire ;
-$_0 : $blue      ;
+$_0  : $blue     ;
 
 // Classes for the time widget, which changes with every workspace
 ._1,  .mauve     {  color: $_1;   }
@@ -28,9 +28,21 @@ $_0 : $blue      ;
 ._9,  .sapphire  {  color: $_9;   }
 ._0,  .blue      {  color: $_0;   }
 
+.mauve_circular     {  color: $_1;  background-color:  $surface;}
+.pink_circular      {  color: $_2;  background-color:  $surface;}
+.red_circular       {  color: $_3;  background-color:  $surface;}
+.peach_circular     {  color: $_4;  background-color:  $surface;}
+.yellow_circular    {  color: $_5;  background-color:  $surface;}
+.green_circular     {  color: $_6;  background-color:  $surface;}
+.teal_circular      {  color: $_7;  background-color:  $surface;}
+.sky_circular       {  color: $_8;  background-color:  $surface;}
+.sapphire_circular  {  color: $_9;  background-color:  $surface;}
+.blue_circular      {  color: $_0;  background-color:  $surface;}
+
+
+
 .dock  {
 }
-
 
 .bar {
   background-color: $background;
@@ -49,15 +61,14 @@ $_0 : $blue      ;
   padding: 0 10 0 10;
 }
 
-.metric scale trough highlight {
-  all: unset;
-  background-color: #cba6f7;
-  color: #000000;
-  border-radius: 10px;
+
+.energy {
+  background-color: red;
 }
+
 .metric scale trough {
   all: unset;
-  background-color: #45475a;
+  background-color: $surface;
   border-radius: 50px;
   min-height: 4px;
   min-width: 50px;

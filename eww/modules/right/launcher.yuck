@@ -5,7 +5,7 @@
 (defwidget app [name visible]
     (button :onclick "./scripts/launch-app/${name}"
             :visible "${visible}"
-        (image :path "./icons/apps/${name}-outlined.png")
+        (image :path "./icons/both-themes/apps/${name}-outlined.png")
     )
 )
 

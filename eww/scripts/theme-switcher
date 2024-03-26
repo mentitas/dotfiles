@@ -1,0 +1,17 @@
+#!/bin/sh
+
+current_theme=$(tail -n 1 /tmp/theme)
+
+if [ "$current_theme" = "dark" ]
+then
+    #cp ./palettes/mocha-light.scss ./palettes/mocha.scss
+    echo light >> /tmp/theme
+    feh --no-fehbg --bg-fill '/home/rosu/Pictures/dunmesh.jpg'
+    cp ./palettes/frutilla.scss ./palettes/current-theme.scss    
+    cp ../kitty/frutilla.conf ../kitty/current-theme.conf
+else
+    echo dark >> /tmp/theme
+    feh --no-fehbg --bg-fill '/home/rosu/Pictures/akko-violeta.jpg' 
+    cp ./palettes/mocha-dark.scss  ./palettes/current-theme.scss
+    cp ../kitty/mocha.conf ../kitty/current-theme.conf
+fi

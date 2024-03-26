@@ -8,12 +8,20 @@ i3-msg workspace $1
 # Save the new workspace
 echo $1 >> /tmp/ws
 
+# Get the theme
+current_theme=$(tail -n 1 /tmp/theme)
+
 
 ### Change the themes ###
 
 # Switch Vivaldi theme
 sleep 0.2
-xdotool search --onlyvisible --name "Vivaldi" windowactivate && xdotool key alt+ctrl+shift+$1
+if [ "$current_theme" = "dark" ]
+then
+    xdotool search --onlyvisible --name "Vivaldi" windowactivate && xdotool key alt+ctrl+shift+$1
+else
+    xdotool search --onlyvisible --name "Vivaldi" windowactivate && xdotool key alt+ctrl+shift+L
+fi
 
 # Change eww accent color
 #color=$(~/.config/i3/get-ws-color.sh $1)

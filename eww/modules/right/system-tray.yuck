@@ -23,13 +23,13 @@
             (button :onclick "./scripts/${name}"
                     :onrightclick {hover-true}
                     :visible "${strlength(running)!=0}"
-                (image :path "./icons/sys-tray-apps/${name}.png" :width "25")
+                (image :path "./icons/both-themes/sys-tray-apps/${name}.png" :width "25")
             )
             (revealer :transition "slideright"
                       :reveal hover
                       :duration "350ms"
               (button :onclick "killall ${name} && notify-send Quitting ${name}"
-                (image :path "./icons/quit.png")
+                (image :path "./icons/both-themes/quit.png")
               )
             )
         )
