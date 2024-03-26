@@ -4,7 +4,8 @@ current_theme=$(tail -n 1 ./palettes/mocha.scss)
 
 if [ "$current_theme" = "// DARK" ]
 then
-    cp ./palettes/mocha-light.scss ./palettes/mocha.scss    
+    #cp ./palettes/mocha-light.scss ./palettes/mocha.scss    
+    cp ./palettes/frutilla.scss ./palettes/mocha.scss    
 else 
     cp ./palettes/mocha-dark.scss  ./palettes/mocha.scss
 fi
