@@ -1,12 +1,33 @@
 #! /bin/bash
 
 # $1 is the new workspace
+# $1 could be a ws name, "prev" or "next"
+
+old_ws=$(tail -n 1 /tmp/ws)
+
+case "$1" in
+    "next") new_ws=$(((old_ws+1)%10)) ;;
+    "prev") 
+        if [ $old_ws = 0 ]
+        then
+            new_ws=9
+        else
+            new_ws=$((old_ws-1))
+        fi                       ;;
+    *)      new_ws=$1            ;;
+esac
+
+if ( $new_ws < 0 )
+then
+    new_ws=$new_ws+10
+fi
+
 
 # Change into the new workspace
-i3-msg workspace $1
+i3-msg workspace $new_ws
 
 # Save the new workspace
-echo $1 >> /tmp/ws
+echo $new_ws >> /tmp/ws
 
 # Get the theme
 current_theme=$(tail -n 1 /tmp/theme)
@@ -18,10 +39,11 @@ current_theme=$(tail -n 1 /tmp/theme)
 sleep 0.2
 if [ "$current_theme" = "dark" ]
 then
-    xdotool search --onlyvisible --name "Vivaldi" windowactivate && xdotool key alt+ctrl+shift+$1
+    xdotool search --onlyvisible --name "Vivaldi" windowactivate && xdotool key alt+ctrl+shift+$new_ws
 else
     xdotool search --onlyvisible --name "Vivaldi" windowactivate && xdotool key alt+ctrl+shift+L
 fi
+
 
 # Change eww accent color
 #color=$(~/.config/i3/get-ws-color.sh $1)
@@ -32,7 +54,7 @@ fi
 #echo "\$accent: $color;" > ~/.config/eww/_theme.scss
 
 ## Change rofi accent color
-color=$(~/.config/i3/get-ws-color.sh $1)
+color=$(~/.config/i3/get-ws-color.sh $new_ws)
 
 echo "*{
     urgent:     $color;
@@ -58,7 +80,7 @@ killall xborders
 # New Catppuccin
 # https://colorkit.co/color-palette-generator/b688ea-e8a3d4-eb6c8f-f19d69-edd090-89db80-53c9b4-6bd2e3-56bae6-6c9eef/
 
-case $1 in
+case $new_ws in
     1) color_rgb="--border-red 182 --border-green 136 --border-blue 234" ;;
     2) color_rgb="--border-red 232 --border-green 163 --border-blue 212" ;;
     3) color_rgb="--border-red 235 --border-green 108 --border-blue 143" ;;

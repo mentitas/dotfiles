@@ -85,8 +85,8 @@ workspace  $ws10 output $monR
 floating_modifier $mod
 
 # switch/iterate between workspaces
-bindsym Ctrl+Right workspace next
-bindsym Ctrl+Left  workspace prev
+bindsym Ctrl+Right exec --no-startup-id ~/.config/i3/change-ws.sh next
+bindsym Ctrl+Left  exec --no-startup-id ~/.config/i3/change-ws.sh prev
 
 bindsym $mod+1  exec --no-startup-id ~/.config/i3/change-ws.sh $ws1
 bindsym $mod+2  exec --no-startup-id ~/.config/i3/change-ws.sh $ws2
@@ -448,6 +448,7 @@ client.urgent            $peach    $base $peach $overlay0  $peach
 exec --no-startup-id discord
 exec --no-startup-id telegram-desktop
 exec --no-startup-id easystroke
+exec --no-startup-id touchegg
 exec --no-startup-id ~/.config/i3/change-ws.sh 1
 exec --no-startup-id echo dark >> /tmp/theme
 
