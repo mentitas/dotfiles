@@ -3,6 +3,6 @@
 
 (defwidget theme-switcher []
   (button :onclick "./scripts/theme-switcher"
-    (image :path "./icons/both-themes/moon.png")
+    (image :path "./icons/${theme}-theme/theme.png")
   )
 )

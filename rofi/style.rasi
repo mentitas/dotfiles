@@ -23,8 +23,8 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import                          "shared/colors.rasi"
-@import                          "shared/fonts.rasi"
+@import                          "current-theme.rasi"
+@import                          "fonts.rasi"
 @import                          "accent.rasi"
 
 * {

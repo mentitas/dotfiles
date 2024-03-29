@@ -7,13 +7,17 @@ then
     echo light >> /tmp/theme
 
     # Change wallpaper
-    feh --no-fehbg --bg-fill '/home/rosu/Pictures/dunmesh.jpg'
+    feh --no-fehbg --bg-max '/home/rosu/Pictures/olas-4.jpg'
+    #feh --no-fehbg --bg-fill '/home/rosu/Pictures/dunmesh.jpg'
+    #feh --no-fehbg --bg-fill '/home/rosu/Pictures/marcille-4.jpg'
     # Change eww theme
-    cp ./palettes/frutilla.scss ./palettes/current-theme.scss    
+    cp ./palettes/mocha-light.scss ./palettes/current-theme.scss    
     # Change kitty theme
     cp ../kitty/frutilla.conf ../kitty/current-theme.conf
     # Change discord theme
     cp ../BetterDiscord/themes/latte-for-copy.css ../BetterDiscord/themes/current-theme.theme.css
+    # Change rofi theme
+    cp ../rofi/mocha-light.rasi ../rofi/current-theme.rasi
 else
     
     echo dark >> /tmp/theme
@@ -26,4 +30,6 @@ else
     cp ../kitty/mocha.conf ../kitty/current-theme.conf
     # Change discord theme
     cp ../BetterDiscord/themes/mocha-for-copy.css ../BetterDiscord/themes/current-theme.theme.css
+    # Change rofi theme
+    cp ../rofi/mocha.rasi ../rofi/current-theme.rasi
 fi
