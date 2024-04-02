@@ -42,18 +42,49 @@ $_0  : $blue     ;
 
 
 .dock  {
+  color:   $foreground;
+  opacity: 0.85;
+  font-family: CaskaydiaMonoNerdFont;
+  font-weight: bold;
+}
+
+
+@keyframes rainbow_border {
+    0% {border: solid 3px $_0;} 
+   10% {border: solid 3px $_1;} 
+   20% {border: solid 3px $_2;} 
+   30% {border: solid 3px $_3;} 
+   40% {border: solid 3px $_4;} 
+   50% {border: solid 3px $_5;} 
+   60% {border: solid 3px $_6;} 
+   70% {border: solid 3px $_7;} 
+   80% {border: solid 3px $_8;} 
+   90% {border: solid 3px $_9;} 
+  100% {border: solid 3px $_0;} 
 }
 
 .bar {
+  animation: rainbow_border 10s infinite;
   background-color: $background;
-  color:            $foreground;
-  font-family: CaskaydiaMonoNerdFont;
-  font-weight: bold;
-  opacity: 0.85;
-  padding: 3;
-  // margin: 5 5 0 5; // Esta linea es la que hace que la barra flote!
-  border-radius: 20px;
+  border: solid 3px $_0;
+  border-radius: 20px; 
+  margin: 5 5 0 5;
+  padding: 2;
 }
+
+   // El margen es lo que hace que la barra flote!
+   /*
+.bar_1 { background-color: $background; border: solid 3px $_1; border-radius: 20px;  margin: 5 5 0 5; padding: 2;}
+.bar_2 { background-color: $background; border: solid 3px $_2; border-radius: 20px;  margin: 5 5 0 5; padding: 2;}
+.bar_3 { background-color: $background; border: solid 3px $_3; border-radius: 20px;  margin: 5 5 0 5; padding: 2;}
+.bar_4 { background-color: $background; border: solid 3px $_4; border-radius: 20px;  margin: 5 5 0 5; padding: 2;}
+.bar_5 { background-color: $background; border: solid 3px $_5; border-radius: 20px;  margin: 5 5 0 5; padding: 2;}
+.bar_6 { background-color: $background; border: solid 3px $_6; border-radius: 20px;  margin: 5 5 0 5; padding: 2;}
+.bar_7 { background-color: $background; border: solid 3px $_7; border-radius: 20px;  margin: 5 5 0 5; padding: 2;}
+.bar_8 { background-color: $background; border: solid 3px $_8; border-radius: 20px;  margin: 5 5 0 5; padding: 2;}
+.bar_9 { background-color: $background; border: solid 3px $_9; border-radius: 20px;  margin: 5 5 0 5; padding: 2;}
+.bar_0 { background-color: $background; border: solid 3px $_0; border-radius: 20px;  margin: 5 5 0 5; padding: 2;}
+*/
 
 .surface  {
   background-color: $surface;

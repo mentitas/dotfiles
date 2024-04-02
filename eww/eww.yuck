@@ -7,7 +7,7 @@
 (defwidget bar []
   (centerbox :class "bar"
       (left)
-      (time) 
+      (time)
       (right)
   )
 )

@@ -1,8 +1,8 @@
-(include "./modules/right/energy.yuck")
-(include "./modules/right/launcher.yuck")
-(include "./modules/right/metrics.yuck")
-(include "./modules/right/monitor.yuck")
-(include "./modules/right/power.yuck")
+(include "./modules/energy.yuck")
+(include "./modules/launcher.yuck")
+(include "./modules/metrics.yuck")
+(include "./modules/monitor.yuck")
+(include "./modules/power.yuck")
 
 
 (defwidget right []
