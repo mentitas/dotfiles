@@ -11,7 +11,8 @@ then
     #feh --no-fehbg --bg-fill '/home/rosu/Pictures/dunmesh.jpg'
     #feh --no-fehbg --bg-fill '/home/rosu/Pictures/marcille-4.jpg'
     # Change eww theme
-    cp ./palettes/mocha-light.scss ./palettes/current-theme.scss    
+    #cp ./palettes/mocha-light.scss ./palettes/current-theme.scss    
+    cp ./palettes/mocha-bright.scss ./palettes/current-theme.scss    
     # Change kitty theme
     cp ../kitty/frutilla.conf ../kitty/current-theme.conf
     # Change discord theme

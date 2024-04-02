@@ -28,6 +28,8 @@
              :active "${ws==num}"
              :bg-active "${arraylength(search(substring(active,34,strlength(active)), num)) > 0}"
       )
+    ;;(heart-txt :class "_${num}"
+    ;;           :active "true")
   )
 )
 

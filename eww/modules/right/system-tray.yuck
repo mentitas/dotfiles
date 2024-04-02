@@ -23,7 +23,7 @@
             (button :onclick "./scripts/${name}"
                     :onrightclick {hover-true}
                     :visible "${strlength(running)!=0}"
-                (image :path "./icons/both-themes/sys-tray-apps/${name}.png" :width "25")
+                (image :path "./icons/${theme}-theme/sys-tray-apps/${name}.png" :width "25")
             )
             (revealer :transition "slideright"
                       :reveal hover
