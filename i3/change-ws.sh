@@ -77,20 +77,37 @@ killall xborders
 #     *) color_rgb="--border-red 137 --border-green 180 --border-blue 250" ;;
 # esac
 
-# New Catppuccin
-# https://colorkit.co/color-palette-generator/b688ea-e8a3d4-eb6c8f-f19d69-edd090-89db80-53c9b4-6bd2e3-56bae6-6c9eef/
-
-case $new_ws in
-    1) color_rgb="--border-red 182 --border-green 136 --border-blue 234" ;;
-    2) color_rgb="--border-red 232 --border-green 163 --border-blue 212" ;;
-    3) color_rgb="--border-red 235 --border-green 108 --border-blue 143" ;;
-    4) color_rgb="--border-red 241 --border-green 157 --border-blue 105" ;;
-    5) color_rgb="--border-red 237 --border-green 208 --border-blue 144" ;;
-    6) color_rgb="--border-red 137 --border-green 219 --border-blue 128" ;;
-    7) color_rgb="--border-red 83  --border-green 201 --border-blue 180" ;;
-    8) color_rgb="--border-red 107 --border-green 210 --border-blue 227" ;;
-    9) color_rgb="--border-red 86  --border-green 186 --border-blue 230" ;;
-    *) color_rgb="--border-red 108 --border-green 158 --border-blue 239" ;;
-esac
+if [ "$current_theme" = "dark" ]
+then
+    # New Catppuccin
+    # https://colorkit.co/color-palette-generator/b688ea-e8a3d4-eb6c8f-f19d69-edd090-89db80-53c9b4-6bd2e3-56bae6-6c9eef/
+    case $new_ws in
+        1) color_rgb="--border-red 182 --border-green 136 --border-blue 234" ;;
+        2) color_rgb="--border-red 232 --border-green 163 --border-blue 212" ;;
+        3) color_rgb="--border-red 235 --border-green 108 --border-blue 143" ;;
+        4) color_rgb="--border-red 241 --border-green 157 --border-blue 105" ;;
+        5) color_rgb="--border-red 237 --border-green 208 --border-blue 144" ;;
+        6) color_rgb="--border-red 137 --border-green 219 --border-blue 128" ;;
+        7) color_rgb="--border-red 83  --border-green 201 --border-blue 180" ;;
+        8) color_rgb="--border-red 107 --border-green 210 --border-blue 227" ;;
+        9) color_rgb="--border-red 86  --border-green 186 --border-blue 230" ;;
+        *) color_rgb="--border-red 108 --border-green 158 --border-blue 239" ;;
+    esac
+else
+    # New Mocha light
+    # //https://colorkit.co/color-palette-generator/af61fd-fe79d5-ff4876-ff924a-ffd36b-5bfc4c-15fad5-40dffd-2fbcfd-4c8dfd/
+    case $new_ws in
+        1) color_rgb="--border-red 185 --border-green 106 --border-blue 227" ;;
+        2) color_rgb="--border-red 253 --border-green 127 --border-blue 192" ;;
+        3) color_rgb="--border-red 253 --border-green  85 --border-blue 110" ;; 
+        4) color_rgb="--border-red 253 --border-green 148 --border-blue  73" ;;
+        5) color_rgb="--border-red 253 --border-green 204 --border-blue 101" ;;
+        6) color_rgb="--border-red 112 --border-green 240 --border-blue  74" ;; 
+        7) color_rgb="--border-red  52 --border-green 238 --border-blue 192" ;; 
+        8) color_rgb="--border-red  89 --border-green 215 --border-blue 227" ;; 
+        9) color_rgb="--border-red  74 --border-green 185 --border-blue 227" ;; 
+        *) color_rgb="--border-red  99 --border-green 144 --border-blue 227" ;; 
+    esac
+fi
 
 xborders --border-mode outside --border-radius 13 --border-width 3 $color_rgb
