@@ -2,7 +2,7 @@
 
 info=$(wmctrl -l | grep "Discord")
 
-if [ -n $info ]
+if [ "$info" -eq "" ]
 then
     discord
 else

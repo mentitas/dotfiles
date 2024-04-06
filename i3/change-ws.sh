@@ -22,6 +22,8 @@ then
     new_ws=$new_ws+10
 fi
 
+echo $new_ws
+
 
 # Change into the new workspace
 i3-msg workspace $new_ws
@@ -34,16 +36,6 @@ current_theme=$(tail -n 1 /tmp/theme)
 
 
 ### Change the themes ###
-
-# Switch Vivaldi theme
-sleep 0.2
-if [ "$current_theme" = "dark" ]
-then
-    xdotool search --onlyvisible --name "Vivaldi" windowactivate && xdotool key alt+ctrl+shift+$new_ws
-else
-    xdotool search --onlyvisible --name "Vivaldi" windowactivate && xdotool key alt+ctrl+shift+L
-fi
-
 
 # Change eww accent color
 #color=$(~/.config/i3/get-ws-color.sh $1)
@@ -60,8 +52,17 @@ echo "*{
     urgent:     $color;
 }" > ~/.config/rofi/accent.rasi
 
-# Change xborders
-killall xborders
+
+# Switch Vivaldi theme
+sleep 0.2
+if [ "$current_theme" = "dark" ]
+then
+    echo $new_ws
+    xdotool search --onlyvisible --name "Vivaldi" windowactivate && xdotool key alt+ctrl+shift+$new_ws
+else
+    xdotool search --onlyvisible --name "Vivaldi" windowactivate && xdotool key alt+ctrl+shift+L
+fi
+
 
 # Catppuccin
 # case $1 in
@@ -76,6 +77,9 @@ killall xborders
 #     9) color_rgb="--border-red 116 --border-green 199 --border-blue 236" ;;
 #     *) color_rgb="--border-red 137 --border-green 180 --border-blue 250" ;;
 # esac
+
+# Change xborders
+killall xborders
 
 if [ "$current_theme" = "dark" ]
 then

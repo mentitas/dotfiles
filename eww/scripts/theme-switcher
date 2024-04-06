@@ -7,30 +7,53 @@ then
     echo light >> /tmp/theme
 
     # Change wallpaper
-    feh --no-fehbg --bg-max '/home/rosu/Pictures/olas-4.jpg'
+    #feh --no-fehbg --bg-fill '/home/rosu/Pictures/Wallpaper/cat-garden.jpg'
+    feh --no-fehbg --bg-fill '/home/rosu/Pictures/Wallpaper/olas.jpg'
     #feh --no-fehbg --bg-fill '/home/rosu/Pictures/dunmesh.jpg'
     #feh --no-fehbg --bg-fill '/home/rosu/Pictures/marcille-4.jpg'
+
     # Change eww theme
     #cp ./palettes/mocha-light.scss ./palettes/current-theme.scss    
     cp ./palettes/mocha-light.scss ./palettes/current-theme.scss    
+    
     # Change kitty theme
     cp ../kitty/frutilla.conf ../kitty/current-theme.conf
+    
     # Change discord theme
     cp ../BetterDiscord/themes/latte-for-copy.css ../BetterDiscord/themes/current-theme.theme.css
+    
+    # Change sublime theme
+    cp ../sublime-text/Packages/User/Themes/Catppuccin\ Latte.sublime-color-scheme ../sublime-text/Packages/User/Themes/current-theme.sublime-color-scheme
+    
     # Change rofi theme
     cp ../rofi/mocha-light.rasi ../rofi/current-theme.rasi
+
+    # Change zathura theme
+    cp ../zathura/zathurarc-light ../zathura/zathurarc 
+
 else
     
     echo dark >> /tmp/theme
 
     # Change wallpaper
     feh --no-fehbg --bg-fill '/home/rosu/Pictures/akko-violeta.jpg' 
+    
     # Change eww theme
     cp ./palettes/mocha-dark.scss  ./palettes/current-theme.scss
+    
     # Change kitty theme
     cp ../kitty/mocha.conf ../kitty/current-theme.conf
+    
     # Change discord theme
     cp ../BetterDiscord/themes/mocha-for-copy.css ../BetterDiscord/themes/current-theme.theme.css
+    
     # Change rofi theme
     cp ../rofi/mocha.rasi ../rofi/current-theme.rasi
+
+    # Change sublime theme
+    cp ../sublime-text/Packages/User/Themes/Catppuccin\ Mocha.sublime-color-scheme ../sublime-text/Packages/User/Themes/current-theme.sublime-color-scheme
+
+     # Change zathura theme
+    cp ../zathura/zathurarc-dark ../zathura/zathurarc 
+
 fi

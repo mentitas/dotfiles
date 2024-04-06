@@ -5,7 +5,7 @@
 (defvar spacing 10)
 
 (defwidget bar []
-  (centerbox :class "bar"
+  (centerbox :class "bar_${ws}"
       (left)
       (time)
       (right)

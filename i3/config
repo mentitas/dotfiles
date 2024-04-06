@@ -88,6 +88,10 @@ floating_modifier $mod
 bindsym Ctrl+Right exec --no-startup-id ~/.config/i3/change-ws.sh next
 bindsym Ctrl+Left  exec --no-startup-id ~/.config/i3/change-ws.sh prev
 
+bindsym Shift+Ctrl+Right exec --no-startup-id ~/.config/i3/move-container-to.sh next
+bindsym Shift+Ctrl+Left  exec --no-startup-id ~/.config/i3/move-container-to.sh prev
+
+
 bindsym $mod+1  exec --no-startup-id ~/.config/i3/change-ws.sh $ws1
 bindsym $mod+2  exec --no-startup-id ~/.config/i3/change-ws.sh $ws2
 bindsym $mod+3  exec --no-startup-id ~/.config/i3/change-ws.sh $ws3
@@ -133,11 +137,11 @@ mode "resize" {
     bindsym Down  resize shrink height 10 px or 10 ppt
 
 # back to normal: Enter or Escape
-	bindsym Return mode "default"; exec notify-send "Normal mode"
-    bindsym Escape mode "default"; exec notify-send "Normal mode"
+	bindsym Return mode "default"; exec --no-startup-id notify-send "Normal mode"
+    bindsym Escape mode "default"; exec --no-startup-id notify-send "Normal mode"
 }
 
-bindsym $mod+r mode "resize"; exec notify-send "Resize mode"
+bindsym $mod+r mode "resize"; exec --no-startup-id notify-send "Resize mode"
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id kitty
@@ -172,8 +176,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Backlight control
-bindsym F12 exec --no-startup-id xbacklight +5; exec ~/.config/i3/notify-light.sh
-bindsym F11 exec --no-startup-id xbacklight -5; exec ~/.config/i3/notify-light.sh
+bindsym F12 exec --no-startup-id xbacklight +5; exec --no-startup-id ~/.config/i3/notify-light.sh
+bindsym F11 exec --no-startup-id xbacklight -5; exec --no-startup-id ~/.config/i3/notify-light.sh
 
 # Change focus
 bindsym $mod+Left  focus left
@@ -221,7 +225,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5; exec ~/.config/i
 bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/toggle-mute.sh
 
 # mic mute toggle
-bindsym XF86AudioMicMute exec amixer sset Capture toggle
+bindsym XF86AudioMicMute exec --no-startup-id amixer sset Capture toggle
 
 # audio control
 bindsym XF86AudioPlay exec --no-startup-id playerctl play
@@ -301,13 +305,14 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id setxkbmap 'latam, latam' #-variant altgr-intl,qwerty -option 'grp:alt_caps_toggle'
 
 # configure touchpad: tap to click
-exec xinput set-prop "Elan Touchpad" "libinput Tapping Enabled" 1
-exec xinput set-prop "Elan Touchpad" "libinput Natural Scrolling Enabled" 1
+exec --no-startup-id xinput set-prop "Elan Touchpad" "libinput Tapping Enabled" 1
+exec --no-startup-id xinput set-prop "Elan Touchpad" "libinput Natural Scrolling Enabled" 1
 # start conky:
 #exec_always --no-startup-id conky
 
 # Setup displays
-exec-always --no-startup-id xrandr --auto --output eDP1 --mode 1366x768 && xrandr --auto --output HDMI1 --mode 1366x768 --left-of eDP1
+exec --no-startup-id xrandr --auto --output eDP-1  --mode 1366x768
+exec --no-startup-id xrandr --auto --output HDMI-1 --mode 1366x768 --left-of eDP-1
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600

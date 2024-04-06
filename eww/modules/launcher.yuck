@@ -11,13 +11,16 @@
 
 (defwidget launcher []
 
+    (box :space-evenly "false" :spacing {spacing/2}
+
+    (system-tray)
+
     (eventbox :space-evenly "false" :spacing {spacing}
               :onhover     "eww update hover-launcher=true"
               :onhoverlost "eww update hover-launcher=false"
         
-        (box :space-evenly "false" :spacing {spacing}
+        (box :space-evenly "false" :spacing {spacing/2}
             
-            (system-tray)
             (label :text {hover-launcher ? "" : ""})
             (revealer :transition "slideleft"
 	    	      :reveal hover-launcher
@@ -34,4 +37,5 @@
             )
         )
     )
+)
 )
