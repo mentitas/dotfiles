@@ -1,3 +1,3 @@
 #!/bin/sh
 # Config screen
-xrandr --fb 1366x768 --output eDP1 --mode 1366x768 --scale-from 1366x768 --output HDMI1 --mode 1366x768 --scale 1x1 --same-as eDP1
+xrandr --fb 1366x768 --output eDP-1 --mode 1366x768 --scale-from 1366x768 --output HDMI-1 --mode 1366x768 --scale 1x1 --same-as eDP-1

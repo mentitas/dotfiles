@@ -23,7 +23,7 @@
 
 
 (defwidget workspace-indicator [num]
-  (button :halign "center" :onclick 'xdotool key Super+${num}'
+  (button :halign "center" :onclick '~/.config/i3/change-ws.sh ${num}'
       (heart :name "${num}"
              :active "${ws==num}"
              :bg-active "${arraylength(search(substring(active,34,strlength(active)), num)) > 0}"
@@ -31,20 +31,23 @@
   )
 )
 
+
 ;; This widget gets the current ws name and calls 10 workspace indicators
 (defwidget workspaces []
-  (box :class "surface" :halign "start"
-  (label :text "${ws}")
-  (workspace-indicator :num 1)
-  (workspace-indicator :num 2)
-  (workspace-indicator :num 3)
-  (workspace-indicator :num 4)
-  (workspace-indicator :num 5)
-  (workspace-indicator :num 6)
-  (workspace-indicator :num 7)
-  (workspace-indicator :num 8)
-  (workspace-indicator :num 9)
-  (workspace-indicator :num 0)
+  (eventbox :onscroll "~/.config/i3/change-ws.sh {}"
+    (box :class "surface" :halign "start"
+      (label :text "${ws}")
+      (workspace-indicator :num 1)
+      (workspace-indicator :num 2)
+      (workspace-indicator :num 3)
+      (workspace-indicator :num 4)
+      (workspace-indicator :num 5)
+      (workspace-indicator :num 6)
+      (workspace-indicator :num 7)
+      (workspace-indicator :num 8)
+      (workspace-indicator :num 9)
+      (workspace-indicator :num 0)
+    )
   )
 )
 
