@@ -1,0 +1,24 @@
+(include "./modules/theme-switcher.yuck")
+(include "./modules/monitor.yuck")
+
+(defvar rev-extra-settings  false)
+
+(defwidget extra-settings []
+   
+   (eventbox   :onhover      "eww update rev-extra-settings=true"
+	           :onhoverlost  "eww update rev-extra-settings=false"
+      
+      (box :space-evenly "false" :spacing {spacing} 
+
+	    (label :text {rev-extra-settings ? "" : ""})
+         	(revealer :transition "slideright"
+	  	         	  :reveal rev-extra-settings
+	  	         	  :duration "300ms"
+	  	         	(box :space-evenly "false" :spacing {spacing} 
+	  	         	   (monitor)
+    				   (theme-switcher)
+            		) 		  
+            )
+      	)
+    )
+)

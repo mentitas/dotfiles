@@ -2,7 +2,8 @@
 (defvar mirror false)
 
 (defwidget monitor[]
-  (button :class "monitor" :spacing "5" :onclick "eww update mirror=${!mirror} && ${mirror ? "./scripts/monitor" : "./scripts/tv"}" 
-  (label :text "${mirror ? "󰟴" : "󰔂"}" :style "font-size: 20px;")
-  ;;(image :path "./icons/monitor.svg")
-  ))
+  (button :onclick "eww update mirror=${!mirror} &&
+                    ${mirror ? "./scripts/monitor" : "./scripts/tv"}" 
+    (image :path "${mirror ? "./icons/both-themes/monitor.png" : "./icons/both-themes/tv.png"}")
+  )
+)

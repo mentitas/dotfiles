@@ -1,7 +1,6 @@
 (include "./modules/energy.yuck")
 (include "./modules/launcher.yuck")
 (include "./modules/metrics.yuck")
-(include "./modules/monitor.yuck")
 (include "./modules/power.yuck")
 
 

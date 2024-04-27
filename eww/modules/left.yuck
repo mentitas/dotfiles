@@ -1,10 +1,10 @@
 (include "./modules/workspaces.yuck")
-(include "./modules/theme-switcher.yuck")
+(include "./modules/extra-settings.yuck")
 
 
 (defwidget left[]
   (box :class "left" :halign "start" :space-evenly "false" :spacing "5"
     (workspaces)
-    (theme-switcher)
+    (extra-settings)
   )
 )
