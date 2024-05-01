@@ -13,11 +13,11 @@
 ;; Puede estar activo, activo de fondo o desactivo
 ;; Puede ser un corazón u otra forma
 
-(defwidget heart [active text name]
+(defwidget heart [name active text]
   (overlay :width "25"
     (image :path "${active ? "./icons/${theme}-theme/hearts-active/${name}.png" :
                              "./icons/${theme}-theme/hearts/${name}.png"}")
-    (label :text "${text}" :visible "${!active}")
+    (label :text "${text}" :visible "${!active}" :yalign "0.35")
     )
 )
 

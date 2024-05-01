@@ -28,7 +28,7 @@
             
                 (box :class "surface" :space-evenly "false" :spacing {spacing/2}
                     (app :name "Discord"          :visible "${strlength(ds-running)==0}")
-                    (app :name "telegram-desktop" :visible "${strlength(tg-running)==0}")
+                    (app :name "telegram-desktop" :visible "true")
                     (app :name "vivaldi"          :visible "true")
                     (app :name "code"             :visible "true")
                     (app :name "krita"            :visible "true")

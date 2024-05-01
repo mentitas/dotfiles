@@ -29,8 +29,10 @@ while read line; do
 		titles[names[$index]]+="d"
 	elif [[ $long_title == *"Telegram"* ]]; then
 		titles[names[$index]]+="t"
+	elif [[ $long_title == *".pdf"* ]]; then
+		titles[names[$index]]+="z"
 	else
-		titles[names[$index]]="*"
+		titles[names[$index]]+="*"
 	fi
 
 done < /tmp/l.txt

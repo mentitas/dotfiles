@@ -1,13 +1,8 @@
 (defvar ds-hover false)
-(defvar tg-hover false)
 (defvar steam-hover false)
 
 (defpoll ds-running :interval "5s"
     "echo $(pidof Discord)"
-)
-
-(defpoll tg-running :interval "5s"
-    "echo $(pidof telegram-desktop)"
 )
 
 (defpoll steam-running :interval "10s"
@@ -40,7 +35,7 @@
 
 (defwidget system-tray []
     (box :class "surface"
-         :visible "${strlength(ds-running)!=0 || strlength(tg-running)!=0 || strlength(steam-running)!=0}"
+         :visible "${strlength(ds-running)!=0 || strlength(steam-running)!=0}"
          :space-evenly "false"
          :spacing "10px"
 
@@ -56,13 +51,6 @@
              :running ds-running
              :hover-false "eww update ds-hover=false" 
              :hover-true  "eww update ds-hover=true"
-             )
-        
-        (system-tray-app :name "telegram-desktop" 
-             :hover tg-hover 
-             :running tg-running
-             :hover-false "eww update tg-hover=false" 
-             :hover-true  "eww update tg-hover=true"
              )
     )
 )
