@@ -1,15 +1,15 @@
 (deflisten ws :initial "0.5"
   "tail -F /tmp/ws")
 
-(deflisten active :initial "1"
-  "xprop -spy -root _NET_DESKTOP_NAMES"
+(defpoll active-windows :interval "1s"
+  "echo $(./scripts/get-active-windows)"
 )
 
-(defwidget heart [active bg-active name]
+(defwidget heart [active text name]
   (overlay :width "25"
     (image :path "${active    ? "./icons/${theme}-theme/hearts-active/${name}.png" :
                                 "./icons/${theme}-theme/hearts/${name}.png"}")
-    (label :text "*" :visible {bg-active && !active})
+    (label :text "${text}" :visible "${!active}")
   )
 )
 
@@ -21,12 +21,11 @@
   )
 )
 
-
 (defwidget workspace-indicator [num]
   (button :halign "center" :onclick '~/.config/i3/change-ws.sh ${num}'
       (heart :name "${num}"
              :active "${ws==num}"
-             :bg-active "${arraylength(search(substring(active,34,strlength(active)), num)) > 0}"
+             :text "${active-windows[num]}"
       )
   )
 )

@@ -1,0 +1,4 @@
+0x04000017  2 pochoclo eww
+0x0280000e  3 pochoclo ~
+0x01a0000e  1 pochoclo ./get-active-windows
+0x03200003  0 pochoclo ~/.config/eww/scripts/get-active-windows (.config) - Sublime Text (UNREGISTERED)
