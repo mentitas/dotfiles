@@ -17,7 +17,7 @@
   (overlay :width "25"
     (image :path "${active ? "./icons/${theme}-theme/hearts-active/${name}.png" :
                              "./icons/${theme}-theme/hearts/${name}.png"}")
-    (label :text "${text}" :visible "${!active && text!="d" && text!="v" && text !="s"}")
+    (label :text "${text}" :visible "${!active}")
     )
 )
 
@@ -31,7 +31,7 @@
 
 (defwidget workspace-indicator [num]
   (button :halign "center" :onclick '~/.config/i3/change-ws.sh ${num}'
-      (heart  :name "${matches(active-windows[num], "d|s|v") ? active-windows[num] : num}"
+      (heart  :name "${num}"
               :active "${ws==num}"
               :text "${active-windows[num]}"
       )
