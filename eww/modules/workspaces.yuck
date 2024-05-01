@@ -2,27 +2,23 @@
   "tail -F /tmp/ws")
 
 (defpoll active-windows :interval "1s"
-  "echo $(./scripts/get-active-window)"
+  "echo $(./scripts/get-active-windows)"
 )
 
 (deflisten active :initial "1"
   "xprop -spy -root _NET_DESKTOP_NAMES"
 )
 
-(defwidget heart [active bg-active name]
-  (overlay :width "25"
-    (image :path "${active    ? "./icons/${theme}-theme/hearts-active/${name}.png" :
-                                "./icons/${theme}-theme/hearts/${name}.png"}")
-    (label :text "*" :visible {bg-active && !active})
-  )
-)
 
-(defwidget heart2 [active text name]
+;; Puede estar activo, activo de fondo o desactivo
+;; Puede ser un corazón u otra forma
+
+(defwidget heart [active text name]
   (overlay :width "25"
-    (image :path "${active    ? "./icons/${theme}-theme/hearts-active/${name}.png" :
-                                "./icons/${theme}-theme/hearts/${name}.png"}")
-    (label :text "${text}" :visible "${!active}")
-  )
+    (image :path "${active ? "./icons/${theme}-theme/hearts-active/${name}.png" :
+                             "./icons/${theme}-theme/hearts/${name}.png"}")
+    (label :text "${text}" :visible "${!active && text!="d" && text!="v" && text !="s"}")
+    )
 )
 
 (defwidget heart-txt [class active]
@@ -33,10 +29,9 @@
   )
 )
 
-
 (defwidget workspace-indicator [num]
   (button :halign "center" :onclick '~/.config/i3/change-ws.sh ${num}'
-      (heart2 :name "${num}"
+      (heart  :name "${matches(active-windows[num], "d|s|v") ? active-windows[num] : num}"
               :active "${ws==num}"
               :text "${active-windows[num]}"
       )

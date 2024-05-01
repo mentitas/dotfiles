@@ -22,13 +22,13 @@ while read line; do
 
 	# Según qué ventana tengo, guardo el nombre corto en su ws (segun el nombre del ws)
 	if [[ $long_title == *"Vivaldi"* ]]; then
-		titles[names[$index]]="v"
+		titles[names[$index]]+="v"
 	elif [[ $long_title == *"Sublime"* ]]; then
-		titles[names[$index]]="s"
+		titles[names[$index]]+="s"
 	elif [[ $long_title == *"Discord"* ]]; then
-		titles[names[$index]]="d"
+		titles[names[$index]]+="d"
 	elif [[ $long_title == *"Telegram"* ]]; then
-		titles[names[$index]]="t"
+		titles[names[$index]]+="t"
 	else
 		titles[names[$index]]="*"
 	fi
