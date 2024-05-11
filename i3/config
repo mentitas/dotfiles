@@ -29,7 +29,7 @@ workspace_layout default
 # Don't show window title bars (not officially supported with i3gaps)
 default_border pixel 0
 
-# Set inner/outer gaps
+# Set inner/outer gaps (antes era inner=8 y outer=3)
 gaps inner 8
 gaps outer 3
 
@@ -176,8 +176,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Backlight control
-bindsym F12 exec --no-startup-id xbacklight +5; exec --no-startup-id ~/.config/i3/notify-light.sh
-bindsym F11 exec --no-startup-id xbacklight -5; exec --no-startup-id ~/.config/i3/notify-light.sh
+bindsym F12 exec --no-startup-id xbacklight +1; exec --no-startup-id ~/.config/i3/notify-light.sh
+bindsym F11 exec --no-startup-id xbacklight -1; exec --no-startup-id ~/.config/i3/notify-light.sh
 
 # Change focus
 bindsym $mod+Left  focus left
@@ -202,7 +202,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
-bindsym $mod+s layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+d layout toggle split
 
 # toggle tiling / floating
@@ -454,6 +454,7 @@ exec --no-startup-id discord
 exec --no-startup-id telegram-desktop
 exec --no-startup-id easystroke
 exec --no-startup-id touchegg
+exec --no-startup-id ~/.config/eww/scripts/get-active-windows.py
 exec --no-startup-id ~/.config/i3/change-ws.sh 1
 exec --no-startup-id echo dark >> /tmp/theme
 

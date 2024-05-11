@@ -1,13 +1,13 @@
 #! /bin/bash
 
 # $1 is the new workspace
-# $1 could be a ws name, "prev" or "next"
+# $1 could be a ws name, "prev", "next", "up" or "down"
 
 old_ws=$(tail -n 1 /tmp/ws)
 
 case "$1" in
-    "next") new_ws=$(((old_ws+1)%10)) ;;
-    "prev") 
+    "next" | "up"  ) new_ws=$(((old_ws+1)%10)) ;;
+    "prev" | "down") 
         if [ $old_ws = 0 ]
         then
             new_ws=9
@@ -22,14 +22,11 @@ then
     new_ws=$new_ws+10
 fi
 
-echo $new_ws
-
-
 # Change into the new workspace
 i3-msg workspace $new_ws
 
 # Save the new workspace
-echo $new_ws >> /tmp/ws
+#echo $new_ws >> /tmp/ws
 
 # Get the theme
 current_theme=$(tail -n 1 /tmp/theme)
@@ -114,4 +111,4 @@ else
     esac
 fi
 
-xborders --border-mode outside --border-radius 13 --border-width 3 $color_rgb
+xborders --border-mode outside --border-radius 17 --border-width 3 $color_rgb
