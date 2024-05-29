@@ -1,17 +1,12 @@
-(deflisten ws :initial "0.5"
+(deflisten ws :initial "1"
   "tail -F /tmp/ws")
 
-(defpoll active-windows :interval "1s"
-  "echo $(./scripts/get-active-windows)"
-)
+;; (defpoll active-windows :interval "1s"
+;;   "./scripts/get-active-windows-with-bash"
+;; )
 
-(deflisten active :initial "1"
-  "xprop -spy -root _NET_DESKTOP_NAMES"
-)
-
-
-;; Puede estar activo, activo de fondo o desactivo
-;; Puede ser un corazón u otra forma
+(deflisten active-windows :initial "1"
+  "tail -F /tmp/ws-info")
 
 (defwidget heart [name active text]
   (overlay :width "25"
@@ -38,7 +33,6 @@
   )
 )
 
-
 ;; This widget gets the current ws name and calls 10 workspace indicators
 (defwidget workspaces []
   (eventbox :onscroll "~/.config/i3/change-ws.sh {}"
@@ -49,6 +43,7 @@
       (workspace-indicator :num 3)
       (workspace-indicator :num 4)
       (workspace-indicator :num 5)
+      (label :text "|" :visible "${extended-screen}")
       (workspace-indicator :num 6)
       (workspace-indicator :num 7)
       (workspace-indicator :num 8)

@@ -1,4 +1,6 @@
 #!/bin/sh
+echo "true" >> /tmp/extend-screen.txt
 xrandr --auto --output eDP-1  --mode 1366x768
 xrandr --auto --output HDMI-1 --mode 1366x768 --left-of eDP-1
-feh --bg-fill Pictures/akko-violeta.jpg 
+
+feh --bg-fill Pictures/akko-violeta.jpg

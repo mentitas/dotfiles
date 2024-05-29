@@ -59,8 +59,8 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "0"
 
-set $monR 0
-set $monL 1
+set $monR eDP-1
+set $monL HDMI-1
 
 # Workspaces from 1 to 5 belong to monitor 0
 workspace  $ws1  output $monR
@@ -70,11 +70,11 @@ workspace  $ws4  output $monR
 workspace  $ws5  output $monR
 
 # Workspaces from 6 to 10 belong to monitor 1
-workspace  $ws6  output $monR
-workspace  $ws7  output $monR
-workspace  $ws8  output $monR
-workspace  $ws9  output $monR
-workspace  $ws10 output $monR
+workspace  $ws6  output $monL
+workspace  $ws7  output $monL
+workspace  $ws8  output $monL
+workspace  $ws9  output $monL
+workspace  $ws10 output $monL
  
 
 ###############
@@ -92,16 +92,16 @@ bindsym Shift+Ctrl+Right exec --no-startup-id ~/.config/i3/move-container-to.sh 
 bindsym Shift+Ctrl+Left  exec --no-startup-id ~/.config/i3/move-container-to.sh prev
 
 
-bindsym $mod+1  exec --no-startup-id ~/.config/i3/change-ws.sh $ws1
-bindsym $mod+2  exec --no-startup-id ~/.config/i3/change-ws.sh $ws2
-bindsym $mod+3  exec --no-startup-id ~/.config/i3/change-ws.sh $ws3
-bindsym $mod+4  exec --no-startup-id ~/.config/i3/change-ws.sh $ws4
-bindsym $mod+5  exec --no-startup-id ~/.config/i3/change-ws.sh $ws5
-bindsym $mod+6  exec --no-startup-id ~/.config/i3/change-ws.sh $ws6
-bindsym $mod+7  exec --no-startup-id ~/.config/i3/change-ws.sh $ws7
-bindsym $mod+8  exec --no-startup-id ~/.config/i3/change-ws.sh $ws8
-bindsym $mod+9  exec --no-startup-id ~/.config/i3/change-ws.sh $ws9
-bindsym $mod+0  exec --no-startup-id ~/.config/i3/change-ws.sh $ws10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1    move container to workspace  $ws1
@@ -454,9 +454,10 @@ exec --no-startup-id discord
 exec --no-startup-id telegram-desktop
 exec --no-startup-id easystroke
 exec --no-startup-id touchegg
-exec --no-startup-id ~/.config/eww/scripts/get-active-windows.py
 exec --no-startup-id ~/.config/i3/change-ws.sh 1
-exec --no-startup-id echo dark >> /tmp/theme
+exec --no-startup-id echo dark   >> /tmp/theme
+exec --no-startup-id echo "false" >> /tmp/screen_extended
+# exec --no-startup-id ~/.config/eww/scripts/get-active-windows.py
 
 
 

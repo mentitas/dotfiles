@@ -2,6 +2,9 @@
 
 * {
   all: unset; //Unsets everything so you can style everything from scratch
+  font-family: CaskaydiaMonoNerdFont;
+  font-size: 13;
+  font-weight: bold;
 }
 
 // Variable Color's 
@@ -42,9 +45,6 @@ $_0  : $blue     ;
 .dock  {
   color:   $foreground;
   opacity: 0.85;
-  font-family: CaskaydiaMonoNerdFont;
-  font-size: 13;
-  font-weight: bold;
 }
 
 .bar_1 { background-color: $background; border: solid 3px $_1; border-radius: 20px;  margin: 3 5 0 5; padding: 1;}
@@ -110,4 +110,13 @@ $_0  : $blue     ;
 
 .button hover{
   background-color: red;
+}
+
+
+/* BOOK STUFF */
+
+.book {
+background-color: transparent;
+margin: 3 5 0 5;
+padding: 1;
 }

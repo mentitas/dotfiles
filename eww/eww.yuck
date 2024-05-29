@@ -1,6 +1,7 @@
 (include "./modules/left.yuck")
 (include "./modules/time.yuck")
 (include "./modules/right.yuck")
+(include "./book.yuck")
 
 (defvar spacing 10)
 
@@ -9,6 +10,14 @@
       (left)
       (time)
       (right)
+  )
+)
+
+(defwidget bar-monitor []
+  (centerbox :class "bar_${ws}"
+      (workspaces)
+      (time)
+      (label :text "")
   )
 )
 
@@ -25,7 +34,7 @@
   (bar))
 
 (defwindow dock-monitor
-  :monitor 1
+  :monitor 0
   :windowtype "dock"
   :wm-ignore false
   :stacking "fg"
@@ -34,4 +43,4 @@
                       :width "100%"
                       :height "15px"
                       :anchor "top center")
-  (bar))
+  (bar-monitor))

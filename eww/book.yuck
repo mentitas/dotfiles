@@ -1,0 +1,19 @@
+(defwidget book []
+  (centerbox
+      (left)
+      (time)
+      (right)
+  )
+)
+
+(defwindow book
+  :monitor 0
+  :windowtype "dock"
+  :wm-ignore false
+  :stacking "fg"
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "100%"
+                      :height "120px"
+                      :anchor "bottom center")
+  (book))
