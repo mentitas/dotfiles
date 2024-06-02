@@ -1,0 +1,25 @@
+#! /bin/bash
+
+# $1 could be "up" or "down"
+
+old_ws=$(tail -n 1 /tmp/ws)
+
+case "$1" in
+    "up"  )
+        if [ $old_ws = 9 ]
+        then
+            new_ws=0
+        else
+            new_ws=$((old_ws+1))
+        fi                       ;;
+    "down") 
+        if [ $old_ws = 0 ]
+        then
+            new_ws=9
+        else
+            new_ws=$((old_ws-1))
+        fi                       ;;
+esac
+
+# Change into the new workspace
+i3-msg workspace $new_ws

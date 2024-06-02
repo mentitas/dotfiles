@@ -7,27 +7,17 @@ import subprocess
 
 i3 = i3ipc.Connection()
 
-colors =  [ "#6c9eef",  # Color 0
-            "#b688ea",  # Color 1
-            "#e8a3d4",  # Color 2
-            "#eb6c8f",  # Color 3
-            "#f19d69",  # Color 4
-            "#edd090",  # Color 5
-            "#89db80",  # Color 6
-            "#53c9b4",  # Color 7
-            "#6bd2e3",  # Color 8
-            "#56bae6"]  # Color 9
-
-colors_rgb = ["--border-red 108 --border-green 158 --border-blue 239", # Color 0 in RGB
-              "--border-red 182 --border-green 136 --border-blue 234", # Color 1 in RGB
-              "--border-red 232 --border-green 163 --border-blue 212", # Color 2 in RGB
-              "--border-red 235 --border-green 108 --border-blue 143", # Color 3 in RGB
-              "--border-red 241 --border-green 157 --border-blue 105", # Color 4 in RGB
-              "--border-red 237 --border-green 208 --border-blue 144", # Color 5 in RGB
-              "--border-red 137 --border-green 219 --border-blue 128", # Color 6 in RGB
-              "--border-red 83  --border-green 201 --border-blue 180", # Color 7 in RGB
-              "--border-red 107 --border-green 210 --border-blue 227", # Color 8 in RGB
-              "--border-red 86  --border-green 186 --border-blue 230"] # Color 9 in RGB
+colors =  [ "#6C9EEF",  # Color 0
+            "#B688EA",  # Color 1
+            "#E8A3D4",  # Color 2
+            "#EB6C8F",  # Color 3
+            "#F19D69",  # Color 4
+            "#EDD090",  # Color 5
+            "#89DB80",  # Color 6
+            "#53C9B4",  # Color 7
+            "#6BD2E3",  # Color 8
+            "#56BAE6"]  # Color 9
+xborders_cmd  = "xborders --border-mode outside --border-radius 17 --border-width 3 --border-rgba "
 
 def workspace_focus(self, ws):
 
@@ -35,15 +25,17 @@ def workspace_focus(self, ws):
     with open('/tmp/ws', 'a') as file:
         file.write(str(ws.current.name) + "\n")
 
+    current_color = colors[int(ws.current.name)]
+
     # change rofi theme
     with open('/home/rosu/.config/rofi/accent.rasi', 'w') as file:
-        file.write("*{ urgent: " + colors[int(ws.current.name)] + " ;}")
+        file.write("*{ urgent: " + current_color + " ;}")
 
     # change xborders theme
-    # ¿Tengo que matar al proceso?
-    # subprocess.run("sleep 0.3; \
-    #                 xborders --border-mode outside --border-radius 17 --border-width 3 " + str(colors_rgb[ws_int]),
-    #                 shell=True)
+    # Mato el proceso anterior
+    os.system("killall xborders")
+    # Y luego lo vuelvo a empezar
+    subprocess.Popen("sleep 0.3; " + xborders_cmd + "\'" + current_color + "\'", shell=True)
 
 # update active-windows and vivaldi-theme
 def window_focus(self, w):
@@ -55,7 +47,7 @@ def window_focus(self, w):
         time.sleep(0.3)
 
         # Get the current workspace
-        current_ws = -1
+        current_ws = 1
         for ws in i3.get_workspaces():
             if ws.focused:
                 current_ws = ws.name
@@ -116,7 +108,7 @@ def update_active_windows(self, _):
     f = open("/tmp/ws-info", "a")
     f.write("[ ")
 
-    for i in range(0,10):
+    for i in range(10):
         f.write(' "' + info[i] + '"')
         if i != 9:
             f.write(', ')     
@@ -124,7 +116,6 @@ def update_active_windows(self, _):
     f.close()
 
 # Subscribe to events
-#i3.on("workspace::focus", on_event)
 i3.on("workspace::focus", workspace_focus) # update active-ws
 i3.on("window::move",     window_move)     # update active-windows
 i3.on("window::close",    window_close)    # wait 1 and update active-windows

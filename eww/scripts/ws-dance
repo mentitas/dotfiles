@@ -1,0 +1,9 @@
+#!/bin/sh
+
+ws=$1
+for i in {0..100}
+do
+	sleep 0.05
+  	echo $ws >> /tmp/ws
+  	((ws=(ws+1)%10))
+done

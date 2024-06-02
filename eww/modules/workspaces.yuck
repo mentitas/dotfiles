@@ -25,7 +25,7 @@
 )
 
 (defwidget workspace-indicator [num]
-  (button :halign "center" :onclick '~/.config/i3/change-ws.sh ${num}'
+  (button :halign "center" :onclick 'i3-msg workspace ${num}'
       (heart  :name "${num}"
               :active "${ws==num}"
               :text "${active-windows[num]}"
@@ -35,7 +35,7 @@
 
 ;; This widget gets the current ws name and calls 10 workspace indicators
 (defwidget workspaces []
-  (eventbox :onscroll "~/.config/i3/change-ws.sh {}"
+  (eventbox :onscroll "~/.config/eww/scripts/scroll-workspaces {}"
     (box :class "surface" :halign "start"
       (label :text "${ws}")
       (workspace-indicator :num 1)

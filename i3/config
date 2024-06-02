@@ -85,12 +85,11 @@ workspace  $ws10 output $monL
 floating_modifier $mod
 
 # switch/iterate between workspaces
-bindsym Ctrl+Right exec --no-startup-id ~/.config/i3/change-ws.sh next
-bindsym Ctrl+Left  exec --no-startup-id ~/.config/i3/change-ws.sh prev
+bindsym $mod+S exec --no-startup-id ~/.config/i3/change-to-next-ws.sh
+bindsym $mod+A exec --no-startup-id ~/.config/i3/change-to-prev-ws.sh
 
-bindsym Shift+Ctrl+Right exec --no-startup-id ~/.config/i3/move-container-to.sh next
-bindsym Shift+Ctrl+Left  exec --no-startup-id ~/.config/i3/move-container-to.sh prev
-
+bindsym Shift+Ctrl+Right move container to workspace next
+bindsym Shift+Ctrl+Left  move container to workspace prev
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -115,7 +114,6 @@ bindsym $mod+Shift+8    move container to workspace  $ws8
 bindsym $mod+Shift+9    move container to workspace  $ws9 
 bindsym $mod+Shift+0    move container to workspace  $ws10
 
-               
 bindsym $mod+g exec --no-startup-id ~/.config/i3/switch-theme.sh
 
 # resize window (you can also use the mouse for that):
@@ -212,7 +210,7 @@ bindsym $mod+space floating toggle
 bindsym $mod+shift+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # Multimedia Keys
 # volume
@@ -457,7 +455,7 @@ exec --no-startup-id touchegg
 exec --no-startup-id ~/.config/i3/change-ws.sh 1
 exec --no-startup-id echo dark   >> /tmp/theme
 exec --no-startup-id echo "false" >> /tmp/screen_extended
-# exec --no-startup-id ~/.config/eww/scripts/get-active-windows.py
+exec --no-startup-id ~/.config/eww/scripts/get-active-windows.py
 
 
 
