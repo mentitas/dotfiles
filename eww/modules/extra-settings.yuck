@@ -16,7 +16,8 @@
 	  	         	  :duration "300ms"
 	  	         	(box :space-evenly "false" :spacing {spacing} 
 	  	         	   (monitor)
-    				   (theme-switcher)
+    				   	(theme-switcher)
+            			(rainbow-bar-toggle)
             		) 		  
             )
       	)
