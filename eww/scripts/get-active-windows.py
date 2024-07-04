@@ -17,7 +17,15 @@ colors =  [ "#6C9EEF",  # Color 0
             "#53C9B4",  # Color 7
             "#6BD2E3",  # Color 8
             "#56BAE6"]  # Color 9
+
 xborders_cmd  = "xborders --border-mode outside --border-radius 17 --border-width 3 --border-rgba "
+
+def process_up(process):
+    try:
+        call = subprocess.check_output("pidof '{}'".format(process), shell=True)
+        return True
+    except subprocess.CalledProcessError:
+        return False
 
 def workspace_focus(self, ws):
 
@@ -31,9 +39,17 @@ def workspace_focus(self, ws):
     with open('/home/rosu/.config/rofi/accent.rasi', 'w') as file:
         file.write("*{ urgent: " + current_color + " ;}")
 
-    # change xborders theme
+    # Cambio el color de xborders
     # Mato el proceso anterior
     os.system("killall xborders")
+   
+    # Chequeo si Picom está activo
+    pidOfPicom = process_up("picom")
+    if not pidOfPicom:
+        # Inicio picom
+        subprocess.Popen("picom")
+
+
     # Y luego lo vuelvo a empezar
     subprocess.Popen("sleep 0.3; " + xborders_cmd + "\'" + current_color + "\'", shell=True)
 
@@ -87,20 +103,30 @@ def update_active_windows(self, _):
             coname = container.name
             wsname = workspace.name
 
-            if "Discord" in coname:
-            	coname = "d"
-            elif "Vivaldi" in coname:
-            	coname = "v"
-            elif "Sublime" in coname:
-            	coname = "s"
-            elif "Telegram" in coname:
-            	coname = "t"
-            elif ".pdf" in coname:
-            	coname = "z"
-            else:
-            	coname = "*"
 
-            info[int(wsname)] = coname
+            if coname:
+
+                print(coname)
+
+                if "Discord" in coname:
+                	shortconame = "d"
+                elif "Vivaldi" in coname:
+                	shortconame = "v"
+                elif "Sublime" in coname:
+                	shortconame = "s"
+                elif "Telegram" in coname:
+                	shortconame = "t"
+                elif ".pdf" in coname:
+                	shortconame = "z"
+                else:
+                	shortconame = "*"
+
+            # Idea: en vez de hacer todo esto directamente ejecutar
+            # eww update ws_1=d
+            # eww update ws_2=t
+            # etc
+
+            info[int(wsname)] = shortconame
 
     
     # Save as an array recognizable by eww

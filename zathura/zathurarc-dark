@@ -14,13 +14,11 @@ set statusbar-bg \#191724
 set statusbar-fg \#c65d77
 
 # Change highlight
-# set highlight-color        \#fab387
-# set highlight-active-color \#cba6f7 
+set highlight-color \#fab387
+set highlight-active-color \#cba6f7 
+set highlight-transparency 0.4
 
 # Default font
 set font Ubuntu\ Mono\ Regular
 
 set window-title-basename true
-set selection-clipboard clipboard
-
-map <Return> search next
