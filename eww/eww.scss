@@ -87,6 +87,14 @@ $_0  : $blue     ;
   padding: 0 10 0 10;
 }
 
+
+.button {
+    box-shadow: -2px -2px #e0dede, -2px 0 #e0dede, 0 -2px #e0dede, -4px -4px white, -4px 0 white, 0 -4px white, 2px 2px #818181, 0 2px #818181, 2px 0 #818181,  2px -2px #e0dede, -2px 2px #818181, -4px 2px white, -4px 4px black, 4px 4px black, 4px 0 black, 0 4px black, 2px -4px white, 4px -4px black;
+}
+.button pressed {
+    box-shadow: -2px -2px #818181, -2px 0 #818181, 0 -2px #818181, -4px -4px black, -4px 0 black, 0 -4px black, 2px 2px #e0dede, 0 2px #e0dede, 2px 0 #e0dede,  2px -2px #818181, -2px 2px #e0dede, -4px 2px black, -4px 4px white, 4px 4px white, 4px 0 white, 0 4px white, 2px -4px black, 4px -4px white;
+}
+
 .energy {
   background-color: red;
 }
@@ -131,9 +139,6 @@ $_0  : $blue     ;
   margin-left: 5px;
 }
 
-.button hover{
-  background-color: red;
-}
 
 
 /* BOOK STUFF */

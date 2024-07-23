@@ -1,10 +1,25 @@
 (deflisten ws :initial "1"
   "tail -F /tmp/ws")
 
+(defvar ws_1 "")
+(defvar ws_2 "")
+(defvar ws_3 "")
+(defvar ws_4 "")
+(defvar ws_5 "")
+(defvar ws_6 "")
+(defvar ws_7 "")
+(defvar ws_8 "")
+(defvar ws_9 "")
+(defvar ws_0 "")
+
+;; (defpoll active-windows :interval "1s"
+;;   "./scripts/get-active-windows-with-bash"
+;; )
+
 (deflisten active-windows :initial "1"
   "tail -F /tmp/ws-info")
 
-(defwidget heart-viejo [name active text]
+(defwidget heart [name active text]
   (overlay :width "20"
     (image :path "${active ? "./icons/${theme}-theme/pressed.png" :
                              "./icons/${theme}-theme/normal.png"}")
@@ -13,7 +28,7 @@
     )
 )
 
-(defwidget heart [name active text]
+(defwidget heart-img [name active text]
   (overlay :width "25"
     (image :path "${active ? "./icons/${theme}-theme/hearts-active/${name}.png" :
                              "./icons/${theme}-theme/hearts/${name}.png"}")
@@ -29,11 +44,11 @@
   )
 )
 
-(defwidget workspace-indicator [num]
+(defwidget workspace-indicator [num text]
   (button :halign "center" :onclick 'i3-msg workspace ${num}'
       (heart  :name "${num}"
               :active "${ws==num}"
-              :text "${active-windows[num]}"
+              :text "${text}"
       )
   )
 )
@@ -43,17 +58,17 @@
   (eventbox :onscroll "~/.config/eww/scripts/scroll-workspaces {}"
     (box :class "surface" :halign "start"
       (label :text "${ws}")
-      (workspace-indicator :num 1)
-      (workspace-indicator :num 2)
-      (workspace-indicator :num 3)
-      (workspace-indicator :num 4)
-      (workspace-indicator :num 5)
+      (workspace-indicator :num 1 :text "${ws_1}")
+      (workspace-indicator :num 2 :text "${ws_2}")
+      (workspace-indicator :num 3 :text "${ws_3}")
+      (workspace-indicator :num 4 :text "${ws_4}")
+      (workspace-indicator :num 5 :text "${ws_5}")
       (label :text "|" :visible "${extended-screen}")
-      (workspace-indicator :num 6)
-      (workspace-indicator :num 7)
-      (workspace-indicator :num 8)
-      (workspace-indicator :num 9)
-      (workspace-indicator :num 0)
+      (workspace-indicator :num 6 :text "${ws_6}")
+      (workspace-indicator :num 7 :text "${ws_7}")
+      (workspace-indicator :num 8 :text "${ws_8}")
+      (workspace-indicator :num 9 :text "${ws_9}")
+      (workspace-indicator :num 0 :text "${ws_0}")
     )
   )
 )

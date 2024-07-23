@@ -18,11 +18,8 @@ colors =  [ "#6C9EEF",  # Color 0
             "#6BD2E3",  # Color 8
             "#56BAE6"]  # Color 9
 
-negro_clarito =  "#11111b"
-negro         =  "#000000"
-
 ex_xborders_cmd  = "xborders --border-mode outside --border-radius 17 --border-width 3 --border-rgba "
-xborders_cmd     = "xborders --border-mode outside --border-radius  5 --border-width 3 --border-rgba "
+xborders_cmd     = "xborders --border-mode outside --border-radius 5  --border-width 3 --border-rgba "
 
 def process_up(process):
     try:
@@ -55,24 +52,26 @@ def workspace_focus(self, ws):
 
 
     # Y luego lo vuelvo a empezar
-    subprocess.Popen("sleep 0.3; " + xborders_cmd + "\'" + negro + "\'", shell=True)
+    subprocess.Popen("sleep 0.3; " + xborders_cmd + "\'" + current_color + "\'", shell=True)
 
 # update active-windows and vivaldi-theme
 def window_focus(self, w):
     
-    # update vivaldi theme        
-    if "Vivaldi" in w.container.name:
+    if w.container.name:
 
-        # Hay que esperar un poquito porque sino lo siguiente se ejecuta antes de lograr enfocar la ventana
-        time.sleep(0.3)
-
-        # Get the current workspace
-        current_ws = 1
-        for ws in i3.get_workspaces():
-            if ws.focused:
-                current_ws = ws.name
-
-        os.system('xdotool key alt+ctrl+shift+' + str(current_ws))
+        # update vivaldi theme        
+        if "Vivaldi" in w.container.name:
+    
+            # Hay que esperar un poquito porque sino lo siguiente se ejecuta antes de lograr enfocar la ventana
+            time.sleep(0.3)
+    
+            # Get the current workspace
+            current_ws = 1
+            for ws in i3.get_workspaces():
+                if ws.focused:
+                    current_ws = ws.name
+    
+            os.system('xdotool key alt+ctrl+shift+' + str(current_ws))
 
     update_active_windows(self, w)
 
@@ -91,9 +90,8 @@ def update_active_windows(self, _):
 
     workspaces = i3.get_tree().workspaces()
 
-    info = ["" for i in range(10)]
-
     for workspace in workspaces: # Por si acaso habria que chequear si esto es iterable
+
         container = workspace
 
         while container:
@@ -104,9 +102,9 @@ def update_active_windows(self, _):
             container = container.find_by_id(container_id)
 
         if container:
+
             coname = container.name
             wsname = workspace.name
-
 
             if coname:
 
@@ -123,25 +121,7 @@ def update_active_windows(self, _):
                 else:
                 	shortconame = "*"
 
-            # Idea: en vez de hacer todo esto directamente ejecutar
-            # eww update ws_1=d
-            # eww update ws_2=t
-            # etc
-
-            info[int(wsname)] = shortconame
-
-    
-    # Save as an array recognizable by eww
-
-    f = open("/tmp/ws-info", "a")
-    f.write("[ ")
-
-    for i in range(10):
-        f.write(' "' + info[i] + '"')
-        if i != 9:
-            f.write(', ')     
-    f.write(" ] \n")
-    f.close()
+                os.system(f"eww update ws_{int(wsname)}={shortconame}")
 
 # Subscribe to events
 i3.on("workspace::focus", workspace_focus) # update active-ws

@@ -30,17 +30,15 @@ workspace_layout default
 default_border pixel 0
 
 # Set inner/outer gaps (antes era inner=8 y outer=3)
-gaps inner 8
+# gaps inner 8
+gaps inner 20
 gaps outer 3
+
 
 # Dejo espacio para la eww bar
 # gaps top 40
 # Esto se puede setear con:
 # i3-msg gaps top all set 40
-
-
-# Set borders
-exec --no-startup-id xborders --border-mode outside --border-radius 13 --border-width 3 --border-red 182 --border-green 136 --border-blue 234
 
 ##########################################
 # configuration for workspace behaviour: #
@@ -456,8 +454,6 @@ exec --no-startup-id ~/.config/i3/change-ws.sh 1
 exec --no-startup-id echo dark   >> /tmp/theme
 exec --no-startup-id echo "false" >> /tmp/screen_extended
 exec --no-startup-id ~/.config/eww/scripts/get-active-windows.py
-
-
 
 # for_window [class="discord"]          move container to workspace 2
 # for_window [class="telegram-desktop"] move container to workspace 2
