@@ -18,9 +18,6 @@ colors =  [ "#6C9EEF",  # Color 0
             "#6BD2E3",  # Color 8
             "#56BAE6"]  # Color 9
 
-negro_clarito =  "#11111b"
-negro         =  "#000000"
-
 ex_xborders_cmd  = "xborders --border-mode outside --border-radius 17 --border-width 3 --border-rgba "
 xborders_cmd     = "xborders --border-mode outside --border-radius  5 --border-width 3 --border-rgba "
 
@@ -53,9 +50,8 @@ def workspace_focus(self, ws):
         # Inicio picom
         subprocess.Popen("picom")
 
-
     # Y luego lo vuelvo a empezar
-    subprocess.Popen("sleep 0.3; " + xborders_cmd + "\'" + negro + "\'", shell=True)
+    subprocess.Popen("sleep 0.3; " + xborders_cmd + "\'" + current_color + "\'", shell=True)
 
 # update active-windows and vivaldi-theme
 def window_focus(self, w):
