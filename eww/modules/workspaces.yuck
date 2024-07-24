@@ -4,20 +4,20 @@
 (deflisten active-windows :initial "1"
   "tail -F /tmp/ws-info")
 
-(defwidget heart-viejo [name active text]
-  (overlay :width "20"
-    (image :path "${active ? "./icons/${theme}-theme/pressed.png" :
-                             "./icons/${theme}-theme/normal.png"}")
-    (label :text "${text}" :style "color: black;" :yalign "${active ? 0.65 : 0.5}"
-                                                  :xalign "${active ? 0.6  : 0.5}"  )
-    )
-)
-
 (defwidget heart [name active text]
   (overlay :width "25"
     (image :path "${active ? "./icons/${theme}-theme/hearts-active/${name}.png" :
                              "./icons/${theme}-theme/hearts/${name}.png"}")
     (label :text "${text}" :visible "${!active}" :yalign "0.35")
+    )
+)
+
+(defwidget heart-98 [name active text]
+  (overlay :width "20"
+    (image :path "${active ? "./icons/${theme}-theme/pressed.png" :
+                             "./icons/${theme}-theme/normal.png"}")
+    (label :text "${text}" :style "color: black;" :yalign "${active ? 0.65 : 0.5}"
+                                                  :xalign "${active ? 0.6  : 0.5}"  )
     )
 )
 

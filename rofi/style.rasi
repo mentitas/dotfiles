@@ -72,7 +72,7 @@ window {
     margin:                      0px;
     padding:                     0px;
     border:                      3px solid;
-    border-radius:               17px;
+    border-radius:               5px;
     border-color:                @border-colour;
     cursor:                      "default";
     background-color:            @background-colour;

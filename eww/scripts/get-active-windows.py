@@ -56,19 +56,20 @@ def workspace_focus(self, ws):
 # update active-windows and vivaldi-theme
 def window_focus(self, w):
     
-    # update vivaldi theme        
-    if "Vivaldi" in w.container.name:
-
-        # Hay que esperar un poquito porque sino lo siguiente se ejecuta antes de lograr enfocar la ventana
-        time.sleep(0.3)
-
-        # Get the current workspace
-        current_ws = 1
-        for ws in i3.get_workspaces():
-            if ws.focused:
-                current_ws = ws.name
-
-        os.system('xdotool key alt+ctrl+shift+' + str(current_ws))
+    # update vivaldi theme
+    if w.container.name:        
+        if "Vivaldi" in w.container.name:
+    
+            # Hay que esperar un poquito porque sino lo siguiente se ejecuta antes de lograr enfocar la ventana
+            time.sleep(0.3)
+    
+            # Get the current workspace
+            current_ws = 1
+            for ws in i3.get_workspaces():
+                if ws.focused:
+                    current_ws = ws.name
+    
+            os.system('xdotool key alt+ctrl+shift+' + str(current_ws))
 
     update_active_windows(self, w)
 
