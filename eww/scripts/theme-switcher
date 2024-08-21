@@ -42,7 +42,7 @@ else
     cp ./palettes/mocha-dark.scss  ./palettes/current-theme.scss
     
     # Change kitty theme
-    cp ../kitty/mocha.conf ../kitty/current-theme.conf
+    cp ../kitty/mocha-dark.conf ../kitty/current-theme.conf
     
     # Change discord theme
     cp ../BetterDiscord/themes/mocha-for-copy.css ../BetterDiscord/themes/current-theme.theme.css
@@ -51,7 +51,7 @@ else
     cp ../rofi/mocha.rasi ../rofi/current-theme.rasi
 
     # Change sublime theme
-    cp ../sublime-text/Packages/User/Color\ Schemes/Catppuccin\ Mocha.sublime-color-scheme ../sublime-text/Packages/User/Color\ Schemes/current-theme.sublime-color-scheme
+    cp ../sublime-text/Packages/User/Color\ Schemes/Catppuccin\ Mocha\ dark.sublime-color-scheme ../sublime-text/Packages/User/Color\ Schemes/current-theme.sublime-color-scheme
 
      # Change zathura theme
     cp ../zathura/zathurarc-dark ../zathura/zathurarc 

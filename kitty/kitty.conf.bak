@@ -1,10 +1,8 @@
-include current-theme.conf
-
 # Configs
 mouse_hide_wait 3.0
 url_style dashed
 
-font_family Caskaydia Mono Nerd Font
+font_family Caskaydia Mono NerdFont
 font_size 11
 
 # Para habilitar Preview_tui en
@@ -21,10 +19,11 @@ map ctrl+w close_tab
 map alt+right next_tab
 map alt+left previous_tab
 map ctrl+space next_layout
+
 map ctrl+f launch --type=overlay --stdin-source=@screen_scrollback /usr/bin/fzf --no-sort --no-mouse --exact -i
 
 
 # BEGIN_KITTY_THEME
-# Ubuntu
+# Cherry
 include current-theme.conf
 # END_KITTY_THEME
