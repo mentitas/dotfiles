@@ -27,3 +27,32 @@
     )
   )
 )
+
+
+(defwidget power-menu-wayland []
+   
+   (eventbox   :onhover     "eww update rev-power-menu=true"
+               :onhoverlost  "eww update rev-power-menu=false"
+      
+      (box :space-evenly "false" :spacing {spacing} 
+
+         (label :text {rev-power-menu ? "" : ""})
+         (revealer :transition "slideleft"
+                   :reveal rev-power-menu
+                   :duration "350ms"
+
+                  (box :spacing "5" :class "surface"
+                     (button :onclick "hyprctl dispatch exit"
+                        (image :path "./icons/${theme}-theme/log-out.png")
+                     )
+                     (button :onclick "reboot"
+                        (image :path "./icons/${theme}-theme/reboot.png")
+                     )
+                     (button :onclick "poweroff"
+                        (image :path "./icons/${theme}-theme/power-off.png")
+                     )
+                  ) 
+      )
+    )
+  )
+)

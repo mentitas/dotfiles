@@ -1,0 +1,77 @@
+(include "./modules/time.yuck")
+
+;; Right
+(include "./modules/energy.yuck")
+(include "./modules/launcher.yuck")
+(include "./modules/metrics.yuck")
+(include "./modules/power.yuck")
+
+;; Left
+(include "./modules/workspaces.yuck")
+(include "./modules/extra-settings.yuck")
+(include "./modules/pets/bulbasaur/bulbasaur.yuck")
+
+(defwidget right []
+  (box :class "right" :height "20" :space-evenly "false" :valign "center" :halign "end" :spacing {spacing}
+    (launcher)
+    (sep)
+    (metrics)
+    (sep)
+    (energy)
+    (sep)
+    (power-menu)
+  )
+)
+
+(defwidget sep []
+  (label :text "|")
+)
+
+
+(defwidget left[]
+  (box :class "left" :halign "start" :space-evenly "false" :spacing "5"
+    (workspaces)
+    (extra-settings)
+  )
+)
+
+(defwidget bar []
+  (centerbox :class "${rainbow_bar ? "rainbow_bar" : "bar_${ws}"}"
+      (left)
+      (time)
+      (right)
+  )
+)
+
+(defwidget bar-monitor []
+  (centerbox :class "bar_${ws}"
+      (workspaces)
+      (time)
+      (label :text "")
+  )
+)
+
+
+(defwindow dock
+  :monitor 0
+  :windowtype "dock"
+  :wm-ignore false
+  :stacking "fg"
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "100%"
+                      :height "15px"
+                      :anchor "top center")
+  (bar))
+
+(defwindow dock-monitor
+  :monitor 0
+  :windowtype "dock"
+  :wm-ignore false
+  :stacking "fg"
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "100%"
+                      :height "15px"
+                      :anchor "top center")
+  (bar-monitor))

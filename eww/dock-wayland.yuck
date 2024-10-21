@@ -1,0 +1,41 @@
+(defwidget left-wayland []
+  (box :class "left" :halign "start" :space-evenly "false" :spacing "5"
+    (workspaces-wayland)
+    (extra-settings)
+  )
+)
+
+(defwidget right-wayland []
+  (box :class "right" :height "20" :space-evenly "false" :valign "center" :halign "end" :spacing {spacing}
+    (launcher)
+    (sep)
+    (metrics)
+    (sep)
+    (energy)
+    (sep)
+    (power-menu-wayland)
+  )
+)
+
+(defwidget bar-wayland []
+
+  (centerbox :class "${rainbow_bar ? "rainbow_bar" : "bar_${ws}"}"
+      (left-wayland)
+      (time)
+      (right-wayland)
+  )
+)
+
+(defwindow dock-wayland
+  :monitor 0
+  :exclusive true
+  :focusable false
+  :stacking "fg"
+  :namespace "normal"
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "100%"
+                      :height "15px"
+                      :anchor "top center")
+  (bar-wayland))
+

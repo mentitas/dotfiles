@@ -4,6 +4,11 @@
 (deflisten active-windows :initial "1"
   "tail -F /tmp/ws-info")
 
+(defpoll ws-wayland :interval "1s"
+            :initial  "1"
+  "hyprctl monitors -j | jq '.[] | select(.focused) | .activeWorkspace.id'")
+
+
 (defwidget heart [name active text]
   (overlay :width "25"
     (image :path "${active ? "./icons/${theme}-theme/hearts-active/${name}.png" :
@@ -12,28 +17,30 @@
     )
 )
 
-(defwidget heart-98 [name active text]
-  (overlay :width "20"
-    (image :path "${active ? "./icons/${theme}-theme/pressed.png" :
-                             "./icons/${theme}-theme/normal.png"}")
-    (label :text "${text}" :style "color: black;" :yalign "${active ? 0.65 : 0.5}"
-                                                  :xalign "${active ? 0.6  : 0.5}"  )
-    )
-)
-
-(defwidget heart-txt [class active]
-  (label :text "${active ? "" : "♥"}"
-         :class "${class}"
-         :style "text-shadow: 1px 0;"
-         :width "22"
-  )
-)
-
 (defwidget workspace-indicator [num]
   (button :halign "center" :onclick 'i3-msg workspace ${num}'
       (heart  :name "${num}"
               :active "${ws==num}"
               :text "${active-windows[num]}"
+      )
+  )
+)
+
+(defwidget workspace-indicator-wayland-for-ten []
+  (button :halign "center" :onclick 'hyprctl dispatch workspace 10'
+        (heart  :name "0"
+                :active "${ws-wayland==10}"
+                :text "${active-windows[0]}"
+        )
+    )
+)
+
+
+(defwidget workspace-indicator-wayland [num]
+  (button :halign "center" :onclick 'hyprctl dispatch workspace ${num}'
+      (heart  :name "${num == 10 ? '0' : num}"
+              :active "${ws-wayland==num}"
+              :text "${num == 10 ? active-windows[0] : active-windows[num]}"
       )
   )
 )
@@ -58,6 +65,21 @@
   )
 )
 
-;;:index "${substring(ws, 33, 33)}"                         ;; Get current ws
-;;:array "[${substring(ws-list,34,strlength(ws-list))}]"))) ;; Format ws names as an array
-;;:current-ws "${search(ws-list, '"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"|"10')[substring(ws, 33, 33)]}")
+(defwidget workspaces-wayland []
+  (eventbox :onscroll "~/.config/eww/scripts/scroll-workspaces {}"
+    (box :class "surface" :halign "start"
+      (label :text "${ws-wayland}")
+      (workspace-indicator-wayland :num 1)
+      (workspace-indicator-wayland :num 2)
+      (workspace-indicator-wayland :num 3)
+      (workspace-indicator-wayland :num 4)
+      (workspace-indicator-wayland :num 5)
+      (label :text "|" :visible "${extended-screen}")
+      (workspace-indicator-wayland :num 6)
+      (workspace-indicator-wayland :num 7)
+      (workspace-indicator-wayland :num 8)
+      (workspace-indicator-wayland :num 9)
+      (workspace-indicator-wayland-for-ten)
+    )
+  )
+)
