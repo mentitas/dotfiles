@@ -1,0 +1,19 @@
+(defvar rev-bluetooth      false)
+
+(defpoll bluetooth-info :interval "10s"
+  "./scripts/bluetooth-status.sh"
+)
+
+
+(defwidget bluetooth []
+  (eventbox :onclick "./scripts/launch-app/bluetooth"
+            :onhover     "eww update rev-bluetooth=true"
+	          :onhoverlost "eww update rev-bluetooth=false"
+  (box :class "bluetooth" :space-evenly "false" :orientation "h"
+      (image :path "${bluetooth-info[0] ? "./icons/${theme}-theme/bluetooth-1.png"
+                                        : "./icons/${theme}-theme/bluetooth-0.png"}")
+        	(revealer :transition "slideleft"
+			              :reveal "${rev-bluetooth && bluetooth-info[0]}"
+			              :duration "350ms"
+                (label :text "${bluetooth-info[1]}"))))
+  )

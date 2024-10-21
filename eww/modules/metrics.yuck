@@ -1,6 +1,7 @@
 (include "./modules/light.yuck")
 (include "./modules/volume.yuck")
 (include "./modules/wifi.yuck")
+(include "./modules/bluetooth.yuck")
 
 (defwidget metric [label value onchange class]
   (box :orientation "h"
@@ -19,6 +20,7 @@
   (box :space-evenly "false" :spacing {spacing}
         (volume)
         (light)
+        (bluetooth)
         (wifi)
   )
 )
