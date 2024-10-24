@@ -1,12 +1,15 @@
+(defvar bar-visibility "true")
+
 (defwidget left-wayland []
   (box :class "left" :halign "start" :space-evenly "false" :spacing "5"
+    (search)
     (workspaces-wayland)
     (extra-settings)
   )
 )
 
 (defwidget right-wayland []
-  (box :class "right" :height "20" :space-evenly "false" :valign "center" :halign "end" :spacing {spacing}
+  (box :class "right" :space-evenly "false" :valign "center" :halign "end" :spacing {spacing} :visible {bar-visibility}
     (launcher)
     (sep)
     (metrics)
@@ -18,10 +21,9 @@
 )
 
 (defwidget bar-wayland []
-
-  (centerbox :class "${rainbow_bar ? "rainbow_bar" : "bar_${ws}"}"
+  (centerbox :height "20" :class "bar_1"
       (left-wayland)
-      (time)
+      (time-wayland)
       (right-wayland)
   )
 )

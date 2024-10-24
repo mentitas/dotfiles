@@ -30,6 +30,7 @@ $_0  : $blue     ;
 ._8,  .sky       {  color: $_8;   }
 ._9,  .sapphire  {  color: $_9;   }
 ._0,  .blue      {  color: $_0;   }
+._10,  .blue      {  color: $_0;   }
 
 .mauve_circular     {  color: $_1;  background-color:  $surface;}
 .pink_circular      {  color: $_2;  background-color:  $surface;}
@@ -70,6 +71,8 @@ $_0  : $blue     ;
   padding: 1;
 }
 
+.bar { background-color: $background; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}
+
 .bar_1 { background-color: $background; border: solid 3px $_1; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}
 .bar_2 { background-color: $background; border: solid 3px $_2; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}
 .bar_3 { background-color: $background; border: solid 3px $_3; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}
@@ -80,6 +83,7 @@ $_0  : $blue     ;
 .bar_8 { background-color: $background; border: solid 3px $_8; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}
 .bar_9 { background-color: $background; border: solid 3px $_9; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}
 .bar_0 { background-color: $background; border: solid 3px $_0; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}
+.bar_10 { background-color: $background; border: solid 3px $_0; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}
 
 .surface  {
   background-color: $surface;

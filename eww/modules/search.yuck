@@ -1,0 +1,10 @@
+(defwidget search []
+	(box :halign "start" :space-evenly "false" :spacing "5" :class "surface"
+	(image :path "./icons/both-themes/search2.png")
+	(revealer :transition "slideright"
+	  	         	  :reveal "${!bar-visibility}"
+	  	         	  :duration "300ms"
+				(label :text "Search:" :visible "${!bar-visibility}")
+	)
+	)
+)

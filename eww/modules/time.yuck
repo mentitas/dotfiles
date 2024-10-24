@@ -4,4 +4,7 @@
 (defwidget time []
     (label :text {time} :class "_${ws}")
 )
-  
+
+(defwidget time-wayland []
+    (label :text {time} :class "_${current_workspace}" :visible bar-visibility)
+)

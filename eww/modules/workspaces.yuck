@@ -1,17 +1,19 @@
+;; Para Xorg
 (deflisten ws :initial "1"
   "tail -F /tmp/ws")
 
 (deflisten active-windows :initial "1"
   "tail -F /tmp/ws-info")
 
-(defpoll ws-wayland :interval "1s"
-            :initial  "1"
-  "hyprctl monitors -j | jq '.[] | select(.focused) | .activeWorkspace.id'")
+;; Para Wayland
+(deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
 
+(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
 
 (defwidget heart [name active text]
   (overlay :width "25"
-    (image :path "${active ? "./icons/${theme}-theme/hearts-active/${name}.png" :
+    (image
+            :path "${active ? "./icons/${theme}-theme/hearts-active/${name}.png" :
                              "./icons/${theme}-theme/hearts/${name}.png"}")
     (label :text "${text}" :visible "${!active}" :yalign "0.35")
     )
@@ -22,25 +24,6 @@
       (heart  :name "${num}"
               :active "${ws==num}"
               :text "${active-windows[num]}"
-      )
-  )
-)
-
-(defwidget workspace-indicator-wayland-for-ten []
-  (button :halign "center" :onclick 'hyprctl dispatch workspace 10'
-        (heart  :name "0"
-                :active "${ws-wayland==10}"
-                :text "${active-windows[0]}"
-        )
-    )
-)
-
-
-(defwidget workspace-indicator-wayland [num]
-  (button :halign "center" :onclick 'hyprctl dispatch workspace ${num}'
-      (heart  :name "${num == 10 ? '0' : num}"
-              :active "${ws-wayland==num}"
-              :text "${num == 10 ? active-windows[0] : active-windows[num]}"
       )
   )
 )
@@ -66,20 +49,20 @@
 )
 
 (defwidget workspaces-wayland []
-  (eventbox :onscroll "~/.config/eww/scripts/scroll-workspaces {}"
-    (box :class "surface" :halign "start"
-      (label :text "${ws-wayland}")
-      (workspace-indicator-wayland :num 1)
-      (workspace-indicator-wayland :num 2)
-      (workspace-indicator-wayland :num 3)
-      (workspace-indicator-wayland :num 4)
-      (workspace-indicator-wayland :num 5)
-      (label :text "|" :visible "${extended-screen}")
-      (workspace-indicator-wayland :num 6)
-      (workspace-indicator-wayland :num 7)
-      (workspace-indicator-wayland :num 8)
-      (workspace-indicator-wayland :num 9)
-      (workspace-indicator-wayland-for-ten)
+  (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}"
+    (box :space-evenly true
+         :class "surface"
+         :halign "start"
+         :visible bar-visibility
+
+      (label :text "${current_workspace}")
+      (for workspace in workspaces
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (heart :name "${workspace.id}"
+                 :active "${workspace.id == current_workspace}"
+                 :text "${workspace.windows > 0 ? "*" : ""}")
+          )
+        )
+      )
     )
   )
-)

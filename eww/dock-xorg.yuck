@@ -10,6 +10,8 @@
 (include "./modules/workspaces.yuck")
 (include "./modules/extra-settings.yuck")
 (include "./modules/pets/bulbasaur/bulbasaur.yuck")
+(include "./modules/search.yuck")
+
 
 (defwidget right []
   (box :class "right" :height "20" :space-evenly "false" :valign "center" :halign "end" :spacing {spacing}
