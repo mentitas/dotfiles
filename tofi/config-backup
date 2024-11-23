@@ -1,0 +1,15 @@
+# Catppuccin Mocha
+text-color = #cdd6f4
+prompt-color = #f38ba8
+selection-color = #f9e2af
+background-color = #1e1e2e
+corner-radius = 10
+outline-width = 0
+border-color = #E3E1C9
+border-width = 0
+width = 640
+height = 480
+font = Cascaydia Mono
+font-size = 16
+
+
