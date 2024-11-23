@@ -1,0 +1,7 @@
+#!/bin/sh
+
+xargs hyprctl dispatch exec $1
+eww-wayland update bar-visibility=true
+
+# Si abri vivaldi, cambio el tema
+# ...

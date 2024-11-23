@@ -4,7 +4,7 @@
 	(revealer :transition "slideright"
 	  	         	  :reveal "${!bar-visibility}"
 	  	         	  :duration "300ms"
-				(label :text "Search:" :visible "${!bar-visibility}")
+				(label :text "Search:")
 	)
 	)
 )

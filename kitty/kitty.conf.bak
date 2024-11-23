@@ -24,6 +24,6 @@ map ctrl+f launch --type=overlay --stdin-source=@screen_scrollback /usr/bin/fzf 
 
 
 # BEGIN_KITTY_THEME
-# Cherry
+# Catppuccin-Mocha
 include current-theme.conf
 # END_KITTY_THEME
