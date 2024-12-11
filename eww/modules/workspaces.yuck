@@ -10,12 +10,14 @@
 
 (deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
 
-(defwidget heart [name active text]
+(defwidget heart [name active text color]
   (overlay :width "25"
-    (image
-            :path "${active ? "./icons/${theme}-theme/hearts-active/${name}.png" :
-                             "./icons/${theme}-theme/hearts/${name}.png"}")
-    (label :text "${text}" :visible "${!active}" :yalign "0.35")
+
+    (image :path "${active ? "./icons/heart-active.svg" :
+                             "./icons/heart.svg"}"
+          :fill-svg "${color}")
+
+    (label :text "${text}" :visible "${!active}")
     )
 )
 
@@ -24,6 +26,7 @@
       (heart  :name "${num}"
               :active "${ws==num}"
               :text "${active-windows[num]}"
+              :color "blue"
       )
   )
 )
@@ -54,13 +57,14 @@
          :class "surface"
          :halign "start"
          :visible bar-visibility
-
       (label :text "${current_workspace}")
       (for workspace in workspaces
         (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
           (heart :name "${workspace.id}"
                  :active "${workspace.id == current_workspace}"
-                 :text "${workspace.windows > 0 ? "*" : ""}")
+                 :text "${workspace.windows > 0 ? "*" : ""}"
+                 :color "${colors[workspace.id - 1]}"
+                 )
           )
         )
       )

@@ -3,6 +3,7 @@
 (defwidget left-wayland []
   (box :class "left" :halign "start" :space-evenly "false" :spacing "5"
     (search)
+
     (workspaces-wayland)
     (extra-settings)
   )
@@ -28,16 +29,37 @@
   )
 )
 
+(defwidget bar-wayland-m []
+  (centerbox :height "20" :class "bar_1"
+      (left-wayland)
+      (time-wayland)
+      (label :text "")
+  )
+)
+
 (defwindow dock-wayland
   :monitor 0
   :exclusive true
   :focusable false
-  :stacking "fg"
-  :namespace "normal"
+  :stacking "bottom"
+  :namespace "eww"
   :geometry (geometry :x "0"
                       :y "0"
                       :width "100%"
                       :height "15px"
                       :anchor "top center")
   (bar-wayland))
+
+(defwindow dock-wayland-m
+  :monitor 1
+  :exclusive true
+  :focusable false
+  :stacking "fg"
+  :namespace "eww"
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "100%"
+                      :height "15px"
+                      :anchor "top center")
+  (bar-wayland-m))
 

@@ -11,10 +11,14 @@
              :onhover     "eww update rev-wifi=true"
              :onhoverlost "eww update rev-wifi=false"
       (box :class "wifi" :space-evenly "false" :spacing {spacing}
-        (image :path "${wifi-info[1] > 66 ? "./icons/${theme}-theme/signal-3.png" :
-                        wifi-info[1] > 33 ? "./icons/${theme}-theme/signal-2.png" :
-                        wifi-info[1] > 1  ? "./icons/${theme}-theme/signal-1.png" :
-                                            "./icons/${theme}-theme/signal-0.png"}")
+        (image  :fill-svg {colors[1]}
+                :path "./icons/wifi-${round(wifi-info[1]/20, 0)}.svg"
+        )
+
+                ;; "${wifi-info[1] > 66 ? "./icons/wifi-4.svg" :
+                ;;          wifi-info[1] > 33 ? "./icons/wifi-4.svg" :
+                ;;          wifi-info[1] > 1  ? "./icons/wifi-4.svg" :
+                ;;                              "./icons/wifi-4.svg"}")
         (revealer :transition "slideleft"
 			                :reveal rev-wifi
 			                :duration "350ms"

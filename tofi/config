@@ -18,7 +18,7 @@ result-spacing = 15
 
 padding-top    = 5
 padding-bottom = 0
-padding-left   = 120
+padding-left   = 170
 padding-right  = 30
 
 
@@ -29,10 +29,10 @@ prompt-padding = 20
 background-color = #00000000
 text-color = #cdd6f4
 
-prompt-background = #181825ff
+prompt-background = #11111bff
 prompt-background-corner-radius = 5
 
-input-color = #b688ea
+input-color = #cba6f7
 input-background = #00000000
 input-background-corner-radius = 5
 input-background-padding = 3
@@ -47,9 +47,7 @@ drun-launch=false
 terminal = kitty
 
 selection-color = #fff
-selection-match-color = #edd090
+selection-background = #f38ba8
+selection-match-color = #f5c2e7
 selection-background-corner-radius = 5
 selection-background-padding = 0, 3
-
-# The following line is constantly being overwritten as workspaces change.
-selection-background = #eb6c8f

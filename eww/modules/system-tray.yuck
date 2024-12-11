@@ -5,6 +5,10 @@
     "echo $(pidof Discord)"
 )
 
+(defpoll vs-running :interval "5s"
+    "echo $(pidof electron)"
+)
+
 (defpoll steam-running :interval "10s"
     "echo $(pidof steam)"
 )

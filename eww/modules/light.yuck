@@ -4,7 +4,8 @@
   (eventbox :onhover     "eww update rev-light=true"
 	          :onhoverlost "eww update rev-light=false"
   (box :class "light" :space-evenly "false" :orientation "h"
-      (image :path "./icons/${theme}-theme/sun.png")
+      (image  :fill-svg {colors[4]}
+              :path "./icons/sun.svg")
         	(revealer :transition "slideleft"
 			              :reveal rev-light
 			              :duration "350ms"

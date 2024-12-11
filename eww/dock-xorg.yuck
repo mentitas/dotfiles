@@ -1,4 +1,6 @@
 (include "./modules/time.yuck")
+(include "./palettes/darker-mocha.yuck")
+
 
 ;; Right
 (include "./modules/energy.yuck")

@@ -6,5 +6,5 @@
 )
 
 (defwidget time-wayland []
-    (label :text {time} :class "_${current_workspace}" :visible bar-visibility)
+    (label :text {time} :class "_4" :visible bar-visibility)
 )

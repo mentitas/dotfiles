@@ -1,10 +1,15 @@
 (defwidget search []
-	(box :halign "start" :space-evenly "false" :spacing "5" :class "surface"
-	(image :path "./icons/both-themes/search2.png")
+	(box :halign "start" :space-evenly "false" :spacing "5" :class "rainbow-bg"
+	(box
+		;; (image :path "./icons/mini.gif")
+		(image :path "./icons/both-themes/burbuja.png")
+		(image :path "./icons/both-themes/bombon.png")
+		(image :path "./icons/both-themes/bellota.png")
+	)
 	(revealer :transition "slideright"
 	  	         	  :reveal "${!bar-visibility}"
 	  	         	  :duration "300ms"
-				(label :text "Search:")
+				(label :text "Search:" :class "black")
 	)
 	)
 )

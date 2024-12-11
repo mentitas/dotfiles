@@ -1,4 +1,4 @@
-@import 'palettes/current-theme.scss'
+@import 'palettes/darker-mocha.scss'
 
 * {
   all: unset; //Unsets everything so you can style everything from scratch
@@ -30,7 +30,8 @@ $_0  : $blue     ;
 ._8,  .sky       {  color: $_8;   }
 ._9,  .sapphire  {  color: $_9;   }
 ._0,  .blue      {  color: $_0;   }
-._10,  .blue      {  color: $_0;   }
+._10,  .blue     {  color: $_0;   }
+.black           {  color: $background;   }
 
 .mauve_circular     {  color: $_1;  background-color:  $surface;}
 .pink_circular      {  color: $_2;  background-color:  $surface;}
@@ -62,6 +63,20 @@ $_0  : $blue     ;
   100% {border: solid 3px $_0;} 
 }
 
+@keyframes rainbow {
+    0% {background: $_0;} 
+   10% {background: $_1;} 
+   20% {background: $_2;} 
+   30% {background: $_3;} 
+   40% {background: $_4;} 
+   50% {background: $_5;} 
+   60% {background: $_6;} 
+   70% {background: $_7;} 
+   80% {background: $_8;} 
+   90% {background: $_9;} 
+  100% {background: $_0;} 
+}
+
 .rainbow_bar {
   animation: rainbow_border 5s infinite;
   background-color: $background;
@@ -87,10 +102,95 @@ $_0  : $blue     ;
 
 .surface  {
   background-color: $surface;
+  border-radius: 20px;
+  padding: 0 10 0 10;
+}
+
+.pink-bg  {
+  background-color: $pink;
   border-radius: 12px;
   padding: 0 10 0 10;
 }
 
+.rainbow-bg {
+  border: solid 2px $background;
+  border-radius: 20px;
+  padding: 0 10 0 10;
+  background: radial-gradient(circle, $_1, $_2, $_3, $_4, $_5, $_6, $_7, $_8, $_9, $_0);
+  background-size: 400% 400%;
+  animation: gradient_f 20s ease-in-out infinite;
+}
+
+.linear-rainbow-bg {
+  background: repeating-linear-gradient(90deg,  $_1, $_2, $_3, $_4, $_5, $_6, $_7, $_8, $_9, $_0);
+  animation: gradient 5s ease infinite;
+  background-size: 400% 100%;
+  background-repeat:repeat-x;
+  border: solid 2px $background;
+  border-radius: 20px;
+  padding: 0 10 0 10;
+}
+
+@keyframes gradient_f {
+    0% {
+        background-position: 0% 200%;
+    }
+    50% {
+        background-position: 200% 0%;
+    }
+    100% {
+        background-position: 400% 200%;
+    }
+}
+
+.circle-rainbow-bg {
+  background: radial-gradient(circle, $_1, $_2, $_3, $_4, $_5, $_6, $_7, $_8, $_9, $_0);
+  background-size: 300% 300%;
+  background-position: center;
+  animation: expandGradient 5s ease infinite;
+  border-radius: 20px;
+  padding: 0 5px;
+  border: solid 2px $background;
+}
+
+@keyframes expandGradient {
+  0% {
+    background-size: 100% 100%;
+  }
+  100% {
+    background-size: 300% 300%;
+  }
+}
+
+.cheque:checked{
+  padding: 0 5 0 5;
+  transition: all 1s cubic-bezier(.55,-0.68,.48,1.68);
+}
+
+.cheque{
+  padding: 0 0 0 0;
+  transition: all 1s cubic-bezier(.55,-0.68,.48,1.68);
+}
+
+
+.solid-rainbow-bg {
+  background: repeating-linear-gradient(90deg,  $_1, $_2, $_3, $_4, $_5, $_6, $_7, $_8, $_9, $_0);
+  background-repeat:repeat-x;
+  background-size: 400% 100%;
+  animation: gradient 5s ease infinite;
+  border-radius: 20px;
+  padding: 0 5 0 5;
+  border: solid 2px $background;
+}
+
+.gif-bg {
+  background: url("./icons/both-themes/burbuja.gif");
+}
+
+@keyframes gradient {
+  0%   { background-position: 100% 50%}
+  100% { background-position: -33% 50%}
+}
 
 .button {
     box-shadow: -2px -2px #e0dede, -2px 0 #e0dede, 0 -2px #e0dede, -4px -4px white, -4px 0 white, 0 -4px white, 2px 2px #818181, 0 2px #818181, 2px 0 #818181,  2px -2px #e0dede, -2px 2px #818181, -4px 2px white, -4px 4px black, 4px 4px black, 4px 0 black, 0 4px black, 2px -4px white, 4px -4px black;
@@ -143,8 +243,6 @@ $_0  : $blue     ;
   margin-left: 5px;
 }
 
-
-
 /* BOOK STUFF */
 
 .book {
@@ -152,3 +250,4 @@ background-color: transparent;
 margin: 3 5 0 5;
 padding: 1;
 }
+
