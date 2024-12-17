@@ -11,11 +11,13 @@
   (eventbox :onhover     "eww update rev-vol=true"
             :onhoverlost "eww update rev-vol=false"
   (box :class "${mute ? "volume-muted" : "volume"}" :space-evenly "false" :orientation "h"
-      (image :fill-svg {colors[0]}
-             :path "${ mute       ? "./icons/volume-0.svg" :
-                      volume > 50 ? "./icons/volume-2.svg" :
-                      volume > 1  ? "./icons/volume-1.svg" :
-                                    "./icons/volume-0.svg"}")
+      (button      :onclick "./scripts/launch-app/pavucontrol"
+        (image :fill-svg {colors[0]}
+               :path "${ mute       ? "./icons/volume-0.svg" :
+                        volume > 50 ? "./icons/volume-2.svg" :
+                        volume > 1  ? "./icons/volume-1.svg" :
+                                      "./icons/volume-0.svg"}")
+      )
           (revealer :transition "slideleft"
                     :reveal rev-vol
                     :duration "350ms"

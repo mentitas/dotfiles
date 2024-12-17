@@ -5,7 +5,7 @@
     (search)
 
     (workspaces-wayland)
-    (extra-settings)
+    ;; (extra-settings)
   )
 )
 
@@ -41,7 +41,7 @@
   :monitor 0
   :exclusive true
   :focusable false
-  :stacking "bottom"
+  :stacking "fg"
   :namespace "eww"
   :geometry (geometry :x "0"
                       :y "0"

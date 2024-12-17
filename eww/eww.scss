@@ -251,3 +251,37 @@ margin: 3 5 0 5;
 padding: 1;
 }
 
+
+.lineas-bg {
+    background: rgb(205,214,244);
+    background: linear-gradient(118deg, $_2 5%,
+                                        $_3 5%,
+                                        $_3 20%,
+                                        $_2 20%,
+                                        $_2 40%,
+                                        $_3 40%,
+                                        $_3 60%,
+                                        $_2 60%,
+                                        $_2 80%,
+                                        $_3 80%,
+                                        $_3 95%,
+                                        $_2 95%); 
+
+    background-size: 200% 300%;
+
+    border-radius: 20px;
+    padding: 0 10px;
+    border: solid 2px $background;
+
+    animation: gradient_f_nh 4s linear infinite;
+  }
+
+@keyframes gradient_f_nh {
+  0% {
+    background-position: 0% 200%;
+  }
+  100% {
+    background-position: 200% 200%;
+  }
+}
+

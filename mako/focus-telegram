@@ -1,0 +1,4 @@
+#!/bin/sh
+
+ws=$(hyprctl clients -j | jq '.[] | select(.class=="org.telegram.desktop").workspace.id')
+hyprctl dispatch workspace $ws > /dev/null

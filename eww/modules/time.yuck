@@ -6,5 +6,5 @@
 )
 
 (defwidget time-wayland []
-    (label :text {time} :class "_4" :visible bar-visibility)
+    (label :text {time} :style "color: #eba0ac;" :visible bar-visibility)
 )

@@ -10,7 +10,7 @@
    (eventbox :onclick "./scripts/launch-app/nmtui"
              :onhover     "eww update rev-wifi=true"
              :onhoverlost "eww update rev-wifi=false"
-      (box :class "wifi" :space-evenly "false" :spacing {spacing}
+      (box :class "wifi" :space-evenly "false"
         (image  :fill-svg {colors[1]}
                 :path "./icons/wifi-${round(wifi-info[1]/20, 0)}.svg"
         )

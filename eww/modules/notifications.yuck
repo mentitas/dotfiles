@@ -1,0 +1,12 @@
+(defvar do-not-disturb false)
+
+(defwidget notifications []
+  (button :onclick "eww update do-not-disturb=${!do-not-disturb} \
+                    && makoctl mode -t do-not-disturb"
+    (image :path "${do-not-disturb ? "./icons/notifications-off.svg"
+                                   : "./icons/notifications-on.svg"
+                  }"
+           :fill-svg {colors[7]}
+    )
+  )
+)
