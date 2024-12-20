@@ -21,8 +21,8 @@
   (box :space-evenly "false" :spacing {spacing}
         (volume)
         (light)
+        (wifi)
         (bluetooth)
         (notifications)
-        (wifi)
   )
 )

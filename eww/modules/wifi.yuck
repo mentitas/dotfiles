@@ -12,19 +12,13 @@
              :onhoverlost "eww update rev-wifi=false"
       (box :class "wifi" :space-evenly "false"
         (image  :fill-svg {colors[1]}
-                :path "./icons/wifi-${round(wifi-info[1]/20, 0)}.svg"
-        )
-
-                ;; "${wifi-info[1] > 66 ? "./icons/wifi-4.svg" :
-                ;;          wifi-info[1] > 33 ? "./icons/wifi-4.svg" :
-                ;;          wifi-info[1] > 1  ? "./icons/wifi-4.svg" :
-                ;;                              "./icons/wifi-4.svg"}")
+                :path "./icons/wifi-${round(wifi-info[1]/20, 0)}.svg")
         (revealer :transition "slideleft"
 			                :reveal rev-wifi
 			                :duration "350ms"
-          (box
-          (label :text "${wifi-info[0]}"  :class "white")
-          (label :text "${wifi-info[1]}%" :class "pink")
+          (box :space-evenly "false"
+          (label :text "${wifi-info[0]}"  :class "white" :style "padding: 0px 5px;")
+          (label :text "${wifi-info[1]}%" :class "pink"  :style "padding: 0px 5px;")
           )
         )
       )

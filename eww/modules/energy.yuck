@@ -62,7 +62,7 @@
   (eventbox :onhover     {onhover}
             :onhoverlost {onhoverlost}
 
-          (box :space-evenly "false" :spacing "5"
+          (box :space-evenly "false" :spacing {spacing}
           
               (circular-widget  :class {class}
                                 :value {value}

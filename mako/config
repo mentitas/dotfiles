@@ -11,7 +11,8 @@ margin=0
 background-color=#181825ff
 text-color=#eba0acff
 font=Caskaydia Mono Nerd Font Bold 10
-width=190
+width=350
+height=200
 anchor=top-right
 padding=10,10
 border-size=3
@@ -41,3 +42,5 @@ text-color=#cba6f7ff
 [category="light"]
 text-color=#f9e2afff
 
+[category="notification"]
+text-color=#89dcebff

@@ -2,6 +2,9 @@
 
 (defwidget notifications []
   (button :onclick "eww update do-not-disturb=${!do-not-disturb} \
+                    && notify-send -c 'notification' \
+                      Notifications ${do-not-disturb ? "on" : "off"} \
+                    && sleep 3                      \
                     && makoctl mode -t do-not-disturb"
     (image :path "${do-not-disturb ? "./icons/notifications-off.svg"
                                    : "./icons/notifications-on.svg"

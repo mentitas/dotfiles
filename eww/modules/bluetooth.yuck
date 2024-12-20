@@ -9,7 +9,7 @@
   (eventbox :onclick "./scripts/launch-app/bluetooth"
             :onhover     "eww update rev-bluetooth=true"
 	          :onhoverlost "eww update rev-bluetooth=false"
-  (box :class "bluetooth" :space-evenly "false" :orientation "h"
+  (box :class "bluetooth" :space-evenly "false"
       (image  :fill-svg {colors[9]}
               :path "${bluetooth-info[0] ? "./icons/bluetooth.svg"
                                         : "./icons/bluetooth-disabled.svg"}")
