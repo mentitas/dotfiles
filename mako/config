@@ -44,3 +44,6 @@ text-color=#f9e2afff
 
 [category="notification"]
 text-color=#89dcebff
+
+[category="bluetooth"]
+text-color=#89b4faff
