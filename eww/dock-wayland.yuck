@@ -37,6 +37,19 @@
   )
 )
 
+(defwindow bluetooth-window
+  :monitor 0
+  :exclusive true
+  :focusable false
+  :stacking "fg"
+  :namespace "eww"
+  :geometry (geometry :x "0"
+                      :y "7"
+                      :width "20%"
+                      :height "30px"
+                      :anchor "top right")
+  (bluetooth-window))
+
 (defwindow dock-wayland
   :monitor 0
   :exclusive true
