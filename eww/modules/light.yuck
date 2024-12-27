@@ -1,5 +1,8 @@
 (defvar rev-light false)
-(defvar backlight 0)
+;; (defvar backlight 0)
+
+(defpoll backlight :interval "0.5s"
+  "xbacklight -get")
 
 (defwidget light []
   (eventbox :onhover     "eww update rev-light=true"
@@ -16,6 +19,3 @@
                       (label :text "${backlight}%"  :class "yellow" :style "padding: 0px 5px;")
                 )
 ))))
-
-;; (defpoll backlight :interval "0.5s"
-;;   "xbacklight -get")

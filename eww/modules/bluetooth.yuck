@@ -37,40 +37,21 @@
   )
 
 
-
-(defwidget paired-device-indicator [device]
+(defwidget device-indicator [device action color]
   
-  (box :spacing {spacing} :space-evenly false :visible {device.paired}
-    (button :onclick "${ device.connected ? "./scripts/bluetooth/bluetooth-disconnect.sh ${device.address} ${device.name}"
-                                          : "./scripts/bluetooth/bluetooth-connect.sh    ${device.address} ${device.name}"
-                        }"
-
-
+  (box :spacing {spacing} :space-evenly false
+    (button :onclick action
             (image :path "./icons/heart${device.connected ? "-active" : ""}.svg"
-                   :fill-svg "${device.paired ? colors[5] : colors[10]}"
-            )
-          )
+                   :fill-svg color)
+    )
 
           (label :text "${device.name}")
           (label :text "${device.connected ? "(Connected)" : ""}" :class "${device.connected ? "green" : ""}")
           ;;(label :text "${device.battery != "" ? "${device.battery}%" : ""}")
 
-
-
   )
   
 )
-
-(defwidget unpaired-device-indicator [device]
-  
-  (box :spacing {spacing} :space-evenly false :visible {!device.paired}
-    (button :onclick "./scripts/bluetooth/bluetooth-pair.sh ${device.address} ${device.name}"
-        (image :path "./icons/heart.svg" :fill-svg {colors[6]})
-    )
-    (label :text "${device.name}")
-  )
-)
-
 
 
 (defwidget bluetooth-window []
@@ -78,7 +59,7 @@
 
   (eventbox :onhoverlost "eww-wayland close bluetooth-window"
     
-    (box :class "bar_1" :orientation "vertical" :style "padding: 5px;" :space-evenly false
+    (box :class "bar_1" :orientation "vertical" :style "padding: 5px;" :space-evenly false :spacing {spacing}
             
       (box :space-evenly false :spacing spacing
         
@@ -86,69 +67,41 @@
                              -h string:x-dunst-stack-tag:'bluetooth' \
                              'Powering ${bluetooth-info[0] ? "off" : "on"} Bluetooth' \
                        && bluetoothctl power ${bluetooth-info[0] ? "off" : "on"}"
-              (image :path "./icons/toggle-${bluetooth-info[0]}.svg"
+              (image :path "./icons/heart${bluetooth-info[0] ? "-active" : ""}.svg"
                      :fill-svg {colors[9]})
             )
   
-          (label :text "Bluetooth" :class "blue" :halign "start")
+          (label :text "Bluetooth" :halign "start")
+          (label :text "${bluetooth-info[0] ? "on" : "off"}" :class "blue")
       )
   
-      (box :visible {bluetooth-info[0]} :orientation "vertical"
-      
+      (box :visible {bluetooth-info[0] && bluetooth-devices.paired != "[]"}
+           :orientation "vertical"
+        
         (label :text "Paired devices:" :halign "start")
-        (for device in bluetooth-devices
-          (paired-device-indicator :device device)  
+
+        (for device in {bluetooth-devices.paired}
+          (device-indicator 
+            :device device
+            :color {colors[5]}
+            :action "./scripts/bluetooth/bluetooth-${ device.connected ? "dis" : ""}connect.sh ${device.address} ${device.name}"
+          )
         )
-      
       )
   
-      (box :visible {bluetooth-info[0]} :orientation "vertical"
+      (box :visible {bluetooth-info[0] && bluetooth-devices.unpaired != "[]"}
+          :orientation "vertical"
 
         (label :text "Unpaired devices:" :halign "start")
-        (for device in bluetooth-devices
-          (unpaired-device-indicator :device device)  
+        (for device in {bluetooth-devices.unpaired}
+          
+          (device-indicator 
+            :device device
+            :color {colors[6]}
+            :action "./scripts/bluetooth/bluetooth-pair.sh ${device.address} ${device.name}")
+          )
         )
       
       )
     )
-  )
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-;; (defwidget device-indicator [device visible]
-;;   
-;;   (box :spacing {spacing} :space-evenly false :visible visible
-;;     (button :onclick "${ device.connected && device.paired
-;;                                   ? "notify-send 'Disconnecting from ${device.name}' \
-;;                                      && bluetoothctl disconnect ${device.address}"
-;;                               
-;;                               : !device.connected && device.paired
-;;                                   ? "notify-send 'Connecting to ${device.name}' \ 
-;;                                      && bluetoothctl connect ${device.address}"
-;; 
-;;                               : "notify-send '${device.name} is not paired'" } "
-;; 
-;;             (image :path "./icons/heart${device.connected ? "-active" : ""}.svg"
-;;                    :fill-svg "${device.paired ? colors[5] : colors[10]}"
-;;             )
-;;           )
-;; 
-;;           (label :text "${device.name}")
-;;           (label :text "${device.connected ? "(Connected)" : ""}")
-;;           ;;(label :text "${device.battery != "" ? "${device.battery}%" : ""}")
-;; 
-;; 
-;;   )
-;;   
-;; )

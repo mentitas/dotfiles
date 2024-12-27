@@ -6,7 +6,9 @@
 
 bluetoothctl devices |
 {	
-	devices='[]'
+	devices='{}'
+	paired_devices='[]'
+	unpaired_devices='[]'
 	while read line ; do
 
 		address=$(echo $line | cut -f 2 -d ' ') 
@@ -23,27 +25,39 @@ bluetoothctl devices |
 			connected=false
 		fi
 
-		if [ "$paired" == "yes" ]; then
-			paired=true
-		else
-			paired=false
-		fi
+		# if [ "$paired" == "yes" ]; then
+		# 	paired=true
+		# else
+		# 	paired=false
+		# fi
 
 		#name=$(echo $line | cut -f 1,2 -d ' ' --complement)
 
 		device=$(jq -n \
 		    --arg name "$name" \
 		    --arg address "$address" \
-		    --arg paired "$paired" \
 		    --arg connected "$connected" \
 		    --arg battery "$battery" \
-		    '{name: $name, address: $address, paired: $paired, connected: $connected, battery: $battery}')
-		
-		if [[ "$name" != "" ]]; then
-			devices=$(echo $devices | jq --argjson x "$device" '. += [ $x ]')
+		    '{name: $name, address: $address, connected: $connected, battery: $battery}')
+
+		if [[ $device != null && "$name" != "" ]]; then
+
+			if [[ "$paired" == "yes" ]]; then
+				paired_devices=$(echo     $paired_devices | jq --argjson x "$device" '. += [ $x ]')
+			else
+				unpaired_devices=$(echo $unpaired_devices | jq --argjson x "$device" '. += [ $x ]')
+			fi
+
 		fi
 
+		# if [[ "$name" != "" ]]; then
+		# 	devices=$(echo $devices | jq --argjson x "$device" '. += [ $x ]')
+		# fi
+
 	done	
+
+	devices=$(echo $devices | jq --argjson x   "$paired_devices" '. += {   "paired" : $x }')
+	devices=$(echo $devices | jq --argjson x "$unpaired_devices" '. += { "unpaired" : $x }')
 
 	echo $devices | jq
 

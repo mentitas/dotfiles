@@ -1,13 +1,13 @@
 (defvar rev-vol        false)
 (defvar vol-popup      false)
-(defvar volume 0)
-(defvar mute false)
+;; (defvar volume 0)
+;; (defvar mute false)
 
-;; (defpoll volume :interval "1s"
-;;   "pamixer --get-volume")
+(defpoll volume :interval "1s"
+  "pamixer --get-volume")
 
-;; (defpoll mute :interval "1s"
-;;   "pamixer --get-mute")
+(defpoll mute :interval "1s"
+  "pamixer --get-mute")
 
 (defwidget volume []
   (eventbox :onhover     "eww update rev-vol=true"

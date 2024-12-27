@@ -1,0 +1,11 @@
+#!/bin/sh
+
+#$1 = bssid
+#$2 = name
+#$3 = password
+
+notify-send "connecting to $2"
+
+# saved_networks=$(nmcli -t -f name connection show | jq -Rs 'split("\n")')
+
+kitty nmcli --ask dev wifi connect $1
