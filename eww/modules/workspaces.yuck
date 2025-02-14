@@ -53,20 +53,23 @@
 
 (defwidget workspaces-wayland []
   (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}"
-    (box :space-evenly true
+    (box :space-evenly false
          :class "surface"
          :halign "start"
          :visible bar-visibility
-      (label :text "${current_workspace}")
+      (label :text "${current_workspace}" :width "30")
       (for workspace in workspaces
-        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
-          (heart :name "${workspace.id}"
-                 :active "${workspace.id == current_workspace}"
-                 :text "${workspace.windows > 0 ? "*" : ""}"
-                 :color "${colors[workspace.id - 1]}"
-                 )
+        (box :space-evenly "true"
+          (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+            (heart :name "${workspace.id}"
+                   :active "${workspace.id == current_workspace}"
+                   :text "${workspace.windows > 0 ? "*" : ""}"
+                   :color "${colors[workspace.id - 1]}"
+            )
           )
+          (label :text "|" :visible "${workspace.id == 5 && extended-screen}")
         )
       )
     )
+  )
   )

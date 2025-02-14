@@ -1,0 +1,6 @@
+(defwidget color-picker []
+    (button :onclick "./scripts/pick-color"
+        (image :path "./icons/color-picker.svg")
+    )
+
+)

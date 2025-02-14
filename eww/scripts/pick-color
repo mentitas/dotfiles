@@ -1,0 +1,3 @@
+#!/bin/sh
+
+hyprpicker | xargs bash -c 'wl-copy $@; notify-send "$@ pasted to clipboard"' bash

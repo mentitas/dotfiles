@@ -2,6 +2,7 @@
 (include "./modules/volume.yuck")
 (include "./modules/wifi.yuck")
 (include "./modules/bluetooth.yuck")
+(include "./modules/color-picker.yuck")
 (include "./modules/notifications.yuck")
 
 (defwidget metric [label value onchange class]
@@ -19,6 +20,7 @@
 
 (defwidget metrics []
   (box :space-evenly "false" :spacing {spacing}
+        (color-picker)
         (volume)
         (light)
         (wifi)

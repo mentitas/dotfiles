@@ -46,7 +46,7 @@
   :geometry (geometry :x "0"
                       :y "7"
                       :width "20%"
-                      :height "30%"
+                      :height "10%"
                       :anchor "top right")
   (bluetooth-window))
 
@@ -59,7 +59,7 @@
   :geometry (geometry :x "0"
                       :y "7"
                       :width "20%"
-                      :height "30%"
+                      :height "35%"
                       :anchor "top right")
   (wifi-window))
 
