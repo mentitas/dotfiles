@@ -1,5 +1,11 @@
 exec --no-startup-id ~/set_once.sh
 
+# xfce components
+exec xfconfd
+exec xfsettingsd
+exec xfce4-volumed
+exec xfce4-power-manager
+
 # This file is a modified version based on default i3-config-wizard config
 # source is available here:
 # https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/master/.config/i3/config
@@ -13,7 +19,6 @@ font pango: Noto Sans Regular 10
 
 # set the mod key to the winkey:
 set $mod Mod4
-
 
 #####################
 # workspace layout: #
@@ -31,16 +36,13 @@ default_border pixel 0
 
 # Set inner/outer gaps (antes era inner=8 y outer=3)
 gaps inner 8
-gaps outer 3
+gaps outer 10
+
 
 # Dejo espacio para la eww bar
-# gaps top 40
+gaps top 35
 # Esto se puede setear con:
 # i3-msg gaps top all set 40
-
-
-# Set borders
-exec --no-startup-id xborders --border-mode outside --border-radius 13 --border-width 3 --border-red 182 --border-green 136 --border-blue 234
 
 ##########################################
 # configuration for workspace behaviour: #
@@ -85,8 +87,8 @@ workspace  $ws10 output $monL
 floating_modifier $mod
 
 # switch/iterate between workspaces
-bindsym $mod+S exec --no-startup-id ~/.config/i3/change-to-next-ws.sh
-bindsym $mod+A exec --no-startup-id ~/.config/i3/change-to-prev-ws.sh
+bindsym $mod+S exec --no-startup-id i3-msg workspace next
+bindsym $mod+A exec --no-startup-id i3-msg workspace prev
 
 bindsym Shift+Ctrl+Right move container to workspace next
 bindsym Shift+Ctrl+Left  move container to workspace prev
@@ -130,30 +132,32 @@ mode "resize" {
 
 # same bindings, but for the arrow keys
     bindsym Left  resize grow   width  10 px or 10 ppt
-	bindsym Right resize shrink width  10 px or 10 ppt
+        bindsym Right resize shrink width  10 px or 10 ppt
     bindsym Up    resize grow   height 10 px or 10 ppt
     bindsym Down  resize shrink height 10 px or 10 ppt
 
 # back to normal: Enter or Escape
-	bindsym Return mode "default"; exec --no-startup-id notify-send "Normal mode"
+        bindsym Return mode "default"; exec --no-startup-id notify-send "Normal mode"
     bindsym Escape mode "default"; exec --no-startup-id notify-send "Normal mode"
 }
 
 bindsym $mod+r mode "resize"; exec --no-startup-id notify-send "Resize mode"
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+Return exec --no-startup-id xfce4-terminal
 
 # Open the file explorer
-bindsym $mod+e exec --no-startup-id nemo
+bindsym $mod+e exec --no-startup-id thunar
 
 
 # Rofi bindings
-bindsym $mod+w exec --no-startup-id ~/.config/i3/run-rofi.sh
-#bindsym $mod+Return exec --no-startup-id rofi -show drun -theme ".config/rofi/launchers/type-1/style-8.rasi"
+# bindsym $mod+w exec --no-startup-id rofi -show drun -theme ".config/rofi/another-style.rasi" -icon-theme "Colloid-Purple-Catppuccin-Dark" -calc-command "echo -n '{result}' | wl-copy"
 
-bindsym $mod+z exec --no-startup-id rofi -show window -theme ".config/rofi/style.rasi"
+# bindsym $mod+z exec --no-startup-id rofi -show window -theme ".config/rofi/style.rasi"
 
+bindsym $mod+w exec .config/hypr/open-rofi.sh drun
+
+# bindsym $mod+w exec --no-startup-id xfce4-appfinder
 
 # kill focused window
 bindsym $mod+q kill
@@ -174,8 +178,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Backlight control
-bindsym F12 exec --no-startup-id xbacklight +1; exec --no-startup-id ~/.config/i3/notify-light.sh
-bindsym F11 exec --no-startup-id xbacklight -1; exec --no-startup-id ~/.config/i3/notify-light.sh
+bindsym F12 exec --no-startup-id ~/.config/i3/change-light.sh up
+bindsym F11 exec --no-startup-id ~/.config/i3/change-light.sh down
 
 # Change focus
 bindsym $mod+Left  focus left
@@ -216,8 +220,8 @@ bindsym $mod+shift+space focus mode_toggle
 # volume
 
 # use meta keys without showing osc
-bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5; exec ~/.config/i3/notify-volume.sh
-bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5; exec ~/.config/i3/notify-volume.sh
+bindsym XF86AudioRaiseVolume exec ~/.config/i3/change-volume.sh up
+bindsym XF86AudioLowerVolume exec ~/.config/i3/change-volume.sh down
 
 # mute
 bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/toggle-mute.sh
@@ -235,9 +239,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
 
 ## App shortcuts
-bindsym Print       exec --no-startup-id escrotum -C -s
-bindsym Print+Shift exec --no-startup-id escrotum -C
-
+bindsym Print       exec --no-startup-id xfce4-screenshooter && exit
 
 #scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
 
@@ -275,7 +277,7 @@ exec_always --no-startup-id picom -b
 # Open polybar
 #exec_always --no-startup-id /home/rosu/.config/polybar/multi-monitor.sh
 #exec_always --no-startup-id killall polybar && polybar
-exec --no-startup-id eww open dock
+exec --no-startup-id ewwx11 open dock
 
 
 #############################################
@@ -316,7 +318,16 @@ exec --no-startup-id xrandr --auto --output HDMI-1 --mode 1366x768 --left-of eDP
 exec --no-startup-id xset s 480 dpms 600 600 600
 
 # Set wallpaper
-exec --no-startup-id feh --bg-fill Pictures/akko-violeta.jpg 
+exec gsettings set org.gnome.desktop.interface gtk-theme  Catppuccin-Dark-1
+exec gsettings set org.gnome.desktop.interface icon-theme Colloid-Purple-Catppuccin-Dark
+exec gsettings set org.gnome.desktop.interface font-name "DejaVu Sans, 10"
+exec feh --bg-fill ./Pictures/Wallpaper/rwby-shopping-2.jpg
+
+exec sleep 3 && ewwx11 update backlight=$(brightnessctl -m | cut -d "," -f4 | head -c -2)
+exec sleep 3 && ewwx11 update volume=$(pamixer --get-volume)
+exec sleep 3 && ewwx11 update mute=$(pamixer --get-mute)
+
+exec sleep 3 && ewwx11 updae system=xorg
 
 # disable power saving (for example if using xscreensaver)
 #exec --no-startup-id xset -dpms
@@ -380,13 +391,14 @@ exec --no-startup-id /usr/bin/dunst
 # set floating (nontiling) for special apps
 # for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
 for_window [window_role="About"] floating enable
+for_window [window_role="Application Finder"] floating enable
 
 # set border of floating window
 # for_window [class="urxvt"] border pixel 1
 
 # set size of floating window
 #for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480 #to set size of file choose dialog
-#for_window [class=".*"] resize set 640 480 #to change size of all floating windows 
+for_window [class=".*"] resize set 640 480 #to change size of all floating windows 
 
 # set position of floating window
 #for_window [class=".*"] move position center
@@ -445,19 +457,17 @@ client.urgent            $peach    $base $peach $overlay0  $peach
 
 #exec --no-startup-id greenclip daemon>/dev/null
 #bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard \
-#		-config ~/.config/rofi/rofidmenu.rasi
+#               -config ~/.config/rofi/rofidmenu.rasi
 
 # Startup apps
-exec --no-startup-id discord
-exec --no-startup-id telegram-desktop
-exec --no-startup-id easystroke
-exec --no-startup-id touchegg
-exec --no-startup-id ~/.config/i3/change-ws.sh 1
-exec --no-startup-id echo dark   >> /tmp/theme
-exec --no-startup-id echo "false" >> /tmp/screen_extended
-exec --no-startup-id ~/.config/eww/scripts/get-active-windows.py
-
-
+# exec --no-startup-id discord
+# exec --no-startup-id telegram-desktop
+# exec --no-startup-id easystroke
+# exec --no-startup-id touchegg
+# exec --no-startup-id ~/.config/i3/change-ws.sh 1
+# exec --no-startup-id echo dark   >> /tmp/theme
+# exec --no-startup-id echo "false" >> /tmp/screen_extended
+# exec --no-startup-id ~/.config/eww/scripts/get-active-windows.py
 
 # for_window [class="discord"]          move container to workspace 2
 # for_window [class="telegram-desktop"] move container to workspace 2
