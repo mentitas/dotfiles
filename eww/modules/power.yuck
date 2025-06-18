@@ -3,23 +3,23 @@
 (defwidget power-menu []
    
    (eventbox   :onhover     "eww update rev-power-menu=true"
-	            :onhoverlost  "eww update rev-power-menu=false"
+               :onhoverlost  "eww update rev-power-menu=false"
       
       (box :space-evenly "false" :spacing {spacing} 
 
-	      (label :text {rev-power-menu ? "" : ""})
+         (label :text {rev-power-menu ? "" : ""})
          (revealer :transition "slideleft"
-	  	             :reveal rev-power-menu
-	  	             :duration "350ms"
+                   :reveal rev-power-menu
+                   :duration "350ms"
 
                   (box :spacing "5" :class "surface"
-                     (button :onclick "i3-msg exit"
+                     (button :onclick "notify-send -c 'logout' 'Click here to log out'"
                         (image :path "./icons/${theme}-theme/log-out.png")
                      )
-                     (button :onclick "reboot"
+                     (button :onclick "notify-send -c 'reboot' 'Click here to reboot'"
                         (image :path "./icons/${theme}-theme/reboot.png")
                      )
-                     (button :onclick "poweroff"
+                     (button :onclick "notify-send -c 'poweroff' 'Click here to power off'"
                         (image :path "./icons/${theme}-theme/power-off.png")
                      )
                   ) 

@@ -1,0 +1,10 @@
+;;;; Rofi style search
+(defpoll search_listen :interval "1s" "cat ./scripts/search-text.txt")
+
+(defwidget searchapps []
+      (box :orientation "h" :halign "left" :valign "top"
+        (label :class "" :text "")
+        (input :class "" :onchange "./scripts/search.sh {}" 
+                         :onaccept "eww-wayland close dock-wayland")
+        ;;(label :text ${search_listen})
+        (literal :halign "left" :valign "center" :content search_listen)))

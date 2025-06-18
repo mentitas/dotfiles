@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+if [ $(pidof Hyprland) ]; then
+
+  hyprctl monitors -j | jq '.[] | select(.focused) | .activeWorkspace.id'
+  socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - |
+    stdbuf -o0 awk -F '>>|,' -e '/^workspace>>/ {print $2}' -e '/^focusedmon>>/ {print $3}'
+
+elif [ $(pidof i3) ]; then
+  
+  i3-msg -t subscribe -m '{"type":"workspace"}' |
+  while read -r _; do
+      workspaces_info=$(i3-msg -t get_workspaces)
+      focused_workspaces=$(echo "$workspaces_info" | jq --unbuffered -r '.[] | select(.focused == true).name')
+      if [ "$focused_workspaces" -eq 0 ]; then
+        echo "10"
+      else
+        echo "$focused_workspaces"
+      fi
+  done
+
+fi
+

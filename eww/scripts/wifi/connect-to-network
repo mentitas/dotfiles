@@ -1,0 +1,12 @@
+#!/bin/sh
+
+#$1 = bssid
+#$2 = name
+#$3 = password
+
+notify-send "connecting to $2 with password $3"
+# saved_networks=$(nmcli -t -f name connection show | jq -Rs 'split("\n")')
+
+kitty nmcli --ask device wifi connect $1 
+
+eww-wayland update connect-wifi=false

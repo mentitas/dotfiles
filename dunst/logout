@@ -1,0 +1,3 @@
+#!/bin/sh
+
+notify-send "i3-msg exit"

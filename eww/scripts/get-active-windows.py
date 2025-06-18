@@ -18,7 +18,8 @@ colors =  [ "#6C9EEF",  # Color 0
             "#6BD2E3",  # Color 8
             "#56BAE6"]  # Color 9
 
-xborders_cmd  = "xborders --border-mode outside --border-radius 17 --border-width 3 --border-rgba "
+ex_xborders_cmd  = "xborders --border-mode outside --border-radius 17 --border-width 3 --border-rgba "
+xborders_cmd     = "xborders --border-mode outside --border-radius  5 --border-width 3 --border-rgba "
 
 def process_up(process):
     try:
@@ -49,26 +50,26 @@ def workspace_focus(self, ws):
         # Inicio picom
         subprocess.Popen("picom")
 
-
     # Y luego lo vuelvo a empezar
     subprocess.Popen("sleep 0.3; " + xborders_cmd + "\'" + current_color + "\'", shell=True)
 
 # update active-windows and vivaldi-theme
 def window_focus(self, w):
     
-    # update vivaldi theme        
-    if "Vivaldi" in w.container.name:
-
-        # Hay que esperar un poquito porque sino lo siguiente se ejecuta antes de lograr enfocar la ventana
-        time.sleep(0.3)
-
-        # Get the current workspace
-        current_ws = 1
-        for ws in i3.get_workspaces():
-            if ws.focused:
-                current_ws = ws.name
-
-        os.system('xdotool key alt+ctrl+shift+' + str(current_ws))
+    # update vivaldi theme
+    if w.container.name:        
+        if "Vivaldi" in w.container.name:
+    
+            # Hay que esperar un poquito porque sino lo siguiente se ejecuta antes de lograr enfocar la ventana
+            time.sleep(0.3)
+    
+            # Get the current workspace
+            current_ws = 1
+            for ws in i3.get_workspaces():
+                if ws.focused:
+                    current_ws = ws.name
+    
+            os.system('xdotool key alt+ctrl+shift+' + str(current_ws))
 
     update_active_windows(self, w)
 
@@ -105,8 +106,6 @@ def update_active_windows(self, _):
 
 
             if coname:
-
-                print(coname)
 
                 if "Discord" in coname:
                 	shortconame = "d"

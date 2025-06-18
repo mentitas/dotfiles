@@ -1,25 +1,37 @@
 (defvar rev-vol        false)
 (defvar vol-popup      false)
 
-(defpoll volume :interval "0.5s"
-  "pamixer --get-volume")
+(defvar volume 0)
+(defvar mute false)
 
-(defpoll mute :interval "0.5s"
-  "pamixer --get-mute")
+;;(defpoll volume :interval "1s"
+;;  "pamixer --get-volume")
+
+;; (defpoll mute :interval "1s"
+;;   "pamixer --get-mute")
 
 (defwidget volume []
   (eventbox :onhover     "eww update rev-vol=true"
-	          :onhoverlost "eww update rev-vol=false"
-  (box :class "${mute ? "volume-muted" : "volume"}" :space-evenly "false" :orientation "h"
-      (image :path "${ mute       ? "./icons/${theme}-theme/volume-mute.png" :
-                      volume > 66 ? "./icons/${theme}-theme/volume-3.png" :
-                      volume > 33 ? "./icons/${theme}-theme/volume-2.png" :
-                      volume > 1  ? "./icons/${theme}-theme/volume-1.png" :
-                                    "./icons/${theme}-theme/volume-0.png"}")
-        	(revealer :transition "slideleft"
-			              :reveal rev-vol
-			              :duration "350ms"
-                (metric :label "${volume}%"
-                        :value volume
-                        :onchange "pamixer --set-volume {}"
-                        :class "mauve")))))
+            :onhoverlost "eww update rev-vol=false"
+            :onscroll    "~/.config/hypr/change-volume.sh {}"
+            :onclick     "./scripts/launch-app/pavucontrol"
+  (box :class "${mute ? "volume-muted" : "volume"}" :space-evenly "false"
+          (image :fill-svg {colors[0]}
+                 :path "${ mute       ? "./icons/volume-0.svg" :
+                          volume > 50 ? "./icons/volume-2.svg" :
+                          volume > 1  ? "./icons/volume-1.svg" :
+                                        "./icons/volume-0.svg"}")
+          (revealer :transition "slideleft"
+                    :reveal rev-vol
+                    :duration "350ms"
+
+                    (box :space-evenly "false"
+                      (label :text "Volume:"    :class "white" :style "padding: 0px 5px;")
+                      (label :text "${volume}%" :class "mauve" :style "padding: 0px 5px;")
+                    )
+
+                ;; (metric :label "${volume}%"
+                ;;         :value volume
+                ;;         :onchange "pamixer --set-volume {}"
+                ;;         :class "mauve")
+))))

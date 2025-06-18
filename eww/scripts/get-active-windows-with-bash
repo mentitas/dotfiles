@@ -4,12 +4,12 @@ names=("" "" "" "" "" "" "" "" "" "")
 
 # Busco como se llama cada workspace activo
 wmctrl -d | awk '{print $1 " " $9}' > /tmp/d.txt
-while read  -r index name; do
+while read -r index name; do
 	# Para cada indice, guardo su nombre
 	names[$index]=$name
 done < /tmp/d.txt
 
-titles=("" "" "" "" "" "" "" "" "" "")
+titles=("" "" "" "" "" "" "" "" "" "" "")
 
 # Busco como se llama cada ventana activa
 wmctrl -l > /tmp/l.txt

@@ -1,0 +1,48 @@
+(defvar do-not-disturb false)
+(defvar rev-notif false)
+
+
+(defpoll updates-available :interval "1h"
+                           :initial "0"
+                           :run-while rev-notif
+  `checkupdates | wc -l`)
+
+
+(defwidget updates-indicator []
+    (box :space-evenly false :spacing spacing
+      (label :text "Updates:")
+      (label :text updates-available :class "teal")
+    )
+)
+
+(defwidget notifications-toggle []
+  (button :onclick "eww update do-not-disturb=${!do-not-disturb} \
+                    && notify-send -c 'notification' \
+                    -h string:x-dunst-stack-tag:'notifications'\
+                    'Notifications ${do-not-disturb ? "on" : "off"}!' \
+                    && sleep 3                      \
+                    && makoctl mode -t do-not-disturb"
+    (image :path "${do-not-disturb ? "./icons/notifications-off.svg"
+                                   : "./icons/notifications-on.svg"
+                  }"
+           :fill-svg {colors[7]}
+    )
+  )
+)
+
+
+(defwidget notifications []
+  
+  (eventbox :onhover     "eww update rev-notif=true"
+            :onhoverlost "eww update rev-notif=false"
+
+    (box :space-evenly "false"
+      (notifications-toggle)
+      (revealer :transition "slideleft"
+                      :reveal rev-notif
+                      :duration "350ms"
+        (updates-indicator)
+      )
+    )
+  )
+)

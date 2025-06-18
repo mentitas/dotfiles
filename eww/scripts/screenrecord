@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# $1 could be "start" or "stop"
+
+if [ "$1" = "start" ]
+then
+	eww update screenrecording=true
+	cd
+	hyprctl dispatch togglespecialworkspace magic
+	xfce4-terminal -e 'bash -c "wf-recorder -f recording.mp4"'
+	hyprctl dispatch togglespecialworkspace magic
+else
+	eww update screenrecording=false
+	killall wf-recorder
+fi

@@ -1,0 +1,140 @@
+(include "./modules/time.yuck")
+
+;; Right
+(include "./modules/energy.yuck")
+(include "./modules/launcher.yuck")
+(include "./modules/metrics.yuck")
+(include "./modules/power.yuck")
+
+;; Left
+(include "./modules/workspaces.yuck")
+(include "./modules/pets/bulbasaur/bulbasaur.yuck")
+(include "./modules/search.yuck")
+(include "./modules/system-tray.yuck")
+
+;;(defvar system "wayland")
+(defvar system "xorg")
+(defvar theme  "dark")
+(defvar extended-screen  "false")
+
+
+
+(defvar bar-visibility "true")
+
+(defwidget sep []
+  (label :text "|")
+)
+
+(defwidget left []
+  (box :class "left"
+       :space-evenly "false"
+       :spacing "5"
+    ;; (search)
+    (workspaces)
+    (launcher)
+    ;; (image :path "./icons/heart-active.svg" :fill-svg "#181825") ;; Corazon invisible para dejar fija la altura de la barra
+  )
+)
+
+(defwidget right []
+  (box :class "right"
+       :space-evenly "false"
+       :spacing {spacing}
+       :visible {bar-visibility}
+       :halign "end"
+    (system-tray)
+    (box :visible "${strlength(ds-running)!=0 || strlength(steam-running)!=0}"
+      (sep) 
+    )
+    (metrics)
+    (sep)
+    (energy)
+    (sep)
+    (power-menu)
+  )
+)
+
+(defwidget bar []
+  (centerbox :height "20"
+             :class "bar_1"
+             ;; :class "bar_${current_workspace}"
+      (left)
+      (time)
+      (right)
+  )
+)
+
+(defwidget bar-m []
+  (centerbox :height "20" :class "bar_1"
+      (left)
+      (time)
+      (label :text "")
+  )
+)
+
+(defwindow bluetooth-window
+  :monitor 0
+  :exclusive true
+  :focusable false
+  :stacking "fg"
+  :namespace "eww"
+  :geometry (geometry :x "0"
+                      :y "7"
+                      :width "20%"
+                      :height "10%"
+                      :anchor "top right")
+  (bluetooth-window))
+
+(defwindow wifi-window
+  :monitor 0
+  :exclusive true
+  :focusable true
+  :stacking "fg"
+  :namespace "eww"
+  :geometry (geometry :x "0"
+                      :y "7"
+                      :width "20%"
+                      :height "35%"
+                      :anchor "top right")
+  (wifi-window))
+
+(defwindow dock
+  :monitor 0
+  :exclusive true
+  :focusable false
+  :stacking "fg"
+  :namespace "eww"
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "100%"
+                      :height "15px"
+                      :anchor "top center")
+  (bar))
+
+(defwindow dock-m
+  :monitor 1
+  :exclusive true
+  :focusable false
+  :stacking "fg"
+  :namespace "eww"
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "100%"
+                      :height "15px"
+                      :anchor "top center")
+  (bar-m))
+
+
+(defwindow dock-wayland-v
+  :monitor 0
+  :exclusive true
+  :focusable false
+  :stacking "fg"
+  :namespace "eww"
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "15px"
+                      :height "100%"
+                      :anchor "left center")
+  (bar-wayland))
+

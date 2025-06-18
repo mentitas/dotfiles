@@ -1,0 +1,2 @@
+#!/bin/sh
+hyprctl dispatch execr eww-wayland update bar-visibility=false && tofi-drun --drun-launch=true && eww-wayland update bar-visibility=true

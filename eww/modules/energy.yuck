@@ -28,7 +28,7 @@
     (box :spacing "${spacing/2}" :space-evenly "false"
         
         (energy-indicator :class "${(EWW_BATTERY.BAT0.capacity <= 20 && EWW_BATTERY.BAT0.status != 'Charging') ? "low-battery" : "green"}"
-                          :value {EWW_BATTERY.BAT0.capacity}
+                          :value {min(EWW_BATTERY.BAT0.capacity, 100)}
                           :center "${EWW_BATTERY.BAT0.status == 'Charging' 
                                              ? "./icons/${theme}-theme/bolt.png" 
                                              : "./icons/${theme}-theme/dot.png"}"
@@ -62,7 +62,7 @@
   (eventbox :onhover     {onhover}
             :onhoverlost {onhoverlost}
 
-          (box :space-evenly "false" :spacing "5"
+          (box :space-evenly "false" :spacing {spacing}
           
               (circular-widget  :class {class}
                                 :value {value}

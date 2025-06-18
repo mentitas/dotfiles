@@ -1,0 +1,29 @@
+#!/bin/sh
+
+
+saved_networks=$(nmcli -t -e no -f name connection show | jq -Rs 'split("\n")')
+
+connected_network=$(printf '%s' $(nmcli -f in-use,ssid,rate,signal,bars -t dev wifi | grep "*") | \
+    jq -sR 'split(":") | {"name":       .[1],
+                          "rate":       .[2],
+                          "signal":     .[3],
+                          "bars":       .[4],
+                        }')
+
+all_networks=$(printf '%s' "$(nmcli -f in-use,ssid,rate,signal,bars,security,bssid -t -e no dev wifi)" | \
+jq --argjson x "$saved_networks" -sR 'split("\n") | map(split(":")) | map({"connected" : .[0],
+                                             "name":       .[1],
+                                             "rate":       .[2],
+                                             "signal":     .[3],
+                                             "bars":       .[4],
+                                             "security":   .[5],
+                                             "bssid":      .[6:12],
+                                             "saved":      (. | .[1] | IN($x[]))
+                                         })')
+
+
+output='{}'
+output=$(echo $output | jq --argjson x "$connected_network" '. += { "connected-network" : $x }')
+output=$(echo $output | jq --argjson x "$all_networks"      '. += { "all-networks"      : $x }')
+
+echo $output | jq

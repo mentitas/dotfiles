@@ -1,0 +1,20 @@
+// * {
+//     background:     #181825FF;
+//     background-alt: #1e1e2eFF;
+//     foreground:     #D9E0EEFF;
+//     active:         #ABE9B3FF;
+//     urgent:         #F28FADFF;
+// }
+
+
+* {
+    background:     #181825FF;
+    background-alt: #1e1e2eFF;
+    foreground:     #D9E0EEFF;
+    active:         #ABE9B3FF;
+    urgent:         #F28FADFF;
+}
+
+// $background:       #11111b; // crust
+// $background-popup: #181825; // mantle
+// $surface:          #1e1e2e; // base

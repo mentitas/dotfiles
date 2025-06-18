@@ -1,0 +1,2 @@
+#!/bin/sh
+kitty echo "hola" && sudo pacman -Syu

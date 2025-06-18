@@ -1,4 +1,7 @@
-(defvar rev-wifi      false)
+(defvar rev-wifi           false)
+(defvar connect-wifi       false)
+(defvar network-to-connect "")
+
 
 ;; wifi-info[0] = ssid
 ;; wifi-info[1] = signal strength
@@ -6,23 +9,144 @@
   "./scripts/wifi-info"
 )
 
+(defpoll wifi-networks :interval "10s"
+  "./scripts/wifi-list-devices"
+)
+
 (defwidget wifi []
-   (eventbox :onclick "./scripts/launch-app/nmtui"
+   (eventbox :onclick "eww-wayland update connect-wifi=false && eww-wayland open wifi-window"
              :onhover     "eww update rev-wifi=true"
              :onhoverlost "eww update rev-wifi=false"
-      (box :class "wifi" :space-evenly "false" :spacing {spacing}
-        (image :path "${wifi-info[1] > 66 ? "./icons/${theme}-theme/signal-3.png" :
-                        wifi-info[1] > 33 ? "./icons/${theme}-theme/signal-2.png" :
-                        wifi-info[1] > 1  ? "./icons/${theme}-theme/signal-1.png" :
-                                            "./icons/${theme}-theme/signal-0.png"}")
+      (box :class "wifi" :space-evenly "false"
+        (image  :fill-svg {colors[1]}
+                :path "./icons/wifi-${round(wifi-info[1]/20, 0)}.svg")
         (revealer :transition "slideleft"
 			                :reveal rev-wifi
 			                :duration "350ms"
-          (box
-          (label :text "${wifi-info[0]}"  :class "white")
-          (label :text "${wifi-info[1]}%" :class "pink")
+          (box :space-evenly "false"
+          (label :text "${wifi-info[0]}"  :class "white" :style "padding: 0px 5px;")
+          (label :text "${wifi-info[1]}%" :class "pink"  :style "padding: 0px 5px;")
           )
         )
       )
     )
+)
+
+
+(defwidget network [network visible action]
+  
+  (box :spacing {spacing} :space-evenly false :visible "${network.name != "" && network.connected == " " && visible}"
+    ;;(button :onclick "./scripts/wifi/connect-to-network ${network.bssid[0]}:${network.bssid[1]}:${network.bssid[;;2]}:${network.bssid[3]}:${network.bssid[4]}:${network.bssid[5]} ${network.name}"
+    ;;        (image :path "./icons/heart.svg" :fill-svg {colors[1]})
+    ;;)
+        
+        (button :onclick "eww-wayland update connect-wifi=true && eww-wayland update network-to-connect='${network}'"
+          (image :path "./icons/heart.svg" :fill-svg {colors[1]})
+        )
+
+          ;; (image :path "./icons/lock-open.svg")
+          (label :text "${network.bars}")
+          (label :text "${network.name}")
+          ;;(input :onaccept "notify-send {}" :password true :class "surface")
+          ;;(label :text "${device.connected ? "(Connected)" : ""}" :class "${device.connected ? "green" : ""}")
+          ;;(label :text "${device.battery != "" ? "${device.battery}%" : ""}")
+
+  )
+  
+)
+
+
+(defwidget network-info [network]
+
+(box :orientation "vertical"
+          (box :spacing {spacing} :space-evenly "false"
+            (label :text "${network.bars}")
+            (label :text "${network.name}")
+          )
+          (box :space-evenly "false" :spacing {spacing}
+            (label :text "Signal:"            :halign "start")
+            (label :text "${network.signal}%" :halign "start" :class "pink")
+          )
+          (box :space-evenly "false" :spacing {spacing}
+            (label :text "Rate:"            :halign "start")
+            (label :text "${network.rate}"  :halign "start" :class "pink")
+          )
+        )
+)
+
+(defwidget network-connect [network visible]
+  
+
+  (box :spacing {spacing} :space-evenly false :visible "${visible}" :orientation "vertical"
+   ;;  (button :onclick "./scripts/wifi/connect-to-network ${network.bssid[0]}:${network.bssid[;; 1]}:${network.bssid[;;2]}:${network.bssid[3]}:${network.bssid[4]}:${network.bssid[5]} ${network.name}"
+   ;;          (image :path "./icons/heart-active.svg" :fill-svg {colors[1]})
+   ;;  )
+
+        (label :text "Connecting to:" :halign "start")
+
+        (network-info :network network)
+        
+        
+        (label :visible {network.security == ""} :text "(No password required)" :class "pink")
+        (box :spacing {spacing} :space-evenly "false"
+          (label :text "Password:" :halign "start")
+          (input :password "true" :class "surface" :onaccept "./scripts/wifi/connect-to-network ${network.bssid[0]}:${network.bssid[1]}:${network.bssid[2]}:${network.bssid[3]}:${network.bssid[4]}:${network.bssid[5]} ${network.name} {}")
+        )
+        
+
+
+          ;;(input :onaccept "notify-send {}" :password true :class "surface")
+          ;;(label :text "${device.connected ? "(Connected)" : ""}" :class "${device.connected ? "green" : ""}")
+          ;;(label :text "${device.battery != "" ? "${device.battery}%" : ""}")
+
+  )
+  
+)
+
+
+(defwidget list-wifi-networks [visible]
+  (scroll :orientation "vertical" :vexpand "true" :vscroll "true" :hscroll "false" :visible visible
+    (box  :orientation "vertical" :space-evenly "false" :spacing {spacing}
+      (box :orientation "vertical" :space-evenly "false"
+        (label :text "Saved networks:" :halign "start")    
+        (for network in {wifi-networks.all-networks}
+          (network :network network :visible {network.saved} :action "")
+        )
+      )
+      (box :orientation "vertical" :space-evenly "false"
+        (label :text "Available networks:" :halign "start")
+        (for network in {wifi-networks.all-networks}
+          (network :network network :visible {!network.saved} :action "")
+        )
+      )
+    )
+  )
+)
+
+
+(defwidget wifi-window []
+
+  (eventbox :onhoverlost "eww-wayland close wifi-window"
+    
+    (box :class "bar_1" :orientation "vertical" :style "padding: 5px;" :space-evenly false :spacing {spacing}
+      
+      (box :space-evenly false :spacing spacing
+        (image :path "./icons/heart-active.svg" :fill-svg {colors[1]})
+        (label :text "Wifi" :halign "start")
+        (label :text "on"   :halign "start" :class "pink")
+      )
+
+      (box :orientation "vertical" :space-evenly "false" :spacing {spacing}
+        (label :text "Connected to:" :halign "start")
+        (box :space-evenly "false" :spacing spacing 
+          ;;(image :path "./icons/heart-active.svg" :fill-svg {colors[1]})
+          (network-info :network "${wifi-networks.connected-network}")
+        )
+      )
+
+      (list-wifi-networks :visible  "${!connect-wifi}")
+      (network-connect    :visible  "${connect-wifi}" :network network-to-connect)
+    
+    )
+  )
 )

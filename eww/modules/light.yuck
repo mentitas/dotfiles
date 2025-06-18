@@ -1,17 +1,22 @@
-(defvar rev-light      false)
+(defvar rev-light false)
+(defvar backlight 0)
+
+;; (defpoll backlight :interval "10s"
+;;                    ;; :run-while rev-light
+;;   "brightnessctl -m | cut -d "," -f4 | head -c -2")
 
 (defwidget light []
   (eventbox :onhover     "eww update rev-light=true"
 	          :onhoverlost "eww update rev-light=false"
-  (box :class "light" :space-evenly "false" :orientation "h"
-      (image :path "./icons/${theme}-theme/sun.png")
+            :onscroll "~/.config/hypr/change-light.sh {}"
+  (box :class "light" :space-evenly "false"
+      (image  :fill-svg {colors[4]}
+              :path "./icons/sun.svg")
         	(revealer :transition "slideleft"
 			              :reveal rev-light
 			              :duration "350ms"
-                (metric :label "${backlight}%"
-                        :value backlight
-                        :onchange "xbacklight -set {}"
-                        :class "yellow")))))
-
-(defpoll backlight :interval "0.5s"
-  "xbacklight -get")
+                (box :space-evenly "false"
+                      (label :text "Brightness:"    :class "white"  :style "padding: 0px 5px;")
+                      (label :text "${backlight}%"  :class "yellow" :style "padding: 0px 5px;")
+                )
+))))

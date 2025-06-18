@@ -1,0 +1,112 @@
+(defvar rev-bluetooth      false)
+(defvar win-bluetooth      false)
+
+(defpoll bluetooth-info :interval "10s"
+  "./scripts/bluetooth/bluetooth-status.sh"
+)
+
+(defpoll bluetooth-devices :interval "5s"
+  "./scripts/bluetooth/bluetooth-list-devices.sh"
+)
+
+(defwidget bluetooth-logo []
+
+  (image  :fill-svg {colors[9]}
+         :path "${bluetooth-info[0] ? "./icons/bluetooth.svg"
+                                    : "./icons/bluetooth-disabled.svg"}"
+  )
+)
+
+;; (defwidget bluetooth-toggle []
+;;    (button :onclick "notify-send 'Powering ${bluetooth-info[0] ? "off" : "on"} Bluetooth!' \
+;;                      && bluetoothctl power ${bluetooth-info[0] ? "off" : "on"}"
+;;     (bluetooth-logo)
+;;   )
+;; )
+
+(defwidget bluetooth []
+  (eventbox :onclick "eww open bluetooth-window \
+                     && eww update win-bluetooth=${!win-bluetooth}"
+            :onhover     "eww update rev-bluetooth=true"
+	          :onhoverlost "eww update rev-bluetooth=false"
+  (box :class "bluetooth" :space-evenly "false"
+          (bluetooth-logo)
+          (revealer :transition "slideleft"
+			              :reveal "${rev-bluetooth && bluetooth-info[0]}"
+			              :duration "350ms"
+            (label :text "${bluetooth-info[1]}"))))
+  )
+
+
+
+
+
+
+(defwidget device-indicator [device action color]
+  
+  (box :spacing {spacing} :space-evenly false
+    (button :onclick action
+            (image :path "./icons/heart${device.connected ? "-active" : ""}.svg"
+                   :fill-svg color)
+    )
+
+          (label :text "${device.name}")
+          (label :text "${device.connected ? "(Connected)" : ""}" :class "${device.connected ? "green" : ""}")
+          ;;(label :text "${device.battery != "" ? "${device.battery}%" : ""}")
+
+  )
+  
+)
+
+
+(defwidget bluetooth-window []
+
+
+  (eventbox :onhoverlost "eww close bluetooth-window"
+    
+    (box :class "bar_1" :orientation "vertical" :style "padding: 5px;" :space-evenly false :spacing {spacing}
+            
+      (box :space-evenly false :spacing spacing
+        
+           (button :onclick "notify-send -c 'bluetooth' \
+                             -h string:x-dunst-stack-tag:'bluetooth' \
+                             'Powering ${bluetooth-info[0] ? "off" : "on"} Bluetooth!' \
+                       && bluetoothctl power ${bluetooth-info[0] ? "off" : "on"}"
+              (image :path "./icons/heart${bluetooth-info[0] ? "-active" : ""}.svg"
+                     :fill-svg {colors[9]})
+            )
+  
+          (label :text "Bluetooth" :halign "start")
+          (label :text "${bluetooth-info[0] ? "on" : "off"}" :class "blue")
+      )
+  
+      (box :visible {bluetooth-info[0] && bluetooth-devices.paired != "[]"}
+           :orientation "vertical"
+        
+        (label :text "Paired devices:" :halign "start")
+
+        (for device in {bluetooth-devices.paired}
+          (device-indicator 
+            :device device
+            :color {colors[5]}
+            :action "./scripts/bluetooth/bluetooth-${ device.connected ? "dis" : ""}connect.sh ${device.address} ${device.name}"
+          )
+        )
+      )
+  
+      (box :visible {bluetooth-info[0] && bluetooth-devices.unpaired != "[]"}
+          :orientation "vertical"
+
+        (label :text "Unpaired devices:" :halign "start")
+        (for device in {bluetooth-devices.unpaired}
+          
+          (device-indicator 
+            :device device
+            :color {colors[6]}
+            :action "./scripts/bluetooth/bluetooth-pair.sh ${device.address} ${device.name}")
+          )
+        )
+      
+      )
+    )
+)

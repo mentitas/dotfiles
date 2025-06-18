@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+if [ $(pidof Hyprland) ]; then
+
+	spaces (){
+		WORKSPACE_WINDOWS=$(hyprctl workspaces -j | jq 'map({key: .id | tostring, value: .windows}) | from_entries')
+		seq 1 10 | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc 'map(tostring) | map({id: ., windows: ($windows[.]//0)})'
+	}
+	
+	spaces
+	socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
+		spaces
+	done
+
+elif [ $(pidof i3) ]; then
+
+		echo $(jq -n '[range(1; 10) | {id : ., windows : 0}]')
+
+  	i3-msg -t subscribe -m '{"type":"window"}' |
+  	while read -r _; do
+      	active_ws=$(i3-msg -t get_workspaces | jq '.[].name')
+				ws_info=$(echo [])
+				
+				# Me fijo del 1 al 9
+				for ((id=1; id<=9; id++)); do
+				
+				    if echo "${active_ws}" | grep -wq "${id}"; then
+				        windows=1
+				    else
+				        windows=0
+				    fi
+				
+				    ws_info=$(echo $ws_info | jq \
+				        --argjson id "${id}" \
+				        --argjson windows "${windows}" \
+				        '. += [{id: $id, windows: $windows}]')
+				done
+
+				# Caso especial del 10
+				if echo "${active_ws}" | grep -wq "0"; then
+				    windows=1
+				else
+				    windows=0
+				fi
+				
+				ws_info=$(echo $ws_info | jq \
+				    --argjson windows "${windows}" \
+				    '. += [{id: 10, windows: $windows}]')
+			
+				echo $ws_info
+
+	done
+fi
+
+
+
+
+
+
+ 

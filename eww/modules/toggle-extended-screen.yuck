@@ -1,8 +1,0 @@
-(deflisten extended-screen :initial "false"
-  "tail -F /tmp/screen_extended")
-
-(defwidget monitor[]
-  (button :onclick "./scripts/toggle-extend-screen" 
-    (image :path "${extended-screen ? "./icons/both-themes/monitor.png" : "./icons/both-themes/tv.png"}")
-  )
-)

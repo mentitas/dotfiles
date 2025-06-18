@@ -1,19 +1,61 @@
-(include "./modules/system-tray.yuck")
+(defvar hover-launcher  "false")
+(defvar screenrecording "false")
 
-(defvar hover-launcher "false")
+(defwidget color-picker []
+    (button :onclick "./scripts/pick-color"
+            :visible "${system == "wayland"}"
+        (image :path "./icons/color-picker.svg"
+               :fill-svg {colors[6]})
+    )
+)
 
-(defwidget app [name visible]
-    (button :onclick "./scripts/launch-app/${name}"
-            :visible "${visible}"
-        (image :path "./icons/${theme}-theme/apps/${name}-outlined.png")
+(defwidget rofi []
+    (button :onclick "bash ~/.config/hypr/open-rofi.sh drun"
+        (image :path "./icons/search.svg"
+               :fill-svg {colors[6]})
+    )
+)
+
+(defwidget screenshot []
+    (button :onclick "${system == "wayland"
+                        ? "slurp | grim -g - - | wl-copy"
+                        : "xfce4-screenshooter && exit"
+                        }"
+        (image :path "./icons/screenshot.svg"
+               :fill-svg {colors[6]})
+    )
+
+)
+
+(defwidget screenrecord []
+    (button :onclick "./scripts/screenrecord ${screenrecording ? "stop" : "start"}" 
+            :visible "${system == "wayland"}"
+        (box :space-evenly false :spacing {spacing}
+            (image :path "./icons/screenrecord.svg"
+                   :fill-svg {screenrecording ? colors[2] : colors[6]})
+            (label :text "Recording" :visible {screenrecording})
+        )
+    )
+)
+
+(defwidget toggle-theme []
+    (button :onclick "./scripts/toggle-theme.sh"
+        (image :path "./icons/theme.svg"
+               :fill-svg {colors[6]})
+    )
+)
+
+(defwidget watch-one-piece []
+    (button :onclick "./scripts/watch-one-piece.sh"
+            :visible "${system == "wayland"}"
+        (image :path "./icons/skull.svg"
+               :fill-svg {colors[6]})
     )
 )
 
 (defwidget launcher []
 
-    (box :space-evenly "false" :spacing {spacing/2}
-
-    (system-tray)
+    (box :space-evenly "false" :spacing {spacing/2} :visible {bar-visibility}
 
     (eventbox :space-evenly "false" :spacing {spacing}
               :onhover     "eww update hover-launcher=true"
@@ -21,18 +63,18 @@
         
         (box :space-evenly "false" :spacing {spacing/2}
             
-            (label :text {hover-launcher ? "" : ""})
-            (revealer :transition "slideleft"
+            (label :text {hover-launcher ? "" : ""})
+            (revealer :transition "slideright"
 	    	      :reveal hover-launcher
 	    	      :duration "450ms"
             
                 (box :class "surface" :space-evenly "false" :spacing {spacing/2}
-                    (app :name "Discord"          :visible "${strlength(ds-running)==0}")
-                    (app :name "telegram-desktop" :visible "true")
-                    (app :name "vivaldi"          :visible "true")
-                    (app :name "code"             :visible "true")
-                    (app :name "krita"            :visible "true")
-                    (app :name "rofi"             :visible "true")
+                    (color-picker)
+                    ;;(rofi)
+                    (toggle-theme)
+                    (watch-one-piece)
+                    (screenshot)
+                    (screenrecord)
                 )
             )
         )

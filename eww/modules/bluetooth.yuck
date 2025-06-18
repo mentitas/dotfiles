@@ -1,0 +1,5 @@
+(defwidget bluetooth []
+  (eventbox :onclick "./scripts/launch-app/bluetooth"
+          (image  :fill-svg {colors[9]} :path "./icons/bluetooth.svg")
+  )
+)

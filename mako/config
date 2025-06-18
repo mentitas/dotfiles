@@ -1,0 +1,58 @@
+max-history=5
+sort=+time
+
+on-button-left=invoke-default-action
+on-button-middle=dismiss-group
+on-button-right=dismiss
+
+outer-margin=10
+margin=0
+
+background-color=#181825ff
+text-color=#eba0acff
+font=Caskaydia Mono Nerd Font Bold 10
+width=350
+height=200
+anchor=top-right
+padding=10,10
+border-size=3
+border-color=#cba6f7ff
+border-radius=12
+text-alignment=left
+default-timeout=3000
+layer=overlay
+progress-color=over #313244ff
+icons=1
+icon-location=left
+icon-path=/home/rosu/.icons/Colloid-purple-dark/status/16:/home/rosu/.icons/Colloid-purple-dark/devices/16:/home/rosu/.icons/Colloid-purple-dark/apps/scalable
+history=1
+
+[mode=do-not-disturb]
+invisible=1
+
+[app-name="vesktop" actionable]
+on-button-left=exec ~/.config/mako/focus-vesktop && makoctl dismiss
+
+[app-name="Telegram Desktop" actionable]
+on-button-left=exec ~/.config/mako/focus-telegram && makoctl dismiss
+
+[category="logout"]
+on-button-left=exec ~/.config/mako/logout && makoctl dismiss
+
+[category="poweroff"]
+on-button-left=exec ~/.config/mako/poweroff && makoctl dismiss
+
+[category="reboot"]
+on-button-left=exec ~/.config/mako/reboot && makoctl dismiss
+
+[category="volume"]
+text-color=#cba6f7ff
+
+[category="light"]
+text-color=#f9e2afff
+
+[category="notification"]
+text-color=#89dcebff
+
+[category="bluetooth"]
+text-color=#89b4faff
