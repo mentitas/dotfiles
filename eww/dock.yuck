@@ -8,16 +8,15 @@
 
 ;; Left
 (include "./modules/workspaces.yuck")
+(include "./modules/workspace-overview.yuck")
 (include "./modules/pets/bulbasaur/bulbasaur.yuck")
 (include "./modules/search.yuck")
 (include "./modules/system-tray.yuck")
 
-;;(defvar system "wayland")
-(defvar system "xorg")
+(defvar system "wayland")
+;; (defvar system "xorg")
 (defvar theme  "dark")
 (defvar extended-screen  "false")
-
-
 
 (defvar bar-visibility "true")
 
@@ -71,6 +70,19 @@
       (label :text "")
   )
 )
+
+(defwindow workspace-overview
+  :monitor 0
+  :exclusive true
+  :focusable false
+  :stacking "fg"
+  :namespace "eww"
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "20%"
+                      :height "10%"
+                      :anchor "top left")
+  (workspace-overview))
 
 (defwindow bluetooth-window
   :monitor 0

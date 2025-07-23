@@ -4,7 +4,7 @@ actual_theme=$(gsettings get org.gnome.desktop.interface gtk-theme)
 
 if [ "$actual_theme" = "'se98'" ]; then
 	notify-send -h string:x-dunst-stack-tag:"theme" "Changing theme to 'Catppuccin'"
-	gsettings set org.gnome.desktop.interface gtk-theme Catppuccin-Dark
+	gsettings set org.gnome.desktop.interface gtk-theme Catppuccin-Dark-1
 	gsettings set org.gnome.desktop.interface icon-theme Colloid-Purple-Catppuccin-Dark
 	# swaybg -i /home/rosu/Pictures/field1.webp
 

@@ -45,8 +45,9 @@
     )
 )
 
-(defwidget watch-one-piece []
-    (button :onclick "./scripts/watch-one-piece.sh"
+(defwidget skull []
+    ;; (button :onclick "./scripts/watch-one-piece.sh"
+    (button :onclick "killall mouse-actions"
             :visible "${system == "wayland"}"
         (image :path "./icons/skull.svg"
                :fill-svg {colors[6]})
@@ -72,7 +73,7 @@
                     (color-picker)
                     ;;(rofi)
                     (toggle-theme)
-                    (watch-one-piece)
+                    (skull)
                     (screenshot)
                     (screenrecord)
                 )

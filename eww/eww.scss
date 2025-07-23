@@ -77,6 +77,18 @@ $_0  : $blue     ;
   100% {background: $_0;} 
 }
 
+.window_overview {
+  background: #11111b;
+  border-radius: 10px;
+  margin: 5;
+}
+
+.window_overview_focused {
+  background: $green;
+  border-radius: 10px;
+  margin: 5;
+}
+
 .rainbow_bar {
   animation: rainbow_border 5s infinite;
   background-color: $background;
@@ -99,6 +111,7 @@ $_0  : $blue     ;
 .bar_9  { background-color: $background; border: solid 3px $_9; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}
 .bar_0  { background-color: $background; border: solid 3px $_0; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}
 .bar_10 { background-color: $background; border: solid 3px $_0; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}
+
 
 .surface  {
   background-color: $surface;

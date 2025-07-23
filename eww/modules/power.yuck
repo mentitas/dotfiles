@@ -13,15 +13,24 @@
                    :duration "350ms"
 
                   (box :spacing "5" :class "surface"
+                     (button :onclick "hyprctl dispatch exec hyprlock"
+                        (image :path "./icons/lock.svg"
+                               :fill-svg {colors[2]})
+                     )
                      (button :onclick "notify-send -c 'logout' 'Click here to log out'"
-                        (image :path "./icons/${theme}-theme/log-out.png")
+                        (image :path "./icons/logout.svg"
+                               :fill-svg {colors[2]})
                      )
                      (button :onclick "notify-send -c 'reboot' 'Click here to reboot'"
-                        (image :path "./icons/${theme}-theme/reboot.png")
+                        (image :path "./icons/reboot.svg"
+                               :fill-svg {colors[2]})
+
                      )
                      (button :onclick "notify-send -c 'poweroff' 'Click here to power off'"
-                        (image :path "./icons/${theme}-theme/power-off.png")
+                        (image :path "./icons/poweroff.svg"
+                               :fill-svg {colors[2]})
                      )
+
                   ) 
       )
     )

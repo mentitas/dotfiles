@@ -60,7 +60,9 @@
          :class "surface"
          :halign "start"
          :visible bar-visibility
-      (label :text "${current_workspace}" :width "30")
+      (eventbox :onhover "eww open workspace-overview"
+        (label :text "${current_workspace}" :width "30")
+      )
       (for workspace in workspaces
         (box :space-evenly "true"
           (eventbox :onclick "${system == "wayland"
@@ -69,7 +71,7 @@
                     }"
             (heart :name "${workspace.id}"
                    :active "${workspace.id == current_workspace}"
-                   :text "${workspace.windows > 0 && workspace.id != current_workspace ? "*" : ""}"
+                   :text "${workspace.windows != 0 && workspace.id != current_workspace ? "*" : ""}"
                    :color "${colors[workspace.id - 1]}"
             )
           )

@@ -1,0 +1,31 @@
+(defwidget workspace-overview []
+  (eventbox :onclick     "eww close workspace-overview"
+            :onhoverlost "eww close workspace-overview"
+    (box :class "bar_1" :orientation "h" :space-evenly "false" :halign "center"
+          (for workspace in workspaces
+            (eventbox :onhover "hyprctl dispatch workspace ${workspace.id}"
+            (box :visible {workspace.windows != 0}
+                 :space-evenly "false"
+                 :spacing 5
+                 :orientation "v"
+
+                (box :class "${workspace.id == current_workspace ? "window_overview_focused" : "window_overview"}"
+                     :height "100"
+                     :width  "100"
+                     :space-evenly true
+                     ;;:height "${floor(768/10)}"
+                     ;;:width  "${floor(1366/10)}"
+                  (for window in {workspace.windows}
+                      (transform :translate-x 0
+                                 :translate-y 0
+                        (image :icon "${window.class}" :icon-size "dnd")
+                      )
+                    )
+                  )
+              (label :text "${workspace.id}")
+          )
+        )
+      )
+    )
+  )
+)

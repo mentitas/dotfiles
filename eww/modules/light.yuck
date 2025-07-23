@@ -10,8 +10,9 @@
 	          :onhoverlost "eww update rev-light=false"
             :onscroll "~/.config/hypr/change-light.sh {}"
   (box :class "light" :space-evenly "false"
+
       (image  :fill-svg {colors[4]}
-              :path "./icons/sun.svg")
+                   :path "./icons/sun.svg")
         	(revealer :transition "slideleft"
 			              :reveal rev-light
 			              :duration "350ms"
