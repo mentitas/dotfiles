@@ -1,10 +1,15 @@
 (include "./modules/time.yuck")
 
 ;; Right
-(include "./modules/energy.yuck")
-(include "./modules/launcher.yuck")
-(include "./modules/metrics.yuck")
+(include "./modules/volume.yuck")
+(include "./modules/light.yuck")
+(include "./modules/wifi.yuck")
+(include "./modules/bluetooth.yuck")
 (include "./modules/power.yuck")
+(include "./modules/battery.yuck")
+(include "./modules/energy-window.yuck")
+
+(include "./modules/notifications.yuck")
 
 ;; Left
 (include "./modules/workspaces.yuck")
@@ -12,6 +17,7 @@
 (include "./modules/pets/bulbasaur/bulbasaur.yuck")
 (include "./modules/search.yuck")
 (include "./modules/system-tray.yuck")
+(include "./modules/launcher.yuck")
 
 (defvar system "wayland")
 ;; (defvar system "xorg")
@@ -19,39 +25,57 @@
 (defvar extended-screen  "false")
 
 (defvar bar-visibility "true")
+(defvar right-index 0)
+(defvar left-index  0)
 
 (defwidget sep []
-  (label :text "|")
+  (label :text "|" :width "20")
 )
 
 (defwidget left []
   (box :class "left"
        :space-evenly "false"
        :spacing "5"
-    ;; (search)
-    (workspaces)
-    (launcher)
-    ;; (image :path "./icons/heart-active.svg" :fill-svg "#181825") ;; Corazon invisible para dejar fija la altura de la barra
-  )
+
+      (workspaces)
+      (launcher-old)
+    )
 )
 
 (defwidget right []
-  (box :class "right"
-       :space-evenly "false"
-       :spacing {spacing}
-       :visible {bar-visibility}
-       :halign "end"
-    (system-tray)
-    (box :visible "${strlength(ds-running)!=0 || strlength(steam-running)!=0}"
-      (sep) 
+    
+    (box :halign "end" :space-evenly "false" :spacing {spacing} :style "margin-right: 10px;"
+
+        (stack :selected {right-index}
+               :transition "slideleft"
+               :same-size "true"
+
+            (box :space-evenly "false"
+                 :spacing {spacing}
+                 :halign "end"
+              (system-tray)
+              (box :visible "${strlength(ds-running)!=0 || strlength(steam-running)!=0}" (sep))
+              (box
+                (volume)
+                (light)
+                (wifi)
+                (bluetooth)
+              )
+              (sep)
+              (battery)
+            )
+            (eventbox :onhoverlost "eww update right-index=0"
+              (power)
+            )
+        )
+
+      (eventbox :onhover "eww update right-index=1"
+          (label :text {right-index == 1 ? "" : ""})
     )
-    (metrics)
-    (sep)
-    (energy)
-    (sep)
-    (power-menu)
   )
 )
+
+
 
 (defwidget bar []
   (centerbox :height "20"
@@ -81,8 +105,21 @@
                       :y "0"
                       :width "20%"
                       :height "10%"
-                      :anchor "top left")
+                      :anchor "center center")
   (workspace-overview))
+
+(defwindow energy-window
+  :monitor 0
+  :exclusive true
+  :focusable false
+  :stacking "fg"
+  :namespace "eww"
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "20%"
+                      :height "10%"
+                      :anchor "top right")
+  (energy-window))
 
 (defwindow bluetooth-window
   :monitor 0

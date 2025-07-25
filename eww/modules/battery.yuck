@@ -1,0 +1,46 @@
+(defvar battery-index 0)
+
+
+
+(defwidget battery-heart [start middle end]
+
+  (label :text  "${EWW_BATTERY.BAT0.capacity <= 30 ? 
+                   "${ start  >= EWW_BATTERY.BAT0.capacity &&
+                       end    >  EWW_BATTERY.BAT0.capacity ? "󰯈 " : "󰚌 "}"
+                  :
+                    "${ start  >= EWW_BATTERY.BAT0.capacity &&
+                        middle >  EWW_BATTERY.BAT0.capacity ? "󰋕 " : 
+
+                        middle >= EWW_BATTERY.BAT0.capacity &&
+                        end    >  EWW_BATTERY.BAT0.capacity ? "󰛞 " : "󰋑 "}" }"
+
+
+        :class "${(EWW_BATTERY.BAT0.status == 'Charging' ? "green" :
+                   EWW_BATTERY.BAT0.capacity <= 30       ? "pink"  : "red")}"
+        :style "font-size: 18px;"
+  )
+)
+
+(defwidget battery []
+  (eventbox :onhover     "eww update battery-index=1"
+            :onhoverlost "eww update battery-index=0"
+            :onclick     "eww open --toggle energy-window"
+    (stack :selected {battery-index}
+           :same-size "true"
+           :transition "slidedown"
+      (box  :style "padding-left: 7px; "
+        (battery-heart :start  "0" :middle "10" :end   "20" ) 
+        (battery-heart :start "20" :middle "30" :end   "40" )
+        (battery-heart :start "40" :middle "50" :end   "60" )
+        (battery-heart :start "60" :middle "70" :end   "80" )
+        (battery-heart :start "80" :middle "90" :end  "100" )
+      )
+      (box :spacing "5" :space-evenly "false" :halign "center"
+        (label :text "${EWW_BATTERY.BAT0.status == 'Charging' ? "Charging:" : "Battery:"}")
+        (label :text "${EWW_BATTERY.BAT0.capacity}%"
+               :class "${(EWW_BATTERY.BAT0.status == 'Charging' ? "green" :
+                          EWW_BATTERY.BAT0.capacity <= 30       ? "pink"  : "red")}")
+      )
+    )
+  )
+)

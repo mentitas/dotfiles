@@ -1,5 +1,6 @@
 (defvar rev-vol        false)
 (defvar vol-popup      false)
+(defvar volume-index       0)
 
 (defvar volume 0)
 (defvar mute false)
@@ -10,28 +11,83 @@
 ;; (defpoll mute :interval "1s"
 ;;   "pamixer --get-mute")
 
-(defwidget volume []
-  (eventbox :onhover     "eww update rev-vol=true"
-            :onhoverlost "eww update rev-vol=false"
-            :onscroll    "~/.config/hypr/change-volume.sh {}"
-            :onclick     "./scripts/launch-app/pavucontrol"
-  (box :class "${mute ? "volume-muted" : "volume"}" :space-evenly "false"
-          (image :fill-svg {colors[0]}
+(defwidget volume-extended []
+  (box :space-evenly "false" :spacing {spacing}
+    (button :onclick "./scripts/launch-app/pavucontrol"
+      (image :path "./icons/settings.svg")
+    )
+    (volume-icon)
+    (scale :min 0
+           :max 101
+           :value {volume}
+           :onchange ""
+           :class "mauve_scale"
+           )
+    (label :text "${volume}%")
+    (image :path "./icons/mic.svg"
+           :fill-svg {colors[3]})
+    (scale :min 0
+       :max 101
+       :value {volume}
+       :onchange ""
+       :class "peach_scale"
+       )
+    (label :text "${volume}%")
+  )
+)
+
+(defwidget volume-icon []
+  (image :fill-svg {colors[0]}
                  :path "${ mute       ? "./icons/volume-0.svg" :
                           volume > 50 ? "./icons/volume-2.svg" :
                           volume > 1  ? "./icons/volume-1.svg" :
                                         "./icons/volume-0.svg"}")
-          (revealer :transition "slideleft"
-                    :reveal rev-vol
-                    :duration "350ms"
+)
 
-                    (box :space-evenly "false"
-                      (label :text "Volume:"    :class "white" :style "padding: 0px 5px;")
-                      (label :text "${volume}%" :class "mauve" :style "padding: 0px 5px;")
-                    )
 
-                ;; (metric :label "${volume}%"
-                ;;         :value volume
-                ;;         :onchange "pamixer --set-volume {}"
-                ;;         :class "mauve")
-))))
+(defwidget volume []
+  (eventbox :onhover     "eww update volume-index=1"
+            :onhoverlost "eww update volume-index=0"
+            :onscroll    "~/.config/hypr/change-volume.sh {}"
+            ;; :onclick     "eww update right-index=2"
+            :width "35"
+
+      (stack :selected {volume-index}
+             :transition "slidedown"
+             :same-size "true"
+          (volume-icon)
+          (label :text "${volume}%" :class "mauve")
+          (label :text "󰕾 "
+                 :class "mauve"
+                 :style "font-size: 18px;")
+      )
+  )
+)
+
+
+
+;; (defwidget volume []
+;;   (eventbox :onhover     "eww update rev-vol=true"
+;;             :onhoverlost "eww update rev-vol=false"
+;;             :onscroll    "~/.config/hypr/change-volume.sh {}"
+;;             :onclick     "./scripts/launch-app/pavucontrol"
+;;   (box :class "${mute ? "volume-muted" : "volume"}" :space-evenly "false"
+;;           (image :fill-svg {colors[0]}
+;;                  :path "${ mute       ? "./icons/volume-0.svg" :
+;;                           volume > 50 ? "./icons/volume-2.svg" :
+;;                           volume > 1  ? "./icons/volume-1.svg" :
+;;                                         "./icons/volume-0.svg"}")
+;;           (revealer :transition "slideleft"
+;;                     :reveal rev-vol
+;;                     :duration "350ms"
+;; 
+;;                     (box :space-evenly "false"
+;;                       (label :text "Volume:"    :class "white" :style "padding: 0px 5px;")
+;;                       (label :text "${volume}%" :class "mauve" :style "padding: 0px 5px;")
+;;                     )
+;; 
+;;                 ;; (metric :label "${volume}%"
+;;                 ;;         :value volume
+;;                 ;;         :onchange "pamixer --set-volume {}"
+;;                 ;;         :class "mauve")
+;; ))))

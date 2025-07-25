@@ -1,31 +1,57 @@
+(defvar show-all-ws "false")
+
+
+(defvar scale 10)
+
+
+(defwidget window-mini [workspace window]
+  
+  (box  :class "${workspace.id == current_workspace ? "window_mini_focused" : "window_mini"}"
+        :style "margin-left:  ${window.at[0]/scale}px;
+               margin-top:    ${window.at[1]/scale}px;
+               margin-right: -${(window.at[0] + window.size[0]) / scale}px;
+               margin-bottom: ${768 / scale - ((window.at[1] + window.size[1]) / scale)}px;"
+
+            ;; menu small-toolbar toolbar large-toolbar button dnd dialog 
+            (image :icon "${window.class}"
+                   :icon-size "${window.size[0] < 400 || window.size[1] < 350
+                                  ? "menu" : "dnd"}"
+                   :visible "${min(window.size[0], window.size[1]) > 200}"
+            )
+    )
+)
+
+(defwidget workspace-mini [workspace]
+
+(box :visible "${show-all-ws || workspace.windows != 0}"
+     :space-evenly "false"
+     :spacing 5
+     :orientation "v"
+            (eventbox :onhover "hyprctl dispatch workspace ${workspace.id}"
+                (box :class "${workspace.id == current_workspace
+                              ? "workspace_mini_focused"
+                              : "workspace_mini"}"
+                     :space-evenly "false"
+                     :style "min-width:  ${1366 / scale }px;
+                             min-height: ${768 / scale }px;"
+
+                  (for window in {workspace.windows}
+                      (window-mini :window {window} :workspace {workspace})
+                    )
+                )
+            )
+            (label :text "${workspace.id}")
+        )
+
+)
+
 (defwidget workspace-overview []
   (eventbox :onclick     "eww close workspace-overview"
             :onhoverlost "eww close workspace-overview"
-    (box :class "bar_1" :orientation "h" :space-evenly "false" :halign "center"
-          (for workspace in workspaces
-            (eventbox :onhover "hyprctl dispatch workspace ${workspace.id}"
-            (box :visible {workspace.windows != 0}
-                 :space-evenly "false"
-                 :spacing 5
-                 :orientation "v"
-
-                (box :class "${workspace.id == current_workspace ? "window_overview_focused" : "window_overview"}"
-                     :height "100"
-                     :width  "100"
-                     :space-evenly true
-                     ;;:height "${floor(768/10)}"
-                     ;;:width  "${floor(1366/10)}"
-                  (for window in {workspace.windows}
-                      (transform :translate-x 0
-                                 :translate-y 0
-                        (image :icon "${window.class}" :icon-size "dnd")
-                      )
-                    )
-                  )
-              (label :text "${workspace.id}")
-          )
-        )
+      (box  :orientation "h" :space-evenly "false" :halign "center"  :class "workspace_overview" 
+            (for workspace in workspaces
+              (workspace-mini :workspace workspace)
+            )
       )
-    )
   )
 )

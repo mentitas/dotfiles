@@ -1,5 +1,18 @@
+(defpoll bluetooth-info :interval "10s"
+  "./scripts/bluetooth/bluetooth-status.sh"
+)
+
 (defwidget bluetooth []
-  (eventbox :onclick "./scripts/launch-app/bluetooth"
-          (image  :fill-svg {colors[9]} :path "./icons/bluetooth.svg")
+  (button :onclick "./scripts/launch-app/bluetooth"
+            :width "35"
+          ;; (label :text "󰂯"
+          ;;        :style "font-size: 18px;"
+          ;;        :class "blue"
+          ;; )
+
+          (image  :fill-svg {colors[9]}
+          :path "${!bluetooth-info[0]       ? "./icons/bluetooth-disabled.svg"  :
+                    bluetooth-info[1] != "" ? "./icons/bluetooth-connected.svg" :
+                                              "./icons/bluetooth.svg"}")
   )
 )

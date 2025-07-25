@@ -1,38 +1,22 @@
-(defvar rev-power-menu  false)
+(defwidget power []
 
-(defwidget power-menu []
-   
-   (eventbox   :onhover     "eww update rev-power-menu=true"
-               :onhoverlost  "eww update rev-power-menu=false"
-      
-      (box :space-evenly "false" :spacing {spacing} 
-
-         (label :text {rev-power-menu ? "" : ""})
-         (revealer :transition "slideleft"
-                   :reveal rev-power-menu
-                   :duration "350ms"
-
-                  (box :spacing "5" :class "surface"
-                     (button :onclick "hyprctl dispatch exec hyprlock"
-                        (image :path "./icons/lock.svg"
-                               :fill-svg {colors[2]})
-                     )
-                     (button :onclick "notify-send -c 'logout' 'Click here to log out'"
-                        (image :path "./icons/logout.svg"
-                               :fill-svg {colors[2]})
-                     )
-                     (button :onclick "notify-send -c 'reboot' 'Click here to reboot'"
-                        (image :path "./icons/reboot.svg"
-                               :fill-svg {colors[2]})
-
-                     )
-                     (button :onclick "notify-send -c 'poweroff' 'Click here to power off'"
-                        (image :path "./icons/poweroff.svg"
-                               :fill-svg {colors[2]})
-                     )
-
-                  ) 
+   (box :spacing {spacing} :class "surface" :space-evenly "false" :halign "end"
+      (button :onclick "hyprctl dispatch exec hyprlock"
+         (image :path "./icons/lock.svg"
+                :fill-svg {colors[9]})
       )
-    )
-  )
+      (button :onclick "notify-send -c 'logout' 'Click here to log out'"
+         (image :path "./icons/logout.svg"
+                :fill-svg {colors[9]})
+      )
+      (button :onclick "notify-send -c 'reboot' 'Click here to reboot'"
+         (image :path "./icons/reboot.svg"
+                :fill-svg {colors[9]})
+
+      )
+      (button :onclick "notify-send -c 'poweroff' 'Click here to power off'"
+         (image :path "./icons/poweroff.svg"
+                :fill-svg {colors[9]})
+      )
+   )
 )

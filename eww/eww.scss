@@ -77,17 +77,62 @@ $_0  : $blue     ;
   100% {background: $_0;} 
 }
 
-.window_overview {
-  background: #11111b;
-  border-radius: 10px;
-  margin: 5;
+.ram_circular_progress {
+  color: $peach;
+  background-color: $surface;
+  label {
+    color: $peach;
+    background-color: $background;
+    padding: 20px;
+  }
 }
 
-.window_overview_focused {
+.cpu_circular_progress {
+  color: $blue;
+  background-color: $surface;
+  label {
+    color: $blue;
+    background-color: $background;
+    padding: 20px;
+  }
+}
+
+.window_mini {
+  background: $surface;
+  border-radius: 5px;
+  border: solid $background 2px;
+}
+
+.window_mini_focused {
+  background: $surface;
+  border-radius: 5px;
+  border: solid $green 2px;
+}
+
+
+
+.workspace_mini {
+  background: $background;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.workspace_mini_focused {
   background: $green;
   border-radius: 10px;
-  margin: 5;
+  padding: 5px;
+  margin: 5px;
 }
+
+.workspace_overview {
+  background: $background;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+  border: solid $mauve 3px;
+}
+
 
 .rainbow_bar {
   animation: rainbow_border 5s infinite;
@@ -223,7 +268,7 @@ $_0  : $blue     ;
   background-color: red;
 }
 
-.metric scale trough {
+.mauve_scale  trough, .peach_scale  trough {
   all: unset;
   background-color: $surface;
   border-radius: 50px;
@@ -231,6 +276,25 @@ $_0  : $blue     ;
   min-width: 50px;
   margin: 10px;
 }
+
+.mauve_scale trough highlight{
+  background-color: $mauve;
+  border-radius: 50px;
+}
+
+.mauve_scale-muted trough highlight{
+  background-color: #7f849c;
+}
+
+.peach_scale trough highlight{
+  background-color: $peach;
+  border-radius: 50px;
+}
+
+.peach_scale-muted trough highlight{
+  background-color: #7f849c;
+}
+
 
 @keyframes pulse {
   0%   {  color: $red;    }
@@ -246,13 +310,7 @@ $_0  : $blue     ;
   animation: pulse 1s infinite;
 }
 
-.volume scale trough highlight{
-  background-color: $mauve;
-}
 
-.volume-muted scale trough highlight{
-  background-color: #7f849c;
-}
 
 .light scale trough highlight{
   background-color: $yellow

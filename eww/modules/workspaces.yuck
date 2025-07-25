@@ -13,7 +13,7 @@
 )
 
 
-(defwidget heart [name active text color]
+(defwidget heart2 [name active text color]
   (overlay :width "25"
 
     (image :path "${active ? "./icons/heart-active.svg" :
@@ -21,6 +21,19 @@
           :fill-svg "${color}")
 
     (label :text "${text}" :visible "${!active}")
+    )
+)
+
+(defwidget heart [name active text color]
+
+    (label :text "${active     ? "󰄛 " :
+                    text != "" ? "󰴈 " :
+                    "* "}"
+           :class "${active     ? "peach" :
+                    text != ""  ? "green" :
+                                  "mauve"}"
+           :style "font-size: 18px;"
+
     )
 )
 
@@ -57,10 +70,11 @@
 (defwidget workspaces []
   (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}"
     (box :space-evenly false
-         :class "surface"
          :halign "start"
          :visible bar-visibility
       (eventbox :onhover "eww open workspace-overview"
+                :onclick "eww update show-all-ws=${!show-all-ws}"
+           
         (label :text "${current_workspace}" :width "30")
       )
       (for workspace in workspaces

@@ -54,9 +54,24 @@
     )
 )
 
-(defwidget launcher []
 
-    (box :space-evenly "false" :spacing {spacing/2} :visible {bar-visibility}
+(defwidget launcher []
+        
+    (box :space-evenly "false" :spacing {spacing} :halign "start"
+        ;;(rofi)
+        (color-picker)
+        (toggle-theme)
+        (skull)
+        (screenshot)
+        (screenrecord)
+    )
+)
+
+
+(defwidget launcher-old []
+
+    (box :space-evenly "false"
+         :spacing {spacing/2}
 
     (eventbox :space-evenly "false" :spacing {spacing}
               :onhover     "eww update hover-launcher=true"
@@ -69,7 +84,9 @@
 	    	      :reveal hover-launcher
 	    	      :duration "450ms"
             
-                (box :class "surface" :space-evenly "false" :spacing {spacing/2}
+                (box :space-evenly "false"
+                     :spacing {spacing/2}
+                     :style "margin-left: 10px"    
                     (color-picker)
                     ;;(rofi)
                     (toggle-theme)

@@ -1,6 +1,8 @@
 (defvar rev-wifi           false)
 (defvar connect-wifi       false)
 (defvar network-to-connect "")
+(defvar wifi-index 0)
+
 
 
 ;; wifi-info[0] = ssid
@@ -13,24 +15,49 @@
   "./scripts/wifi-list-devices"
 )
 
+
+;;  (stack :selected {index}
+;;              :same-size "true"
+;;              :transition "crossfade"
+
 (defwidget wifi []
-   (eventbox :onclick "eww-wayland update connect-wifi=false && eww-wayland open wifi-window"
-             :onhover     "eww update rev-wifi=true"
-             :onhoverlost "eww update rev-wifi=false"
-      (box :class "wifi" :space-evenly "false"
-        (image  :fill-svg {colors[1]}
-                :path "./icons/wifi-${round(wifi-info[1]/20, 0)}.svg")
-        (revealer :transition "slideleft"
-			                :reveal rev-wifi
-			                :duration "350ms"
-          (box :space-evenly "false"
-          (label :text "${wifi-info[0]}"  :class "white" :style "padding: 0px 5px;")
-          (label :text "${wifi-info[1]}%" :class "pink"  :style "padding: 0px 5px;")
+   (eventbox :onclick "hyprctl dispatch exec 'xfce4-terminal -e nmtui'"
+             :onhover     "eww update wifi-index=1"
+             :onhoverlost "eww update wifi-index=0"
+             :width "35"
+
+        (stack :selected {wifi-index}
+               :transition "slidedown"
+               :same-size "true"
+          (image  :fill-svg {colors[1]}
+                  :path "./icons/wifi-${round(wifi-info[1]/20, 0)}.svg")
+          (label :text "${wifi-info[1]}%" :class "pink")
+          (label :text "󰖩 "
+                 :class "pink"
+                 :style "font-size: 18px;"
           )
         )
-      )
     )
 )
+
+;; (defwidget wifi []
+;;    (eventbox :onclick "eww-wayland update connect-wifi=false && eww-wayland open wifi-window"
+;;              :onhover     "eww update rev-wifi=true"
+;;              :onhoverlost "eww update rev-wifi=false"
+;;       (box :class "wifi" :space-evenly "false"
+;;         (image  :fill-svg {colors[1]}
+;;                 :path "./icons/wifi-${round(wifi-info[1]/20, 0)}.svg")
+;;         (revealer :transition "slideleft"
+;;                       :reveal rev-wifi
+;;                       :duration "350ms"
+;;           (box :space-evenly "false"
+;;           (label :text "${wifi-info[0]}"  :class "white" :style "padding: 0px 5px;")
+;;           (label :text "${wifi-info[1]}%" :class "pink"  :style "padding: 0px 5px;")
+;;           )
+;;         )
+;;       )
+;;     )
+;; )
 
 
 (defwidget network [network visible action]
