@@ -12,12 +12,18 @@ volume=$(pamixer --get-volume)
 mute=$(pamixer --get-mute)
 
 heart=" "
+heart="󰝚 "
+heart="󰣏 "
+heart="󰋑 "
 muted=""
 
 if [[ "$mute" == "true" ]];
 then
     level='0'
+    heart="󰝛 "
     heart="♥ "
+    heart="󱀝 "
+    heart="󰋕 "
     muted="(muted)"
 
 elif [[ "$volume" -gt 50 ]];
@@ -30,8 +36,23 @@ else
     level='0'
 fi
 
+heart_string=""
+for ((i=1; i<=$volume/10; i++)); do
+    heart_string=$heart_string$"󰋑 "
+done
+
+if [ $((volume % 10)) -ge 5 -a $((volume % 10)) -lt 10 ]; then
+    heart_string=$heart_string$"󰛞 "
+fi
+
+for ((i=$volume/10; ${#heart_string}<20; i++)); do
+    heart_string=$heart_string$"󰋕 "
+done
+
+
+
 notify-send -c "volume" -h string:x-dunst-stack-tag:"volume" "Volume: $(($volume))% $muted
-$(for ((i=1; i<=$volume/5; i++)); do echo -n "$heart"; done)"
+$(echo -n $heart_string;)"
 
 eww update volume=$volume
 eww update mute=$mute

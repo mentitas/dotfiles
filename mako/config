@@ -8,7 +8,7 @@ on-button-right=dismiss
 outer-margin=10
 margin=0
 
-background-color=#181825ff
+background-color=#1e1e2eff
 text-color=#eba0acff
 font=Caskaydia Mono Nerd Font Bold 10
 width=350
@@ -47,12 +47,17 @@ on-button-left=exec ~/.config/mako/reboot && makoctl dismiss
 
 [category="volume"]
 text-color=#cba6f7ff
+width=200
 
 [category="light"]
 text-color=#f9e2afff
+width=200
 
 [category="notification"]
 text-color=#89dcebff
 
 [category="bluetooth"]
 text-color=#89b4faff
+
+[app-name="xfce4-power-manager"]
+text-color=#A6E3A1ff

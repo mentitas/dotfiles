@@ -8,8 +8,8 @@
 
 
 * {
-    background:     #181825FF;
-    background-alt: #1e1e2eFF;
+    background-alt: #181825FF;
+    background:     #1e1e2eFF;
     foreground:     #D9E0EEFF;
     active:         #ABE9B3FF;
     urgent:         #F28FADFF;

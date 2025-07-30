@@ -8,8 +8,23 @@ fi
 
 light=$(xbacklight -get)
 heart=" "
+heart="󰣏 "
+heart="󰋑 "
+
+heart_string=""
+for ((i=1; i<=$light/10; i++)); do
+    heart_string=$heart_string$"󰋑 "
+done
+
+if [ $((light % 10)) -ge 5 -a $((light % 10)) -lt 10 ]; then
+    heart_string=$heart_string$"󰛞 "
+fi
+
+for ((i=$light/10; ${#heart_string}<20; i++)); do
+    heart_string=$heart_string$"󰋕 "
+done
 
 notify-send -c "light" -h string:x-dunst-stack-tag:"brightness" "Brightness: $(($light))%
-$(for ((i=1; i<=$light/5; i++)); do echo -n "$heart"; done)"
+$(echo -n $heart_string;)"
 
 eww update backlight=$light

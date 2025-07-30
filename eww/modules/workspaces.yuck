@@ -13,7 +13,7 @@
 )
 
 
-(defwidget heart2 [name active text color]
+(defwidget heart-img [name active text color]
   (overlay :width "25"
 
     (image :path "${active ? "./icons/heart-active.svg" :
@@ -25,6 +25,19 @@
 )
 
 (defwidget heart [name active text color]
+
+    (label :text "${active     ? "󰋑 " :
+                    text != "" ? "󰋕 " :
+                    "* "}"
+           ;; :class "${active     ? "peach" :
+           ;;          text != ""  ? "green" :
+           ;;                        "mauve"}"
+           :style "font-size: 18px; color: ${color};"
+
+    )
+)
+
+(defwidget heart-text-2 [name active text color]
 
     (label :text "${active     ? "󰄛 " :
                     text != "" ? "󰴈 " :

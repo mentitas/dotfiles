@@ -321,7 +321,7 @@ exec --no-startup-id xset s 480 dpms 600 600 600
 exec gsettings set org.gnome.desktop.interface gtk-theme  Catppuccin-Dark-1
 exec gsettings set org.gnome.desktop.interface icon-theme Colloid-Purple-Catppuccin-Dark
 exec gsettings set org.gnome.desktop.interface font-name "DejaVu Sans, 10"
-exec feh --bg-fill ./Pictures/Wallpaper/rwby-shopping-2.jpg
+exec feh --bg-fill ./Pictures/Wallpaper/Favs/rwby-shopping-2.jpg
 
 exec sleep 3 && ewwx11 update backlight=$(brightnessctl -m | cut -d "," -f4 | head -c -2)
 exec sleep 3 && ewwx11 update volume=$(pamixer --get-volume)

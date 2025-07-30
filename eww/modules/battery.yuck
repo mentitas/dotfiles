@@ -1,6 +1,6 @@
 (defvar battery-index 0)
 
-
+;; 󰣏 
 
 (defwidget battery-heart [start middle end]
 
@@ -24,7 +24,7 @@
 (defwidget battery []
   (eventbox :onhover     "eww update battery-index=1"
             :onhoverlost "eww update battery-index=0"
-            :onclick     "eww open --toggle energy-window"
+            ;; :onclick     "eww open --toggle energy-window"
     (stack :selected {battery-index}
            :same-size "true"
            :transition "slidedown"

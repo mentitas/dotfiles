@@ -49,7 +49,8 @@
   (eventbox :onhover     "eww update volume-index=1"
             :onhoverlost "eww update volume-index=0"
             :onscroll    "~/.config/hypr/change-volume.sh {}"
-            ;; :onclick     "eww update right-index=2"
+            :onclick "./scripts/launch-app/pavucontrol"
+
             :width "35"
 
       (stack :selected {volume-index}
