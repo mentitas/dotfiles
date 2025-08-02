@@ -1,0 +1,785 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"border",
+				"border"
+			],
+			[
+				"bord",
+				"border"
+			],
+			[
+				"hea",
+				"heart_string"
+			],
+			[
+				"he",
+				"heart_string"
+			],
+			[
+				"borde",
+				"border"
+			],
+			[
+				"bor",
+				"border"
+			],
+			[
+				"for",
+				"foreground"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"te",
+				"text"
+			],
+			[
+				"sur",
+				"surface2"
+			],
+			[
+				"margin-b",
+				"margin-bottom"
+			],
+			[
+				"border-r",
+				"border-right"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"margin-",
+				"margin-top"
+			],
+			[
+				"margin",
+				"margin"
+			],
+			[
+				"surf",
+				"surface0"
+			],
+			[
+				"su",
+				"subtext0"
+			],
+			[
+				"x_",
+				"x_yang"
+			],
+			[
+				"x",
+				"x_weiss"
+			],
+			[
+				"as",
+				"ascii4"
+			],
+			[
+				"jso",
+				"json_obj"
+			],
+			[
+				"js",
+				"json_obj"
+			],
+			[
+				"ac",
+				"active_workspace"
+			],
+			[
+				"menu",
+				"PanelUI-menu-button"
+			],
+			[
+				"button",
+				"star-button"
+			],
+			[
+				"reload",
+				"stop-reload-button"
+			],
+			[
+				"toolbar",
+				"toolbarbutton-icon"
+			],
+			[
+				"lin",
+				"linear-gradient"
+			],
+			[
+				"side",
+				"sidebar-box"
+			],
+			[
+				"bac",
+				"background-position-y"
+			],
+			[
+				"b",
+				"background-color"
+			],
+			[
+				"nerd",
+				"nerd_speeds"
+			],
+			[
+				"nerd_",
+				"nerd_speeds"
+			],
+			[
+				"me",
+				"menu_shows_items"
+			],
+			[
+				"price",
+				"price_label"
+			],
+			[
+				"des",
+				"description_label"
+			],
+			[
+				"items",
+				"items_mode"
+			],
+			[
+				"item",
+				"itemsprite"
+			],
+			[
+				"p",
+				"purchased_item_id"
+			],
+			[
+				"itemsp",
+				"itemsprites"
+			],
+			[
+				"itemspr",
+				"itemsprites"
+			],
+			[
+				"new",
+				"new_item"
+			],
+			[
+				"get",
+				"get_item"
+			],
+			[
+				"ite",
+				"item"
+			],
+			[
+				"pur",
+				"purchased_item_id"
+			],
+			[
+				"beh",
+				"behaviours"
+			],
+			[
+				"ste",
+				"step_counter"
+			],
+			[
+				"set",
+				"set_y"
+			],
+			[
+				"letr",
+				"letras_edrev"
+			],
+			[
+				"letras",
+				"letras_celeste"
+			],
+			[
+				"nex",
+				"next_frame"
+			],
+			[
+				"vg",
+				"vga_pc734"
+			],
+			[
+				"cre",
+				"crear_menu_1"
+			],
+			[
+				"crea",
+				"crear_menu_1"
+			],
+			[
+				"spri",
+				"sprites"
+			],
+			[
+				"se",
+				"set_frame"
+			],
+			[
+				"__",
+				"__init__"
+			],
+			[
+				"fra",
+				"frame"
+			],
+			[
+				"stri",
+				"stripes"
+			],
+			[
+				"has",
+				"has_debuff"
+			],
+			[
+				"add",
+				"add_money"
+			],
+			[
+				"bull",
+				"bullets"
+			],
+			[
+				"bu",
+				"bullet"
+			],
+			[
+				"chart",
+				"chart_id"
+			],
+			[
+				"cha",
+				"chart_id"
+			],
+			[
+				"file",
+				"file_name"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"beat",
+				"beat_counter"
+			],
+			[
+				"arro",
+				"arrow_start_time"
+			],
+			[
+				"time",
+				"time_notes"
+			],
+			[
+				"note",
+				"note_count"
+			],
+			[
+				"bea",
+				"beat_timings"
+			],
+			[
+				"act",
+				"active_arrows"
+			],
+			[
+				"en",
+				"end_time"
+			],
+			[
+				"la",
+				"label_frame"
+			],
+			[
+				"sc",
+				"score_value"
+			],
+			[
+				"enab",
+				"enable_next_arrow"
+			],
+			[
+				"all",
+				"all_arrows"
+			],
+			[
+				"dire",
+				"direction"
+			],
+			[
+				"score",
+				"increase_score"
+			],
+			[
+				"di",
+				"disable"
+			],
+			[
+				"per",
+				"perfect_arrow"
+			],
+			[
+				"but",
+				"button"
+			],
+			[
+				"direc",
+				"direction_with_center"
+			],
+			[
+				"arr",
+				"arrows"
+			],
+			[
+				"bar",
+				"barra_azul"
+			],
+			[
+				"Sco",
+				"ScoreLabel"
+			],
+			[
+				"butt",
+				"buttons"
+			],
+			[
+				"is",
+				"is_disabled"
+			],
+			[
+				"ena",
+				"enable_first_arrow_at"
+			],
+			[
+				"enable",
+				"enable_arrow_at"
+			],
+			[
+				"dir",
+				"direction"
+			],
+			[
+				"move",
+				"move_down_a_little"
+			],
+			[
+				"temp",
+				"temp_frame"
+			],
+			[
+				"change",
+				"change_selected_frame"
+			],
+			[
+				"actia",
+				"activate_selected"
+			],
+			[
+				"de",
+				"default_x"
+			],
+			[
+				"tem",
+				"temporary_frame"
+			],
+			[
+				"acti",
+				"activate_and_move_item"
+			],
+			[
+				"cu",
+				"current_purchase"
+			],
+			[
+				"curren",
+				"current_purchase"
+			],
+			[
+				"pl",
+				"place_item"
+			],
+			[
+				"pla",
+				"placing_purchase"
+			],
+			[
+				"It",
+				"Items"
+			],
+			[
+				"form",
+				"format_string"
+			],
+			[
+				"wir",
+				"write_description"
+			],
+			[
+				"y_",
+				"y_text"
+			],
+			[
+				"sel",
+				"selected_item"
+			],
+			[
+				"sele",
+				"selected_item"
+			],
+			[
+				"selec",
+				"selected_height"
+			],
+			[
+				"hei",
+				"height"
+			],
+			[
+				"Jo",
+				"JOY_LEFT"
+			],
+			[
+				"border-",
+				"border-width"
+			],
+			[
+				"--mff-tab",
+				"--mff-tab-selected-bg"
+			],
+			[
+				"C",
+				"CHSSID"
+			],
+			[
+				"ali",
+				"align-items"
+			],
+			[
+				"al",
+				"align-content"
+			],
+			[
+				"curr",
+				"current_border_color"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/rosu/.config/eww"
+	],
+	"file_history":
+	[
+		"/home/rosu/.bashrc",
+		"/home/rosu/.zshrc",
+		"/home/rosu/.config/hypr/hyprland.conf",
+		"/home/rosu/.config/rofi/style.rasi",
+		"/home/rosu/.config/rofi/catppuccin.rasi",
+		"/home/rosu/.config/eww/eww.scss",
+		"/home/rosu/.themes/Catppuccin-Dark-mine/gtk-3.0/gtk.css",
+		"/home/rosu/.themes/Catppuccin-Dark-mine/gtk-4.0/gtk.css",
+		"/home/rosu/.config/eww/modules/workspaces.yuck",
+		"/home/rosu/.config/eww/modules/battery.yuck",
+		"/home/rosu/.config/eww/dock.yuck",
+		"/home/rosu/.config/hypr/change-light.sh",
+		"/home/rosu/.config/hypr/hyprpaper.conf",
+		"/home/rosu/.config/eww/modules/launcher.yuck",
+		"/home/rosu/.config/eww/scripts/change-wallpaper",
+		"/home/rosu/.config/hypr/change-wallpaper.sh",
+		"/home/rosu/Software/subtitld/setup.py",
+		"/home/rosu/.config/hypr/change-volume.sh",
+		"/home/rosu/.config/eww/palettes/darker-mocha.scss",
+		"/home/rosu/.config/mako/config",
+		"/home/rosu/.config/eww/modules/volume.yuck",
+		"/home/rosu/.config/eww/modules/energy-window.yuck",
+		"/home/rosu/.config/hypr/cycle-workspaces.sh",
+		"/home/rosu/.config/eww/modules/workspace-overview.yuck",
+		"/home/rosu/Downloads/overview.yuck",
+		"/home/rosu/.config/eww/modules/metrics.yuck",
+		"/home/rosu/.config/eww/modules/light.yuck",
+		"/home/rosu/.config/eww/modules/wifi.yuck",
+		"/home/rosu/.config/eww/modules/bluetooth.yuck",
+		"/home/rosu/.config/eww/modules/power.yuck",
+		"/home/rosu/.config/eww/modules/energy.yuck",
+		"/home/rosu/Software/dots-hyprland/install.sh",
+		"/home/rosu/.config/eww/scripts/get-clients",
+		"/home/rosu/Software/dots-hyprland/.config/quickshell/ii/modules/overview/OverviewWidget.qml",
+		"/home/rosu/.config/eww/modules/notifications.yuck",
+		"/home/rosu/Software/dots-hyprland/.config/quickshell/ii/modules/overview/OverviewWindow.qml",
+		"/home/rosu/.config/eww/scripts/get-workspaces",
+		"/home/rosu/.config/waybar/style.css",
+		"/home/rosu/.config/eww/scripts/toggle-theme.sh",
+		"/home/rosu/.config/i3/config",
+		"/home/rosu/Software/dots-hyprland/.config/quickshell/ii/modules/overview/Overview.qml",
+		"/home/rosu/.config/hypr/algo.sh",
+		"/home/rosu/.config/waybar/config2",
+		"/home/rosu/.mozilla/firefox/l7j0afnf.default-release/chrome/userContent.css",
+		"/home/rosu/.mozilla/firefox/l7j0afnf.default-release/chrome/userChrome.css",
+		"/home/rosu/.config/hypr/open-rofi.sh",
+		"/home/rosu/Scripts/change-mouse-cursor.sh",
+		"/home/rosu/.config/eww/modules/time.yuck",
+		"/home/rosu/.config/waybar/config",
+		"/run/media/rosu/Blue/escaperoom/Video introduccion - Hackeo a la UBA.srt",
+		"/home/rosu/.config/waybar/config3",
+		"/home/rosu/.config/waybar/config4",
+		"/home/rosu/.config/waybar/style4.css",
+		"/home/rosu/.config/hypr/hyprlock.conf",
+		"/home/rosu/.config/waybar/style3.css",
+		"/usr/share/sddm/themes/catppuccin-mocha/Components/PasswordField.qml",
+		"/home/rosu/.config/eww/scripts/wifi-signal",
+		"/home/rosu/.config/hypr/dynamically-change-vivaldi-theme.sh",
+		"/home/rosu/.config/eww/scripts/wifi-list-devices",
+		"/etc/sddm.conf.d/default.conf",
+		"/home/rosu/.config/hypr/handle-monitors.sh",
+		"/usr/share/sddm/scripts/Xsetup",
+		"/usr/share/sddm/themes/catppuccin-mocha/theme.conf",
+		"/usr/share/sddm/themes/catppuccin-mocha/Components/SleepButton.qml",
+		"/usr/share/sddm/themes/catppuccin-mocha/Components/RebootButton.qml",
+		"/usr/share/sddm/themes/catppuccin-mocha/Components/PowerButton.qml",
+		"/home/rosu/Software/sddm-themes/where_is_my_sddm_theme/theme.conf",
+		"/usr/share/sddm/themes/catppuccin-mocha/Components/UserField.qml",
+		"/usr/share/sddm/themes/catppuccin-mocha/Components/SessionPanel.qml",
+		"/usr/share/sddm/themes/catppuccin-mocha/Components/LoginPanel.qml",
+		"/usr/share/sddm/themes/where_is_my_sddm_theme/theme.conf",
+		"/usr/share/sddm/themes/catppuccin-mocha/Main.qml",
+		"/home/rosu/Software/sddm-themes/C64-AnimRobotsTerminal/ReadMe!.txt",
+		"/home/rosu/Documents/Compu/Bases/2V2PL-Protocol/main.py",
+		"/home/rosu/.config/sway/config",
+		"/home/rosu/.config/hypr/monitor-mouse-actions.sh",
+		"/home/rosu/.cache/.fr-v3ONuD/src/main/java/inge2/dataflow/StackAr.java",
+		"/home/rosu/.local/share/UltimMC/instances/Simposerver/.minecraft/crash-reports/crash-2025-06-29_02.34.37-client.txt",
+		"/home/rosu/.local/share/UltimMC/themes/custom/theme.json",
+		"/home/rosu/.local/share/UltimMC/themes/custom/themeStyle.css",
+		"/home/rosu/Software/grub-themes/rip_weiss.py",
+		"/home/rosu/Software/grub-themes/rip_weiss/theme.txt",
+		"/home/rosu/Games/UltimMC/themes/catppuccin/themeStyle.css",
+		"/home/rosu/Games/UltimMC/themes/catppuccin/theme.json",
+		"/home/rosu/Games/UltimMC/themes/custom/themeStyle.css",
+		"/home/rosu/.local/share/UltimMC/themes/catppuccin/themeStyle.css",
+		"/home/rosu/Games/UltimMC/themes/custom/theme.json",
+		"/home/rosu/Software/grub-themes/theme.txt",
+		"/home/rosu/Software/grub-themes/team_rwby_big.txt",
+		"/home/rosu/Software/grub-themes/team_rwby_big_grub.txt",
+		"/home/rosu/Software/grub-themes/cute_ascii/theme.txt",
+		"/home/rosu/Software/grub-themes/team_rwby_og.txt",
+		"/home/rosu/Software/grub-themes/rip_weiss.txt",
+		"/home/rosu/Software/grub-themes/team_rwby.txt",
+		"/home/rosu/Documents/Compu/temas-de-tesis.txt",
+		"/home/rosu/Software/grub-themes/team_rwby_small.txt",
+		"/home/rosu/Software/grub-themes/OldBIOS/theme.txt",
+		"/home/rosu/Software/Plymouth Themes/bocchi-explosion/bocchi-explosion.script",
+		"/home/rosu/Software/grub-themes/needy-grub-overdose/theme.txt",
+		"/home/rosu/Software/Plymouth Themes/mono-tux/mono-tux.script",
+		"/home/rosu/Software/Plymouth Themes/mono-tux/mono-tux.plymouth",
+		"/home/rosu/Software/Plymouth Themes/bocchi-explosion/bocchi-explosion.plymouth",
+		"/home/rosu/Software/Plymouth Themes/bocchi/bocchi.script",
+		"/home/rosu/Software/Plymouth Themes/bocchi/bocchi.plymouth",
+		"/home/rosu/Software/Plymouth Themes/bocchi/bocchi0000.png",
+		"/home/rosu/Software/Plymouth Themes/bulbasaur-evolutions/bulbasaur-evolutions.script",
+		"/home/rosu/Software/Plymouth Themes/bulbasaur-evolutions/bulbasaur-evolutions.plymouth",
+		"/home/rosu/Software/Plymouth Themes/bulbasaur-evolutions/animation-0.png",
+		"/home/rosu/Software/Plymouth Themes/percentage/percentage.plymouth",
+		"/home/rosu/Software/Plymouth Themes/bocchi-explosion/bocchi.script",
+		"/home/rosu/Software/Plymouth Themes/bocchi-explosion/bocchi.plymouth",
+		"/home/rosu/Software/Plymouth Themes/bocchi/mono-tux.script",
+		"/home/rosu/Software/Plymouth Themes/bocchi/mono-tux.plymouth",
+		"/home/rosu/.gtkrc-2.0",
+		"/boot/grub/themes/starfield/theme.txt",
+		"/etc/default/grub-btrfs/config",
+		"/usr/share/grub/themes/needy-grub-overdose/theme.txt",
+		"/home/rosu/Downloads/taller7/src/main/java/inge2/dataflow/StackAr.java",
+		"/home/rosu/.local/share/wl_shimeji/shimejis/Shimeji.White/manifest.json",
+		"/home/rosu/.local/share/wl_shimeji/shimejis/Shimeji.LightBrown/manifest.json",
+		"/home/rosu/.local/share/wl_shimeji/shimejis/Shimeji.Charlie Morningstar/manifest.json",
+		"/home/rosu/.local/share/wl_shimeji/shimejis/Shimeji.Black/manifest.json",
+		"/home/rosu/Software/Plymouth Themes/monochrome-tux/mono-tux/tux.plymouth",
+		"/home/rosu/Software/Plymouth Themes/modern-flat-tux/installation-instruction.txt",
+		"/home/rosu/Software/Plymouth Themes/monochrome-tux/mono-tux/tux.script",
+		"/home/rosu/Software/Plymouth Themes/monochrome-tux/tux/tux.plymouth",
+		"/home/rosu/Software/Plymouth Themes/monochrome-tux/tux/tux.script",
+		"/home/rosu/.local/share/wl_shimeji/shimeji-overlayd.conf"
+	],
+	"find":
+	{
+		"height": 42.0
+	},
+	"find_in_files":
+	{
+		"height": 196.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 68.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"pinned_build_system": "",
+	"project": "eww.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 310.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

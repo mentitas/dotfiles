@@ -4,7 +4,7 @@
 
 (defwidget battery-heart [start middle end]
 
-  (label :text  "${EWW_BATTERY.BAT0.capacity <= 30 ? 
+  (label :text  "${(EWW_BATTERY.BAT0.capacity <= 30 && EWW_BATTERY.BAT0.status != 'Charging') ? 
                    "${ start  >= EWW_BATTERY.BAT0.capacity &&
                        end    >  EWW_BATTERY.BAT0.capacity ? "󰯈 " : "󰚌 "}"
                   :
