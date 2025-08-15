@@ -25,6 +25,19 @@
 )
 
 (defwidget heart [name active text color]
+    (overlay :width "20" 
+      (label :text "${active ? "󰋑" : "󰋕"}"
+             :style "font-size: 18px; color: ${color};"
+             )
+      (label :text ""
+             :style "font-size: 10px;"
+             :visible "${text != ""}"
+             )
+    )
+)
+
+
+(defwidget heart-text [name active text color]
 
     (label :text "${active     ? "󰋑 " :
                     text != "" ? "󰋕 " :
