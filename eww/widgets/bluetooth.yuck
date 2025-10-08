@@ -1,0 +1,13 @@
+(defpoll bluetooth-info :interval "10s"
+  "./scripts/get-bluetooth-power-and-device.sh"
+)
+
+(defwidget bluetooth []
+  (button :onclick "hyprctl dispatch exec blueman-manager"
+          :width "35"
+    (image  :fill-svg {blue}
+      :path "${!bluetooth-info[0]       ? "./icons/bluetooth-disabled.svg"  :
+                bluetooth-info[1] != "" ? "./icons/bluetooth-connected.svg" :
+                                          "./icons/bluetooth.svg"}")
+  )
+)

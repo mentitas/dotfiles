@@ -1,4 +1,0 @@
-
-;;:index "${substring(ws, 33, 33)}"                         ;; Get current ws
-;;:array "[${substring(ws-list,34,strlength(ws-list))}]"))) ;; Format ws names as an array
-;;:current-ws "${search(ws-list, '"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"|"10')[substring(ws, 33, 33)]}")

@@ -1,0 +1,9 @@
+(defpoll time :interval "10s"
+  "date '+%H:%M %b %d, %Y'")
+
+(defwidget time []
+    (label :text {time}
+           :class "_3"
+           ;; :class "_${current_workspace}";
+    )
+)

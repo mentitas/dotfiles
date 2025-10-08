@@ -1,4 +1,122 @@
-(include "./palettes/darker-mocha.yuck")
-(include "./dock.yuck")
+(include "./palettes/theme.yuck")
+(include "./widgets/time.yuck")
 
+;; Right
+(include "./widgets/volume.yuck")
+(include "./widgets/light.yuck")
+(include "./widgets/wifi.yuck")
+(include "./widgets/bluetooth.yuck")
+(include "./widgets/power.yuck")
+(include "./widgets/battery.yuck")
+
+;; Left
+(include "./widgets/workspaces.yuck")
+(include "./widgets/shortcuts.yuck")
+
+(defvar accent      "1")
+(defvar right-index "0")
 (defvar spacing 10)
+
+(defvar system "wayland")
+;; (defvar system "xorg")
+
+(defwidget sep []
+  (label :text "|" :width "20")
+)
+
+(defwidget left []
+  (box :class "left"
+       :space-evenly "false"
+       :spacing "5"
+      (workspaces)
+    )
+)
+
+(defwidget right []
+    
+    (box :halign "end" :space-evenly "false" :spacing {spacing} :style "margin-right: 10px;"
+
+        (stack :selected {right-index}
+               :transition "slideleft"
+               :same-size "true"
+
+            (box :space-evenly "false"
+                 :spacing {spacing}
+                 :halign "end"
+              (box
+                (volume)
+                (light)
+                (wifi)
+                (bluetooth)
+              )
+              (sep)
+              (battery)
+            )
+            (eventbox :onhoverlost "eww update right-index=0"
+              (power)
+            )
+        )
+
+      (eventbox :onhover "eww update right-index=1"
+          (label :text {right-index == 1 ? "" : ""})
+    )
+  )
+)
+
+
+(defwidget bar []
+  (centerbox :height "20"
+             :class "bar"
+             
+      (left)
+      (time)
+      (right)
+  )
+)
+
+(defwidget bar-m []
+  (centerbox :height "20" :class "bar_1"
+      (left)
+      (time)
+      (label :text "")
+  )
+)
+
+(defwindow workspace-overview
+  :monitor 0
+  :exclusive true
+  :focusable false
+  :stacking "fg"
+  :namespace "eww"
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "20%"
+                      :height "10%"
+                      :anchor "center center")
+  (workspace-overview))
+
+(defwindow dock
+  :monitor 0
+  :exclusive true
+  :focusable false
+  :stacking "fg"
+  :namespace "eww"
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "100%"
+                      :height "15px"
+                      :anchor "top center")
+  (bar))
+
+(defwindow dock-m
+  :monitor 1
+  :exclusive true
+  :focusable false
+  :stacking "fg"
+  :namespace "eww"
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "100%"
+                      :height "15px"
+                      :anchor "top center")
+  (bar-m))

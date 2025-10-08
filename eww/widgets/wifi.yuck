@@ -1,0 +1,27 @@
+;; wifi-info[0] = ssid
+;; wifi-info[1] = signal strength
+(defpoll wifi-info :interval "10s"
+  "./scripts/get-wifi-name-and-signal"
+)
+
+(defvar wifi-index 0)
+
+(defwidget wifi []
+   (eventbox :onclick "hyprctl dispatch exec 'xfce4-terminal -e nmtui'"
+             :onhover     "eww update wifi-index=1"
+             :onhoverlost "eww update wifi-index=0"
+             :width "35"
+
+        (stack :selected {wifi-index}
+               :transition "slidedown"
+               :same-size "true"
+          (image  :fill-svg {pink}
+                  :path "./icons/wifi-${round(wifi-info[1]/20, 0)}.svg")
+          (label :text "${wifi-info[1]}%" :class "pink")
+          (label :text "󰖩 "
+                 :class "pink"
+                 :style "font-size: 18px;"
+          )
+        )
+    )
+)

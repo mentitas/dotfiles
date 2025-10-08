@@ -1,0 +1,34 @@
+(defvar rev-vol        false)
+(defvar vol-popup      false)
+(defvar volume-index       0)
+
+(defvar volume 0)
+(defvar mute false)
+
+(defwidget volume-icon []
+  (image :fill-svg {mauve}
+                 :path "${ mute       ? "./icons/volume-0.svg" :
+                          volume > 50 ? "./icons/volume-2.svg" :
+                          volume > 1  ? "./icons/volume-1.svg" :
+                                        "./icons/volume-0.svg"}")
+)
+
+(defwidget volume []
+  (eventbox :onhover     "eww update volume-index=1"
+            :onhoverlost "eww update volume-index=0"
+            :onscroll    "~/.config/hypr/scripts/change-volume.sh {}"
+            :onclick "hyprctl dispatch exec pavucontrol"
+
+            :width "35"
+
+      (stack :selected {volume-index}
+             :transition "slidedown"
+             :same-size "true"
+          (volume-icon)
+          (label :text "${volume}%" :class "mauve")
+          (label :text "󰕾 "
+                 :class "mauve"
+                 :style "font-size: 18px;")
+      )
+  )
+)

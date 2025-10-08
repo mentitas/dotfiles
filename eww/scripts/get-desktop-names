@@ -1,2 +1,0 @@
-#!/bin/sh
-xprop -spy -root _NET_DESKTOP_NAMES | cut -d "=" -f2

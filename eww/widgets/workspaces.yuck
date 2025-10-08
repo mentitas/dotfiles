@@ -1,0 +1,58 @@
+;; Para Wayland
+(deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
+
+(deflisten current_workspace :initial "1"
+  "bash ~/.config/eww/scripts/get-active-workspace"
+)
+
+;; full   = "󰋑", "󰄛 "
+;; middle = "", "󰴈 "
+;; empty  = "󰋕", "* "
+
+(defwidget heart [number active has-window]
+    (overlay :width "20"  
+      (label :text "${active ? "󰋑" : "󰋕"}"
+             :style "font-size: 18px;"
+             :class "_${number}"
+             )
+      (label :text ""
+             :style "font-size: 10px;"
+             :visible "${has-window && !active}"
+             )
+    )
+)
+
+(defwidget heart-img [number active text color]
+  (overlay :width "25"
+
+    (image :path "${active ? "./icons/heart-active.svg" :
+                             "./icons/heart.svg"}"
+          :fill-svg "${color}")
+
+    (label :text "${text}" :visible "${!active}")
+    )
+)
+
+(defwidget workspaces []
+  (eventbox :onscroll "bash ~/.config/eww/scripts/scroll-workspaces {} ${current_workspace}"
+    (box :space-evenly false
+         :halign "start"
+        (label :text "${current_workspace}" :width "30")
+      
+      (for workspace in workspaces
+        (box :space-evenly "true"
+          (eventbox :onclick "${system == "wayland"
+                    ? "hyprctl dispatch workspace ${workspace.id}"
+                    : "i3-msg workspace ${workspace.id}"
+                    }"
+            (heart :number "${workspace.id}"
+                   :active "${workspace.id == current_workspace}"
+                   :has-window "${workspace.windows != 0}"
+                   ;; :color "${colors[workspace.id - 1]}"
+            )
+          )
+        )
+      )
+    )
+  )
+)

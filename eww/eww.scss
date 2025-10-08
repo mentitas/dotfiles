@@ -1,4 +1,4 @@
-@import 'palettes/darker-mocha.scss'
+@import 'palettes/theme.scss'
 
 * {
   all: unset; //Unsets everything so you can style everything from scratch
@@ -25,17 +25,17 @@ $_9  : $sapphire ;
 $_0  : $blue     ;
 
 // Classes for the time widget, which changes with every workspace
-._1,  .mauve     {  color: $_1;   }
-._2,  .pink      {  color: $_2;   }
-._3,  .red       {  color: $_3;   }
-._4,  .peach     {  color: $_4;   }
-._5,  .yellow    {  color: $_5;   }
-._6,  .green     {  color: $_6;   }
-._7,  .teal      {  color: $_7;   }
-._8,  .sky       {  color: $_8;   }
-._9,  .sapphire  {  color: $_9;   }
-._0,  .blue      {  color: $_0;   }
-._10,  .blue     {  color: $_0;   }
+._1,  .mauve   , ._mauve     {  color: $_1;   }
+._2,  .pink    , ._pink      {  color: $_2;   }
+._3,  .red     , ._red       {  color: $_3;   }
+._4,  .peach   , ._peach     {  color: $_4;   }
+._5,  .yellow  , ._yellow    {  color: $_5;   }
+._6,  .green   , ._green     {  color: $_6;   }
+._7,  .teal    , ._teal      {  color: $_7;   }
+._8,  .sky     , ._sky       {  color: $_8;   }
+._9,  .sapphire, ._sapphire  {  color: $_9;   }
+._0,  .blue    , ._blue      {  color: $_0;   }
+._10, .blue    , ._blue      {  color: $_0;   }
 .black           {  color: $background;   }
 
 .mauve_circular     {  color: $_1;  background-color:  $surface;}
@@ -148,7 +148,7 @@ $_0  : $blue     ;
   padding: 1;
 }
 
-.bar { background-color: $background; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}
+.bar  { background-color: $background; border: solid 3px $accent; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}
 
 .bar_1  { background-color: $background; border: solid 3px $_1; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}
 .bar_2  { background-color: $background; border: solid 3px $_2; border-radius: 20px;  margin: 3 9 0 9; padding: 1;}

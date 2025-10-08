@@ -1,2 +1,0 @@
-WORKSPACE_WINDOWS=$(hyprctl clients -j | jq ' group_by(.workspace.id) | map({key: .[0].workspace.name, value: {count: map(.address) | length, clients: [.[] | {address: .address, class: .class, size: .size, at: .at}]}}) | from_entries')
-seq 1 10 | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc 'map(tostring) | map({id: ., windows: ($windows[.]//0)})'

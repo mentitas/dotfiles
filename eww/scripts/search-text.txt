@@ -1,1 +1,0 @@
-(box :orientation "h" :spacing 5 :halign "center" :valign "center" )

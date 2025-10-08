@@ -51,11 +51,7 @@ elif [ $(pidof i3) ]; then
 				echo $ws_info
 
 	done
+
+# elif [ $(pidof niri) ]; then
+# 	echo "hola"
 fi
-
-
-
-
-
-
- 

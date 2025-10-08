@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# Colores usabless
-# https://en.wikipedia.org/wiki/X11_color_names
-oneko -tora -bg coral -fg crimson -name tora
